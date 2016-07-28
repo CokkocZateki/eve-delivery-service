@@ -1,0 +1,11 @@
+<div class="content-box roundedCorners">
+
+  <h2>Check your status</h2>
+
+  <label for="orderCode">Order Code</label>
+  <input type="text" class="form-control" id="orderCode" placeholder="Enter the order code"
+         (keyup)="onKey($event)" required pattern="[a-z0-9]">
+  <div *ngIf="status" class="alert alert-primary">
+    Current status: {{ status }} 
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="content-box roundedCorners">
+
+  <h2>Submit Order</h2>
+
+  <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
+    <fieldset class="form-group">
+      <label for="characterName">Character Name</label>
+      <input [(ngModel)]="model.client" name="client" type="text" class="form-control" id="characterName"
+             placeholder="Enter character name" required>
+      <!--<div *ngIf="!name.valid || !name.pristine" class="alert alert-danger">-->
+      <!--No name, no order! This is the character we will contract the items to.-->
+      <!--</div>-->
+      <!--<small *ngIf="name.valid && name.pristine">This is the character we will contract the items to.</small>-->
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="evepraisalLink">Evepraisal Link</label>
+      <input [(ngModel)]="model.link" name="link"
+             type="url" class="form-control" id="evepraisalLink" placeholder="Enter the Evepraisal link"
+             (keyup)="onKey($event)" required pattern="http[s]?:\/\/(www\.)?evepraisal\.com\/e\/[0-9]*">
+      <!--<div *ngIf="!link.valid || !link.pristine" class="alert alert-danger">-->
+      <!--Invalid order link, please insert the evepraisal link! It looks like this: http://evepraisal.com/e/11833945-->
+      <!--</div>-->
+      <small>Paste your items at <a href="http://evepraisal.com" target="_blank">evepraisal.com</a>,
+        submit and copy the url into this field.
+      </small>
+    </fieldset>
+    <div *ngIf="isPriceCalculationRunning">
+      Price calculation running ...
+    </div>
+    <div *ngIf="isPriceCalculationFailed" class="alert alert-danger">
+      The price for <a href="{{link.value}}" target="_blank">{{link.value}}</a> could not be resolved.
+    </div>
+    <div *ngIf="isPriceCalculated" class="alert alert-success">
+      Expected total price: {{ expectedPrice | numberGroups }}.00 ISK
+      <small><br/>Formula: total = jitaMinSell x 1.13<br>Please note that the buy price at Jita may change.</small>
+    </div>
+    <div *ngIf="!isPriceCalculated && !isPriceCalculationRunning && !isPriceCalculationFailed"
+         class="alert alert-warning">
+      Please enter an Evepraisal link to calculate the total quote.
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <div *ngIf="submitted">
+    Thank you for your order! With the order number <b>{{ orderId }}</b> you can check the status of your order.
+  </div>
+</div>

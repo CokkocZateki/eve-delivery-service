@@ -1,0 +1,58 @@
+<style>
+  .overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background: url(../../../assets/images/maintenance.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  }
+
+  .overlay-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(255,255,255,0.1);
+    color: whitesmoke;
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  }
+
+  .overlay a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  /* When you mouse over the navigation links, change their color */
+  .overlay a:hover, .overlay a:focus {
+    transition: 0.3s;
+    color: #f13812;
+  }
+</style>
+
+<div class="overlay">
+  <div class="overlay-content">
+    <h1 >Sudden Maintenance!</h1>
+    <p>
+      Our service is having ~~issues~~. Our plex tanked frigates are on their way!
+    </p>
+    <p>
+      In the meantime enjoy some <a href="http://jetbalsa.com/evekill/">crew deaths</a>.
+    </p>
+    <p>
+      See you later!
+    </p>
+  </div>
+</div>

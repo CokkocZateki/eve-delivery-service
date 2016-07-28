@@ -1,3 +1,6 @@
-<h1>
-  {{title}}
-</h1>
+<div class="content">
+  <order *ngIf="!serviceDown"></order>
+  <status *ngIf="!serviceDown"></status>
+  <feedback *ngIf="!serviceDown"></feedback>
+  <error *ngIf="serviceDown"></error>
+</div>

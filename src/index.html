@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>EveSupermarketUi</title>
+  <title>HordeSupermarket</title>
   <base href="/">
 
   {{#unless environment.production}}
@@ -10,10 +10,22 @@
   {{/unless}}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+  <!--link to fonts-->
+  <link href='assets/googleRobotoFonts' rel='stylesheet' type='text/css'>
+  <!--<link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>-->
+
+  <!--link to bootstrap.css-->
+  <link rel="stylesheet" href="assets/css/bootstrap-3.3.5.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/prettify-angulario.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <app-root>Loading...</app-root>
-  
+
     {{#each scripts.polyfills}}
     <script src="{{.}}"></script>
     {{/each}}
@@ -22,6 +34,6 @@
         System.import('main');
       }).catch(console.error.bind(console));
     </script>
-  
+
 </body>
 </html>
