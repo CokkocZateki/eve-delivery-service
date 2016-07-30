@@ -7,9 +7,7 @@ export class FeedbackService {
 
   private baseUrl = environment.ip + "v1/feedback/";
 
-  constructor(private http:Http) {
-
-  }
+  constructor(private http:Http) { }
 
   public post(feedback:string) {
     return this.http.post(this.baseUrl + "post", feedback);
