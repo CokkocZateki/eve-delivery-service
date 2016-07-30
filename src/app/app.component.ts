@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   public constructor (private http:Http) {}
 
   ngOnInit() {
-    this.http.get(environment.ip + "v1/alive/alive").subscribe(
+    this.http.get(environment.ip + "alive").subscribe(
       data => this.serviceDown = false,
       err => {
         this.serviceDown = true;
