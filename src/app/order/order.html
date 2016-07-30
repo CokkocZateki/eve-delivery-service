@@ -28,7 +28,7 @@
       Price calculation running ...
     </div>
     <div *ngIf="isPriceCalculationFailed" class="alert alert-danger">
-      The price for <a href="{{link.value}}" target="_blank">{{link.value}}</a> could not be resolved.
+      The price for <a href="{{model.link}}" target="_blank">{{model.link}}</a> could not be resolved.
     </div>
     <div *ngIf="isPriceCalculated" class="alert alert-success">
       Expected total price: {{ expectedPrice | numberGroups }}.00 ISK
