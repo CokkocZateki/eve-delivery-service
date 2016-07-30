@@ -1,10 +1,11 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
+import {environment} from "../environment";
 
 @Injectable()
 export class FeedbackService {
 
-  private baseUrl = "http://localhost:4000/v1/feedback/";
+  private baseUrl = environment.ip + "v1/feedback/";
 
   constructor(private http:Http) {
 

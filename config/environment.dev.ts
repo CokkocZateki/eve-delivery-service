@@ -1,3 +1,4 @@
 export const environment = {
-  production: false
+  production: false,
+  ip: "http://localhost:4200/"
 };

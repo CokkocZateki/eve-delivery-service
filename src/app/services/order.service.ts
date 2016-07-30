@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
 import {Order} from "../common/order";
 import {Http} from "@angular/http";
+import {environment} from "../environment";
 
 @Injectable()
 export class OrderService {
 
-  private baseUrl = "http://localhost:4000/v1/order/";
+  private baseUrl = environment.ip + "v1/order/";
 
   constructor(private http:Http) {
 
