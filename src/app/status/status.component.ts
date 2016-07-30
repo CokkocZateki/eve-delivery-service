@@ -9,6 +9,8 @@ import {OrderService} from "../services/order.service";
 })
 export class StatusComponent {
 
+  public showStatusForm:boolean;
+
   public constructor(private orderService:OrderService) {
   }
 

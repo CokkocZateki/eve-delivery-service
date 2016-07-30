@@ -1,4 +1,11 @@
-<div class="content-box roundedCorners">
+<div style="text-align: center">
+  <button type="button" class="btn btn-primary" (click)="showStatusForm=true" *ngIf="!showStatusForm">Check your Status</button>
+  <!--todo: move the buttons to super class; with input/output-->
+  <br/>
+  <br/>
+</div>
+
+<div class="content-box roundedCorners" *ngIf="showStatusForm">
 
   <h2>Check your status</h2>
 
