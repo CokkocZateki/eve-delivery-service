@@ -24,16 +24,17 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <app-root>Loading...</app-root>
+<app-root>Loading...</app-root>
 
-    {{#each scripts.polyfills}}
-    <script src="{{.}}"></script>
-    {{/each}}
-    <script>
-      System.import('system-config.js').then(function () {
-        System.import('main');
-      }).catch(console.error.bind(console));
-    </script>
+{{#each scripts.polyfills}}
+<script src="{{.}}"></script>
+{{/each}}
+<script>
+  System.import('system-config.js').then(function () {
+    System.import('main');
+  }).catch(console.error.bind(console));
+</script>
 
+<p style="color: #fff; text-align: center">All Eve Related Materials are property of CCP Games.</p>
 </body>
 </html>
