@@ -3,7 +3,9 @@
   <h2>Submit Order</h2>
 
   <!--todo: retrieve messages from a backing service-->
-  <h3>Items are shipped to O1Y. Request to receipt takes ca. 24 hours.</h3>
+  <p>Tell us what to buy, and we will buy and ship it for you. No Jita alt needed!
+    <br/>Payment is due upon accepting the contract in O1Y, don't pay in advance!
+    Items are shipped to O1Y. Request to receipt takes ca. 24 hours.</p>
 
   <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
     <fieldset class="form-group">
@@ -44,6 +46,8 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   <div *ngIf="submitted">
-    Thank you for your order! With the order number <b>{{ orderId }}</b> you can check the status of your order.
+    <h3>Thank you for your order!</h3>
+    With the order number <b>{{ orderId }}</b> you can check the status of your order. <br/>
+    After accepting the order, your goods will be shipped over and contracted to you. Upon accepting the contract you have to pay. Don't pay in advance.
   </div>
 </div>
