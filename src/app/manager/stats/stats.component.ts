@@ -6,7 +6,6 @@ import {MODAL_DIRECTIVES} from 'ng2-bs3-modal/ng2-bs3-modal';
 import {ClipboardDirective} from 'angular2-clipboard';
 import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
 
-
 @Component({
   moduleId: module.id,
   selector: 'stats',
@@ -19,6 +18,8 @@ export class StatsComponent implements OnInit {
 
   private requestCount:any = "Loading ...";
   private alertStatus = "";
+  private activeShippingCount:any = "Loading ...";
+  private waitingForShipping:any = "Loading ...";
 
   constructor(private service:ManagerService) {
   }
@@ -39,6 +40,31 @@ export class StatsComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.requestCount = "ERROR";
+      }
+    );
+
+    this.service.activeShippingContracts().subscribe(
+      data => {
+        let body = data.json();
+        console.log(body);
+        this.activeShippingCount = body.activeShippingContracts;
+      },
+      err => {
+        console.log(err);
+        this.activeShippingCount = "ERROR";
+      }
+    );
+
+    this.service.waitingForShippingContracts().subscribe(
+      data => {
+        let body = data.json();
+        console.log(body);
+        this.waitingForShipping = body.waitingForShippingContracts;
+      },
+      err => {
+        console.log(err);
+        this.waitingForShipping = "ERROR";
       }
     );
   }

@@ -30,4 +30,12 @@ export class ManagerService {
   public countRequests() {
     return this.http.get(this.baseUrl + "count/requests");
   }
+
+  public activeShippingContracts() {
+    return this.http.get(this.baseUrl + "count/activeShippingContracts");
+  }
+
+  waitingForShippingContracts() {
+    return this.http.get(this.baseUrl + "count/waitingForShippingContracts");
+  }
 }
