@@ -44,6 +44,11 @@ export class ListComponent implements OnInit {
     this.modalOrder = order;
   }
 
+  public showShippingDialog(order:Order, dialog:any) {
+    this.calcShippingPrices(order);
+    this.showDialog(order, dialog);
+  }
+
   public onModalAction(order:Order, status:string, dialog:any) {
     this.onStatusChange(order.id, status);
     this.modalOrder = null;
@@ -60,9 +65,11 @@ export class ListComponent implements OnInit {
 
   public getTitle(status:string) {
     if (status === 'confirmed') {
-      return "Order Confirmed";
+      return "Delivery Service - Confirmed";
     } else if (status === 'rejected') {
-      return "Order Rejected";
+      return "!! Delivery Service - Rejected !!";
+    } else if (status === 'contracted') {
+      return "Delivery Service - Contracted"
     }
   }
 
@@ -100,6 +107,24 @@ export class ListComponent implements OnInit {
   }
 
   /** PRICING **/
+
+  public calcShippingPrices(order:Order) {
+    let stackVolume = 0;
+    let stackPrice = 0;
+
+    let items = order.items;
+    for (let i = 0; i < items.length; i++) {
+      let item = items[i];
+      stackVolume += item.volume * item.quantity;
+      stackPrice += item.price * item.quantity;
+    }
+
+    let collateral = stackPrice;
+    let reward = stackPrice * 0.02 + stackVolume * 300;
+
+    this.modalShippingCollateral = collateral;
+    this.modalShippingReward = reward;
+  }
 
   public loadAndSetPrice(order:Order) {
     this.orderService.quote(order.link).subscribe(

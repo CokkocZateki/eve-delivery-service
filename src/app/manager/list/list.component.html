@@ -98,3 +98,46 @@
     </button>
   </modal-footer>
 </modal>
+
+<modal #shippingModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Shipment</h4>
+  </modal-header>
+  <modal-body *ngIf="modalOrder">
+    <button type="button" class="btn btn-primary" [disabled]="!modalShippingCollateral"
+            ngIIclipboard [cbContent]="modalShippingCollateral">Copy Collateral
+    </button>
+    <button type="button" class="btn btn-primary" [disabled]="!modalShippingReward"
+            ngIIclipboard [cbContent]="modalShippingReward">Copy Reward
+    </button>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-success" [disabled]="!modalShippingReward || !modalShippingCollateral"
+            (click)="onModalAction(modalOrder, 'shipping', shippingModal)">Ship
+    </button>
+  </modal-footer>
+</modal>
+
+<modal #contractedModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Finnish Contract</h4>
+  </modal-header>
+  <modal-body *ngIf="modalOrder">
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="getRecipient(modalOrder)">Copy Recipient
+    </button>
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="getTitle('contracted')">Copy Title
+    </button>
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="generateMail('contracted', modalOrder)">Copy Mail
+    </button>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-success"
+            (click)="onModalAction(modalOrder, 'contracted', contractedModal)">Contracted
+    </button>
+  </modal-footer>
+</modal>
+trst
+trsttrst
