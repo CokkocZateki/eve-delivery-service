@@ -60,6 +60,15 @@
     <h4 class="modal-title">Confirm Contract</h4>
   </modal-header>
   <modal-body *ngIf="modalOrder">
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="getRecipient(modalOrder)">Copy Recipient
+    </button>
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="getTitle('confirmed')">Copy Title
+    </button>
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="generateMail('confirmed', modalOrder)">Copy Mail
+    </button>
     <button type="button" class="btn btn-success"
             (click)="onModalAction(modalOrder, 'confirmed', confirmModal)">Confirm
     </button>
