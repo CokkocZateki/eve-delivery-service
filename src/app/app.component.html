@@ -1,7 +1,6 @@
 <div class="content">
-  <order *ngIf="!serviceDown"></order>
-  <status *ngIf="!serviceDown"></status>
-  <feedback *ngIf="!serviceDown"></feedback>
+  <!-- Routed views go here -->
+  <router-outlet *ngIf="!serviceDown"></router-outlet>
   <error *ngIf="serviceDown"></error>
 </div>
 <p style="color: #fff; text-align: center">All Eve Related Materials are property of CCP Games.</p>

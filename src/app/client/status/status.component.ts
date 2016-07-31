@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
-import {OrderService} from "../services/order.service";
-
+import {OrderService} from "../../services/order.service";
 
 @Component({
   selector: 'status',
   providers: [OrderService],
-  templateUrl: './app/status/status.html',
+  templateUrl: './app/client/status/status.html',
 })
 export class StatusComponent {
 

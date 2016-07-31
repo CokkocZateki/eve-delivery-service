@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {FeedbackService} from "../services/feedback.service";
+import {FeedbackService} from "../../services/feedback.service";
 
 
 @Component({
   selector: 'feedback',
   providers: [FeedbackService],
-  templateUrl: './app/feedback/feedback.html'
+  templateUrl: './app/client/feedback/feedback.html'
 })
 export class FeedbackComponent {
 

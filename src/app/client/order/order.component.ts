@@ -1,14 +1,12 @@
 import {Component} from '@angular/core';
-import {OrderService} from "../services/order.service";
-import {Order} from "../common/order";
-import {NumberGrouping} from "../common/numberGrouping.pipe";
-
-
+import {OrderService} from "../../services/order.service";
+import {NumberGrouping} from "../../common/numberGrouping.pipe";
+import {Order} from "../../common/order";
 
 @Component({
   selector: 'order',
   providers: [OrderService],
-  templateUrl: './app/order/order.html',
+  templateUrl: './app/client/order/order.html',
   pipes: [NumberGrouping]
 })
 export class OrderComponent {
