@@ -9,7 +9,7 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map:any = {
-  'angular2-jwt': 'https://npmcdn.com/angular2-jwt@0.1.16/angular2-jwt.js',
+  'angular2-jwt': 'https://npmcdn.com/angular2-jwt@0.1.16',
   'ng2-bootstrap': 'https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/1.0.24/ng2-bootstrap.min.js',
   'ng2-bs3-modal': 'vendor/ng2-bs3-modal',
   'clipboard': 'https://npmcdn.com/clipboard@1.5.10/dist/clipboard.js',

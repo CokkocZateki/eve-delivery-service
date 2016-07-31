@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Auth} from "../services/auth.service";
 import {ListComponent} from "./list/list.component";
+import {Auth} from "../services/auth.service";
 
 @Component({
   moduleId: module.id,

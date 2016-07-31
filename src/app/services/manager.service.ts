@@ -5,7 +5,7 @@ import {environment} from "../environment";
 @Injectable()
 export class ManagerService {
 
-  private baseUrl = environment.ip + "v1/manage/";
+  private baseUrl = environment.ip + "v1/secured/manage/";
 
   constructor(private http:Http) {
 
