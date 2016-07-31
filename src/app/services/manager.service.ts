@@ -26,4 +26,8 @@ export class ManagerService {
   public updateStatus(orderId:string, newStatus:string) {
     return this.http.post(this.baseUrl + "update/status?id=" + orderId + "&newStatus=" + newStatus, "");
   }
+
+  public countRequests() {
+    return this.http.get(this.baseUrl + "count/requests");
+  }
 }
