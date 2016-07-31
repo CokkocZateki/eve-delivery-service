@@ -1,13 +1,13 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
 import {environment} from "../environment";
+import {AuthHttp} from "angular2-jwt/angular2-jwt";
 
 @Injectable()
 export class ManagerService {
 
-  private baseUrl = environment.ip + "v1/secured/manage/";
+  private baseUrl = environment.ip + "v1/secured/manager/";
 
-  constructor(private http:Http) {
+  constructor(private http:AuthHttp) {
 
   }
 
