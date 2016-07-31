@@ -54,3 +54,15 @@
     </tr>
   </table>
 </div>
+
+<modal #confirmModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Confirm Contract</h4>
+  </modal-header>
+  <modal-body *ngIf="modalOrder">
+    <button type="button" class="btn btn-success"
+            (click)="onModalAction(modalOrder, 'confirmed', confirmModal)">Confirm
+    </button>
+  </modal-body>
+  <!--<modal-footer [show-default-buttons]="true"></modal-footer>-->
+</modal>

@@ -16,6 +16,7 @@ import { MODAL_DIRECTIVES } from 'ng2-bs3-modal/ng2-bs3-modal';
 export class ListComponent implements OnInit {
 
   public data:Array<any> = undefined;
+  public modalOrder:Order;
 
   constructor(private service:ManagerService, private orderService:OrderService) {
   }
@@ -29,6 +30,13 @@ export class ListComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  /** DIALOGS **/
+
+  public showDialog(order:Order, dialog:any) {
+    dialog.open();
+    this.modalOrder = order;
   }
 
   /** PRICING **/
