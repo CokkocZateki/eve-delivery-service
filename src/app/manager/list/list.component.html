@@ -55,6 +55,15 @@
   </table>
 </div>
 
+<div class="content-box" *ngIf="clipboardData">
+
+  <h3>Clipboard list</h3>
+  <div [innerHTML]="clipboardData"></div>
+  <button type="button" *ngIf="clipboardData" class="btn btn-primary"
+          ngIIclipboard [cbContent]="clipboardData">Copy to Clipboard
+  </button>
+</div>
+
 <modal #confirmModal>
   <modal-header [show-close]="true">
     <h4 class="modal-title">Confirm Order</h4>
@@ -139,5 +148,3 @@
     </button>
   </modal-footer>
 </modal>
-trst
-trsttrst

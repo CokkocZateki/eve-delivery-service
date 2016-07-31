@@ -57,7 +57,11 @@ export class ListComponent implements OnInit {
     this.modalShippingReward = null;
   }
 
-  /** COPY DETAILS **/
+  /** CLIPBOARDING **/
+
+  public addItemsToClipboard(order:Order) {
+    this.clipboardData += this.listItems(order);
+  }
 
   public getRecipient(order:Order):string {
     return order.client;
@@ -181,6 +185,19 @@ export class ListComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  /** UTILITY **/
+
+  public listItems(order:Order):string {
+    let result = "";
+    let items = order.items;
+
+    for (let i = 0; i < items.length; i++) {
+      result += items[i].name + " x" + items[i].quantity + "<br>";
+    }
+
+    return result;
   }
 
 }
