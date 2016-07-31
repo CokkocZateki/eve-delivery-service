@@ -69,9 +69,10 @@
     <button type="button" class="btn btn-primary"
             ngIIclipboard [cbContent]="generateMail('confirmed', modalOrder)">Copy Mail
     </button>
+  </modal-body>
+  <modal-footer>
     <button type="button" class="btn btn-success"
             (click)="onModalAction(modalOrder, 'confirmed', confirmModal)">Confirm
     </button>
-  </modal-body>
-  <!--<modal-footer [show-default-buttons]="true"></modal-footer>-->
+  </modal-footer>
 </modal>

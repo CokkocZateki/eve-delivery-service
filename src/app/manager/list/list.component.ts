@@ -19,6 +19,9 @@ export class ListComponent implements OnInit {
 
   public data:Array<any> = undefined;
   public modalOrder:Order;
+  public modalShippingCollateral:number;
+  public modalShippingReward:number;
+  public clipboardData = "";
 
   constructor(private service:ManagerService, private orderService:OrderService) {
   }
@@ -39,6 +42,14 @@ export class ListComponent implements OnInit {
   public showDialog(order:Order, dialog:any) {
     dialog.open();
     this.modalOrder = order;
+  }
+
+  public onModalAction(order:Order, status:string, dialog:any) {
+    this.onStatusChange(order.id, status);
+    this.modalOrder = null;
+    dialog.close();
+    this.modalShippingCollateral = null;
+    this.modalShippingReward = null;
   }
 
   /** COPY DETAILS **/
@@ -69,6 +80,23 @@ export class ListComponent implements OnInit {
     result += "<br><br>Cheers, Rihan";
 
     return result;
+  }
+
+  /** ORDER UPDATES **/
+
+  public onStatusChange(id:string, newStatus:string) {
+    this.service.updateStatus(id, newStatus).subscribe(
+      data => {
+        for (let i = 0; i < this.data.length; i++) {
+          if (this.data[i].id === id) {
+            this.data[i].status = newStatus;
+          }
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   /** PRICING **/

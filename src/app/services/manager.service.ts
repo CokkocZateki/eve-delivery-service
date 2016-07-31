@@ -23,4 +23,7 @@ export class ManagerService {
     return this.http.post(this.baseUrl + "update/shippingPrice?id=" + orderId + "&shippingPrice=" + shippingPrice, "");
   }
 
+  public updateStatus(orderId:string, newStatus:string) {
+    return this.http.post(this.baseUrl + "update/status?id=" + orderId + "&newStatus=" + newStatus, "");
+  }
 }
