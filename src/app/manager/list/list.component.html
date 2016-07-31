@@ -57,7 +57,7 @@
 
 <modal #confirmModal>
   <modal-header [show-close]="true">
-    <h4 class="modal-title">Confirm Contract</h4>
+    <h4 class="modal-title">Confirm Order</h4>
   </modal-header>
   <modal-body *ngIf="modalOrder">
     <button type="button" class="btn btn-primary"
@@ -73,6 +73,28 @@
   <modal-footer>
     <button type="button" class="btn btn-success"
             (click)="onModalAction(modalOrder, 'confirmed', confirmModal)">Confirm
+    </button>
+  </modal-footer>
+</modal>
+
+<modal #rejectModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Reject Order</h4>
+  </modal-header>
+  <modal-body *ngIf="modalOrder">
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="getRecipient(modalOrder)">Copy Recipient
+    </button>
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="getTitle('rejected')">Copy Title
+    </button>
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="generateMail('rejected', modalOrder)">Copy Mail
+    </button>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-danger"
+            (click)="onModalAction(modalOrder, 'rejected', rejectModal)">Reject
     </button>
   </modal-footer>
 </modal>
