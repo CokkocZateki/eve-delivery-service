@@ -17,7 +17,7 @@ import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
 })
 export class StatsComponent implements OnInit {
 
-  private requestCount:number;
+  private requestCount:any = "Loading ...";
   private alertStatus = "";
 
   constructor(private service:ManagerService) {
