@@ -3,11 +3,13 @@ import {ManagerService} from "../../services/manager.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {Order} from "../../common/order";
 import {OrderService} from "../../services/order.service";
+import { MODAL_DIRECTIVES } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 @Component({
   moduleId: module.id,
   selector: 'list',
   templateUrl: 'list.component.html',
+  directives: [MODAL_DIRECTIVES],
   providers: [ManagerService, OrderService],
   pipes: [NumberGrouping]
 })
