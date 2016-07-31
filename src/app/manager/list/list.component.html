@@ -1,0 +1,57 @@
+<style>
+  td {
+    padding: 5px;
+    border: 1px solid;
+  }
+</style>
+
+<div class="content-box">
+  <h2>Manage Orders</h2>
+  <div *ngIf="!data">Loading ...</div>
+  <table *ngIf="data">
+    <tr>
+      <th>Client</th>
+      <th>Link</th>
+      <th>Status</th>
+      <th>Price</th>
+      <th>Items</th>
+      <th>Operations</th>
+    </tr>
+    <tr *ngFor="let order of data">
+      <td>{{order.client}}</td>
+      <td>
+        <a href="{{order.link}}" target="_blank">{{order.link}}</a>
+      </td>
+      <td>{{order.status}}</td>
+      <td>
+        <div *ngIf="order.setPrice">{{ order.setPrice | numberGroups }} ISK</div>
+        <div *ngIf="!order.setPrice">
+          <button type="button" class="btn btn-primary" *ngIf="!order.setPrice"
+                  (click)="loadAndSetPrice(order)">Price
+          </button>
+        </div>
+      </td>
+      <td>
+        <button #someId *ngIf="order.status === 'confirmed'" type="button"
+                class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip
+        </button>
+      </td>
+      <td>
+        <button type="button" *ngIf="order.status === 'requested'" class="btn btn-success"
+                [disabled]="!order.setPrice"
+                (click)="showDialog(order, confirmModal)">Confirm
+        </button>
+        <button type="button" *ngIf="order.status === 'requested'" class="btn btn-danger"
+                (click)="showDialog(order, rejectModal)">Reject
+        </button>
+        <button type="button" *ngIf="order.status === 'confirmed'" class="btn btn-primary"
+                (click)="showShippingDialog(order, shippingModal)">Shipping
+        </button>
+        <button type="button" *ngIf="order.status === 'shipping'" class="btn btn-primary"
+                (click)="showDialog(order, contractedModal)">Contracted
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</div>
