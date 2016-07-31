@@ -10,6 +10,7 @@
 /** Map relative paths to URLs. */
 const map: any = {
   'angular2-jwt': 'https://npmcdn.com/angular2-jwt@0.1.16/angular2-jwt.js',
+  'ng2-bootstrap': 'https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/1.0.24/ng2-bootstrap.min.js'
 };
 
 /** User packages configuration. */
@@ -43,6 +44,7 @@ const barrels: string[] = [
   'app/manage',
   'app/manager',
   'app/manager/login',
+  'app/manager/list',
   /** @cli-barrel */
 ];
 

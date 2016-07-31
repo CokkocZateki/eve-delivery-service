@@ -24,4 +24,8 @@ export class OrderService {
     return this.http.get(this.baseUrl + "status?id=" + orderId);
   }
 
+  public shippingPrice(praisalLink:string) {
+    return this.http.get(this.baseUrl + "shippingprice?link=" + praisalLink);
+  }
+
 }
