@@ -45,7 +45,7 @@
                 (click)="showDialog(order, rejectModal)">Reject
         </button>
         <button type="button" *ngIf="order.status === 'confirmed'" class="btn btn-primary"
-                (click)="showShippingDialog(order, shippingModal)">Shipping
+                (click)="showShippingDialog(order, shippingModal)">Prepare Shipping
         </button>
         <button type="button" *ngIf="order.status === 'shipping'" class="btn btn-primary"
                 (click)="showDialog(order, contractedModal)">Contracted
@@ -122,7 +122,7 @@
   </modal-body>
   <modal-footer>
     <button type="button" class="btn btn-success" [disabled]="!modalShippingReward || !modalShippingCollateral"
-            (click)="onModalAction(modalOrder, 'shipping', shippingModal)">Ship
+            (click)="onModalAction(modalOrder, 'shipping', shippingModal)">Ship Me
     </button>
   </modal-footer>
 </modal>
