@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import {Auth} from "../services/auth.service";
 
 @Component({
   moduleId: module.id,
   selector: 'app-manager',
   templateUrl: 'manager.component.html',
-  styleUrls: ['manager.component.css']
+  providers: [Auth]
 })
-export class ManagerComponent implements OnInit {
+export class ManagerComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private auth:Auth) {
   }
 
 }

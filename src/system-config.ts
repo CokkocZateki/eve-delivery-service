@@ -9,10 +9,12 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  'angular2-jwt': 'https://npmcdn.com/angular2-jwt@0.1.16/angular2-jwt.js',
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'angular2-jwt':               { defaultExtension: 'js' },
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,6 +42,7 @@ const barrels: string[] = [
   'app/client',
   'app/manage',
   'app/manager',
+  'app/manager/login',
   /** @cli-barrel */
 ];
 
