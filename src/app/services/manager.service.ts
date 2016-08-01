@@ -16,15 +16,15 @@ export class ManagerService {
   }
 
   public updatePrice(orderId:string, price:string) {
-    return this.http.post(this.baseUrl + "update/price?id=" + orderId + "&price=" + price, "");
+    return this.http.post(this.baseUrl + "updateAvailability/price?id=" + orderId + "&price=" + price, "");
   }
 
   public updateShippingPrice(orderId:string, shippingPrice:string) {
-    return this.http.post(this.baseUrl + "update/shippingPrice?id=" + orderId + "&shippingPrice=" + shippingPrice, "");
+    return this.http.post(this.baseUrl + "updateAvailability/shippingPrice?id=" + orderId + "&shippingPrice=" + shippingPrice, "");
   }
 
   public updateStatus(orderId:string, newStatus:string) {
-    return this.http.post(this.baseUrl + "update/status?id=" + orderId + "&newStatus=" + newStatus, "");
+    return this.http.post(this.baseUrl + "updateAvailability/status?id=" + orderId + "&newStatus=" + newStatus, "");
   }
 
   public countRequests() {
