@@ -1,8 +1,9 @@
 <div class="content-box">
   <h2>Stats</h2>
-  <div>
-    <p class="alert {{alertStatus}}">Requests: {{ requestCount }}</p>
-  </div>
+  <h4>Requests</h4>
+  <div class="{{requestClass}}">Open: {{ requestCount }}</div>
   <h4>Shipment</h4>
-    <p>Waiting: {{ waitingForShipping }} | Shipping: {{ activeShippingCount }}</p>
+  <div class="{{shipmentClass}}">Waiting: {{ waitingForShipping }} | Shipping: {{ activeShippingCount }} | Ready: {{
+    ordersReadyForContracting }}
+  </div>
 </div>

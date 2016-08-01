@@ -38,4 +38,8 @@ export class ManagerService {
   waitingForShippingContracts() {
     return this.http.get(this.baseUrl + "count/waitingForShippingContracts");
   }
+
+  ordersReadyForContracting() {
+    return this.http.get(this.baseUrl + "count/ordersReadyForContracting");
+  }
 }

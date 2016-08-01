@@ -16,10 +16,12 @@ import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
 })
 export class StatsComponent implements OnInit {
 
+  private requestClass = "";
+  private shipmentClass = "";
   private requestCount:any = "Loading ...";
-  private alertStatus = "";
   private activeShippingCount:any = "Loading ...";
   private waitingForShipping:any = "Loading ...";
+  private ordersReadyForContracting:any = "Loading ...";
 
   constructor(private service:ManagerService) {
   }
@@ -28,14 +30,8 @@ export class StatsComponent implements OnInit {
     this.service.countRequests().subscribe(
       data => {
         this.requestCount = data.json().requestCount;
-        if (this.requestCount == 0) {
-          this.alertStatus = "alert-success";
-        }
         if (this.requestCount > 0) {
-          this.alertStatus = "alert-warning";
-        }
-        if (this.requestCount > 3) {
-          this.alertStatus = "alert-danger";
+          this.requestClass = "alert alert-danger";
         }
       },
       err => {
@@ -65,6 +61,21 @@ export class StatsComponent implements OnInit {
       err => {
         console.log(err);
         this.waitingForShipping = "ERROR";
+      }
+    );
+
+    this.service.ordersReadyForContracting().subscribe(
+      data => {
+        let body = data.json();
+        console.log(body);
+        this.ordersReadyForContracting = body.ordersReadyForContracting;
+        if (this.ordersReadyForContracting > 0) {
+          this.shipmentClass = "alert alert-danger";
+        }
+      },
+      err => {
+        console.log(err);
+        this.ordersReadyForContracting = "ERROR";
       }
     );
   }
