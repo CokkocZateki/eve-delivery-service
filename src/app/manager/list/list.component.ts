@@ -24,6 +24,9 @@ export class ListComponent implements OnInit {
   public modalShippingReward:number;
   public clipboardData = "";
 
+  private targetSystem = "7RM";
+  private margin = "13%";
+
   constructor(private service:ManagerService, private orderService:OrderService) {
   }
 
@@ -82,7 +85,7 @@ export class ListComponent implements OnInit {
     let result = "Hi " + order.client + "!<br><br>";
 
     if (status === 'confirmed') {
-      result += "Thank you for your order (" + order.link + "). With a 13% delivery fee to O1Y it will cost " + new NumberGrouping().transform(order.setPrice) + ".00 ISK. Shipping will start soon!";
+      result += "Thank you for your order (" + order.link + "). With a " + this.margin + " delivery fee to " + this.targetSystem + " it will cost " + new NumberGrouping().transform(order.setPrice) + ".00 ISK. Shipping will start soon!";
     } else if (status === 'rejected') {
       result += "We are sad to inform you that your order cannot be accepted. This is due to overly high shipping costs. Maybe you want to focus on importing modules and building ships locally?";
     } else if (status === 'contracted') {
