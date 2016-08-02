@@ -1,4 +1,4 @@
-import { provideRouter, RouterConfig } from '@angular/router';
+import {provideRouter, RouterConfig} from "@angular/router";
 import {ClientComponent} from "./client/client.component";
 import {ManagerComponent} from "./manager/manager.component";
 import {PilotComponent} from "./pilot/pilot.component";

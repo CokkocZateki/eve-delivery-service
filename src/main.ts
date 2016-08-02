@@ -4,10 +4,13 @@ import { AppComponent, environment } from './app/';
 import {HTTP_PROVIDERS} from "@angular/http";
 import {appRouterProviders} from "./app/app.route";
 import {AUTH_PROVIDERS} from 'angular2-jwt';
+import {provideForms, disableDeprecatedForms} from "@angular/forms";
 
 if (environment.production) {
   enableProdMode();
 }
 
-bootstrap(AppComponent, [HTTP_PROVIDERS, appRouterProviders, AUTH_PROVIDERS])
+bootstrap(AppComponent, [HTTP_PROVIDERS, appRouterProviders, AUTH_PROVIDERS,
+  disableDeprecatedForms(),
+  provideForms()])
   .catch(err => console.error(err));

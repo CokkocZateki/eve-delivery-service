@@ -7,16 +7,20 @@ export class PilotService {
 
   private baseUrl = environment.ip + "v1/secured/pilot/";
 
-  constructor(private http:AuthHttp) {
+  constructor(private authHttp:AuthHttp) {
 
   }
 
   public updateAvailability(canShip:boolean) {
-    return this.http.post(this.baseUrl + "availability?canShip=" + canShip, "");
+    return this.authHttp.post(this.baseUrl + "availability?canShip=" + canShip, "");
   }
 
   public getAvailability() {
-    return this.http.get(this.baseUrl + "availability");
+    return this.authHttp.get(this.baseUrl + "availability");
+  }
+
+  public getAvailabilityAll() {
+    return this.authHttp.get(this.baseUrl + "availability/all");
   }
 
 }
