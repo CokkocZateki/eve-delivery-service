@@ -53,6 +53,7 @@ const barrels:string[] = [
   'app/manager/login',
   'app/manager/list',
   'app/pilot',
+  'app/manager/pilot-status',
   /** @cli-barrel */
 ];
 

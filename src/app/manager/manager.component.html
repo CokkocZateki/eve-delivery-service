@@ -2,4 +2,5 @@
 <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
 
 <stats *ngIf="auth.authenticated()"></stats>
+<pilot-status *ngIf="auth.authenticated()"></pilot-status>
 <list *ngIf="auth.authenticated()"></list>
