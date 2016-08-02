@@ -43,7 +43,6 @@ export class StatsComponent implements OnInit {
     this.service.activeShippingContracts().subscribe(
       data => {
         let body = data.json();
-        console.log(body);
         this.activeShippingCount = body.activeShippingContracts;
       },
       err => {
@@ -55,7 +54,6 @@ export class StatsComponent implements OnInit {
     this.service.waitingForShippingContracts().subscribe(
       data => {
         let body = data.json();
-        console.log(body);
         this.waitingForShipping = body.waitingForShippingContracts;
       },
       err => {
@@ -67,7 +65,6 @@ export class StatsComponent implements OnInit {
     this.service.ordersReadyForContracting().subscribe(
       data => {
         let body = data.json();
-        console.log(body);
         this.ordersReadyForContracting = body.ordersReadyForContracting;
         if (this.ordersReadyForContracting > 0) {
           this.shipmentClass = "alert alert-danger";
