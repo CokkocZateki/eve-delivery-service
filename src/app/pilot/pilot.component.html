@@ -2,17 +2,18 @@
 <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
 
 <div *ngIf="auth.authenticated()" class="content-box">
-  <script>getCurrentSelection()</script>
-  <h3>Can you do a run today?</h3>
-  <div class="btn-group btn-group-justified" role="group">
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-success" (click)="onRunSelection(true)">Yes</button>
-    </div>
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-danger" (click)="onRunSelection(false)">No</button>
-    </div>
-  </div>
-  <p style="text-align: center;">
-  The current selection is '{{ getSelectionTitle() }}'.
-  </p>
+  Nothing to see here, yet. Check back soon!
+  <!--<script>getCurrentSelection()</script>-->
+  <!--<h3>Can you do a run today?</h3>-->
+  <!--<div class="btn-group btn-group-justified" role="group">-->
+    <!--<div class="btn-group" role="group">-->
+      <!--<button type="button" class="btn btn-success" (click)="onRunSelection(true)">Yes</button>-->
+    <!--</div>-->
+    <!--<div class="btn-group" role="group">-->
+      <!--<button type="button" class="btn btn-danger" (click)="onRunSelection(false)">No</button>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<p style="text-align: center;">-->
+  <!--The current selection is '{{ getSelectionTitle() }}'.-->
+  <!--</p>-->
 </div>
