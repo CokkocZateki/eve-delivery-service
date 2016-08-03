@@ -111,6 +111,7 @@
 <modal #shippingModal>
   <modal-header [show-close]="true">
     <h4 class="modal-title">Shipment</h4>
+    <p>Shipping costs are for internal JF pilots. Calculate external logistics accordingly.</p>
   </modal-header>
   <modal-body *ngIf="modalOrder">
     <button type="button" class="btn btn-primary" [disabled]="!modalShippingCollateral"
