@@ -1,5 +1,7 @@
 <div style="text-align: center">
-<button type="button" class="btn btn-primary" (click)="showFeedbackForm=true" *ngIf="!showFeedbackForm">Feedback</button>
+  <button id="showFeedbackForm" type="button" class="btn btn-primary" (click)="showFeedbackForm=true"
+          *ngIf="!showFeedbackForm">Feedback
+  </button>
 </div>
 
 <div class="content-box roundedCorners" *ngIf="showFeedbackForm">
@@ -9,14 +11,15 @@
   <form (ngSubmit)="onSubmit()">
     <fieldset class="form-group">
       <label for="feedbackInput">Enter your feedback. If you want to get in touch, leave your name.</label>
-      <textarea id="feedbackInput" #ta (blur)="feedback=ta.value" placeholder="Your feedback ..." rows="3" class="form-control"></textarea>
+      <textarea id="feedbackInput" #ta (blur)="feedback=ta.value" placeholder="Your feedback ..." rows="3"
+                class="form-control"></textarea>
     </fieldset>
-    <div *ngIf="feedbackSubmitted" class="alert alert-success">
+    <div id="feedbackSubmittedMessage" *ngIf="feedbackSubmitted" class="alert alert-success">
       Thank you for your feedback!
     </div>
     <div *ngIf="feedbackFailed" class="alert alert-danger">
       Your feedback could not be submitted. Please send an eve mail to Rihan Shazih.
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button id="submitFeedback" type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
