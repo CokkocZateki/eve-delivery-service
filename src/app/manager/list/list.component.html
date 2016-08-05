@@ -42,32 +42,27 @@
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'requested'">
               <confirm-dialog [disableButton]="!order.setPrice" [orderId]="order.id" [recipient]="getRecipient(order)"
-                              [mail]="generateMail('confirmed', order)" (orderConfirmed)="onStatusChange($event.value, 'confirmed');"
-                              ></confirm-dialog>
+                              [mail]="generateMail('confirmed', order)" (orderConfirmed)="onStatusChange($event.value, 'confirmed');">
+              </confirm-dialog>
             </li>
-            <!--<li><a href="#">Another action</a></li>-->
-            <!--<li><a href="#">Something else here</a></li>-->
-            <!--<li role="separator" class="divider"></li>-->
-            <!--<li><a href="#">Separated link</a></li>-->
-            <li style="padding: 5px">
-              <button type="button" *ngIf="order.status === 'requested'" class="btn btn-danger"
-                      (click)="showDialog(order, rejectModal)">Reject
+            <li style="padding: 5px" *ngIf="order.status === 'requested'">
+              <reject-dialog [orderId]="order.id" [recipient]="getRecipient(order)"
+                              [mail]="generateMail('rejected', order)" (orderRejected)="onStatusChange($event.value, 'rejected');">
+              </reject-dialog>
+            </li>
+            <li style="padding: 5px" *ngIf="order.status === 'confirmed'">
+              <button #someId  type="button" class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip
               </button>
             </li>
-            <li style="padding: 5px">
-              <button #someId *ngIf="order.status === 'confirmed'" type="button"
-                      class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip
-              </button>
+            <li style="padding: 5px" *ngIf="order.status === 'confirmed'">
+              <shipping-dialog [orderId]="order.id" [collateral]="calcCollateral(order)" [reward]="calcReward(order)"
+                               (orderShipped)="onStatusChange($event.value, 'shipping');">
+              </shipping-dialog>
             </li>
-            <li style="padding: 5px">
-              <button type="button" *ngIf="order.status === 'confirmed'" class="btn btn-primary"
-                      (click)="showShippingDialog(order, shippingModal)">Prepare Shipping
-              </button>
-            </li>
-            <li style="padding: 5px">
-              <button type="button" *ngIf="order.status === 'shipping'" class="btn btn-primary"
-                      (click)="showDialog(order, contractedModal)">Contracted
-              </button>
+            <li style="padding: 5px" *ngIf="order.status === 'shipping'">
+              <contracted-dialog [orderId]="order.id" [recipient]="getRecipient(order)" [mail]="generateMail('contracted', order)"
+                (orderContracted)="onStatusChange($event.value, 'contracted');">
+              </contracted-dialog>
             </li>
           </ul>
         </div>
@@ -78,74 +73,9 @@
 </div>
 
 <div class="content-box" *ngIf="clipboardData">
-
   <h3>Clipboard list</h3>
   <div [innerHTML]="clipboardData"></div>
   <button type="button" *ngIf="clipboardData" class="btn btn-primary"
           ngIIclipboard [cbContent]="clipboardData">Copy to Clipboard
   </button>
 </div>
-
-<modal #rejectModal>
-  <modal-header [show-close]="true">
-    <h4 class="modal-title">Reject Order</h4>
-  </modal-header>
-  <modal-body *ngIf="modalOrder">
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="getRecipient(modalOrder)">Copy Recipient
-    </button>
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="getTitle('rejected')">Copy Title
-    </button>
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="generateMail('rejected', modalOrder)">Copy Mail
-    </button>
-  </modal-body>
-  <modal-footer>
-    <button type="button" class="btn btn-danger"
-            (click)="onModalAction(modalOrder, 'rejected', rejectModal)">Reject
-    </button>
-  </modal-footer>
-</modal>
-
-<modal #shippingModal>
-  <modal-header [show-close]="true">
-    <h4 class="modal-title">Shipment</h4>
-    <p>Shipping costs are for internal JF pilots. Calculate external logistics accordingly.</p>
-  </modal-header>
-  <modal-body *ngIf="modalOrder">
-    <button type="button" class="btn btn-primary" [disabled]="!modalShippingCollateral"
-            ngIIclipboard [cbContent]="modalShippingCollateral">Copy Collateral
-    </button>
-    <button type="button" class="btn btn-primary" [disabled]="!modalShippingReward"
-            ngIIclipboard [cbContent]="modalShippingReward">Copy Reward
-    </button>
-  </modal-body>
-  <modal-footer>
-    <button type="button" class="btn btn-success" [disabled]="!modalShippingReward || !modalShippingCollateral"
-            (click)="onModalAction(modalOrder, 'shipping', shippingModal)">Ship Me
-    </button>
-  </modal-footer>
-</modal>
-
-<modal #contractedModal>
-  <modal-header [show-close]="true">
-    <h4 class="modal-title">Finnish Contract</h4>
-  </modal-header>
-  <modal-body *ngIf="modalOrder">
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="getRecipient(modalOrder)">Copy Recipient
-    </button>
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="getTitle('contracted')">Copy Title
-    </button>
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="generateMail('contracted', modalOrder)">Copy Mail
-    </button>
-  </modal-body>
-  <modal-footer>
-    <button type="button" class="btn btn-success"
-            (click)="onModalAction(modalOrder, 'contracted', contractedModal)">Contracted
-    </button>
-  </modal-footer>
-</modal>

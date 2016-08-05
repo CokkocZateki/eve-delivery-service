@@ -7,13 +7,15 @@ import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
 import {ClipboardDirective} from "angular2-clipboard";
 import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
 import {ConfirmDialogComponent} from "./confirm-dialog/confirm-dialog.component";
+import {RejectDialogComponent} from "./rejected-dialog-old/rejected-dialog.component";
+import {ContractedDialogComponent} from "./contracted-dialog/contracted-dialog.component";
 
 
 @Component({
   moduleId: module.id,
   selector: 'list',
   templateUrl: 'list.component.html',
-  directives: [MODAL_DIRECTIVES, ClipboardDirective, ConfirmDialogComponent],
+  directives: [MODAL_DIRECTIVES, ClipboardDirective, ConfirmDialogComponent, RejectDialogComponent, ContractedDialogComponent],
   providers: [ManagerService, OrderService, provide(AuthConfig, {useValue: new AuthConfig()}),AuthHttp],
   pipes: [NumberGrouping]
 })
@@ -47,11 +49,6 @@ export class ListComponent implements OnInit {
   public showDialog(order:Order, dialog:any) {
     dialog.open();
     this.modalOrder = order;
-  }
-
-  public showShippingDialog(order:Order, dialog:any) {
-    this.calcShippingPrices(order);
-    this.showDialog(order, dialog);
   }
 
   public onModalAction(order:Order, status:string, dialog:any) {
@@ -117,23 +114,18 @@ export class ListComponent implements OnInit {
 
   /** PRICING **/
 
-  public calcShippingPrices(order:Order) {
-    let stackVolume = 0;
+  public calcCollateral(order:Order):number {
     let stackPrice = 0;
-
     let items = order.items;
     for (let i = 0; i < items.length; i++) {
       let item = items[i];
-      stackVolume += item.volume * item.quantity;
       stackPrice += item.price * item.quantity;
     }
+    return stackPrice;
+  }
 
-    let collateral = stackPrice;
-    // todo: move this to the backend
-    let reward = collateral * 0.13 * 0.8;
-
-    this.modalShippingCollateral = collateral;
-    this.modalShippingReward = reward;
+  public calcReward(order:Order):number {
+    return this.calcCollateral(order) * 0.13 * 0.8;
   }
 
   public loadAndSetPrice(order:Order) {

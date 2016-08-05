@@ -1,0 +1,25 @@
+<button type="button" class="btn btn-primary"
+        (click)="myModal.open()">Prepare Shipping
+</button>
+
+<modal #myModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+  </modal-header>
+  <modal-body>
+    <button type="button" class="btn btn-primary" [disabled]="!collateral"
+            ngIIclipboard [cbContent]="collateral">Copy Collateral
+    </button>
+    <button type="button" class="btn btn-primary" [disabled]="!reward"
+            ngIIclipboard [cbContent]="reward">Copy Reward
+    </button>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-danger"
+    (click)="myModal.close()">Cancel
+    </button>
+    <button type="button" class="btn btn-success" [disabled]="!reward || !collateral"
+            (click)="onConfirm(myModal)">{{ buttonTitle }}
+    </button>
+  </modal-footer>
+</modal>

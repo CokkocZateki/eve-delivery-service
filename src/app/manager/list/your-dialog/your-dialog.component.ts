@@ -4,7 +4,7 @@ import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component
 
 @Component({
   selector: 'your-dialog',
-  templateUrl: 'confirm-dialog.component.html',
+  templateUrl: 'reject-dialog.component.html',
   directives: [MODAL_DIRECTIVES, ConfirmDialogComponent]
 })
 export class YourDialogComponent {
