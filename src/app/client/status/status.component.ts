@@ -9,16 +9,15 @@ import {OrderService} from "../../services/order.service";
 export class StatusComponent {
 
   public showStatusForm:boolean;
+  public model:string;
 
   public constructor(private orderService:OrderService) {
   }
 
   public status:string;
 
-  public onKey(event:any) {
+  public requestStatus(orderId:string) {
     this.status = "Requesting status ...";
-
-    let orderId = event.target.value;
 
     this.orderService.status(orderId).subscribe(
       data => {

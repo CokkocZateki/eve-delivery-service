@@ -1,5 +1,7 @@
 <div style="text-align: center">
-  <button id="showStatusButton" type="button" class="btn btn-primary" (click)="showStatusForm=true" *ngIf="!showStatusForm">Check your Status</button>
+  <button id="showStatusButton" type="button" class="btn btn-primary" (click)="showStatusForm=true"
+          *ngIf="!showStatusForm">Check your Status
+  </button>
   <!--todo: move the buttons to super class; with input/output-->
   <br/>
   <br/>
@@ -9,9 +11,20 @@
 
   <h2>Check your status</h2>
 
-  <label for="orderCode">Order Code</label>
-  <input type="text" class="form-control" id="orderCode" placeholder="Enter the order code"
-         (keyup)="onKey($event)" required pattern="[a-z0-9]">
+    <label for="orderCodeInput">Order Code</label>
+  <div class="input-group">
+    <input #statusInput="ngModel" [(ngModel)]="model"
+           type="text" class="form-control" id="orderCodeInput"
+           placeholder="Enter the order code" name="statusInput"
+           required pattern="[a-z0-9]+">
+    <span class="input-group-btn">
+        <button id="submitLink" class="btn btn-default" type="button"
+                (click)="requestStatus(statusInput.value)"
+                [disabled]="!statusInput.valid || statusInput.pristine">Get Quote!</button>
+        </span>
+  </div>
+
+
   <div *ngIf="status" class="alert alert-primary">
     Current status: {{ status }} 
   </div>
