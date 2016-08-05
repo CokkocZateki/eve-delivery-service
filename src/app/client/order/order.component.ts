@@ -45,15 +45,14 @@ export class OrderComponent {
     );
   }
 
-  public onKey(event:any) {
+  public askQuote(link:string) {
     this.isPriceCalculated = false;
 
-    let link = event.target.value;
     let needle = "evepraisal.com/e/";
     let orderId:number;
 
     if (link.indexOf(needle) > -1) {
-      orderId = link.split(needle)[1];
+      orderId = Number(link.split(needle)[1]);
     }
 
     if (orderId !== undefined) {

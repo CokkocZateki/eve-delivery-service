@@ -20,13 +20,17 @@
       <!--<small *ngIf="name.valid && name.pristine">This is the character we will contract the items to.</small>-->
     </fieldset>
     <fieldset class="form-group">
+
       <label for="evepraisalLink">Evepraisal Link</label>
-      <input [(ngModel)]="model.link" name="link"
-             type="url" class="form-control" id="evepraisalLink" placeholder="Enter the Evepraisal link"
-             (keyup)="onKey($event)" required pattern="http[s]?:\/\/(www\.)?evepraisal\.com\/e\/[0-9]*">
-      <!--<div *ngIf="!link.valid || !link.pristine" class="alert alert-danger">-->
-      <!--Invalid order link, please insert the evepraisal link! It looks like this: http://evepraisal.com/e/11833945-->
-      <!--</div>-->
+      <div class="input-group">
+        <input [(ngModel)]="model.link" name="linkInput"  #linkInput="ngModel"
+               type="url" class="form-control" id="evepraisalLink" placeholder="Enter an Evepraisal link like http://evepraisal.com/e/11833945"
+               required pattern="http[s]?:\/\/(www\.)?evepraisal\.com\/e\/[0-9]+">
+        <span class="input-group-btn">
+        <button id="submitLink" class="btn btn-default" type="button"
+                (click)="askQuote(model.link)" [disabled]="!linkInput.valid || linkInput.pristine">Get Quote!</button>
+        </span>
+      </div>
       <small>Paste your items at <a href="http://evepraisal.com" target="_blank">evepraisal.com</a>,
         submit and copy the url into this field.
       </small>
@@ -37,19 +41,25 @@
     <div *ngIf="isPriceCalculationFailed" class="alert alert-danger">
       The price for <a href="{{model.link}}" target="_blank">{{model.link}}</a> could not be resolved.
     </div>
-    <div *ngIf="isPriceCalculated" class="alert alert-success">
-      Expected total price: {{ expectedPrice | numberGroups }}.00 ISK
-      <small><br/>Formula: total = jitaMinSell x 1.13<br>Please note that the buy price at Jita may change.</small>
+    <div id="quoteResult" *ngIf="isPriceCalculated" class="alert alert-success">
+      Expected total price: <b>{{ expectedPrice | numberGroups }}.00 ISK</b>
+      <small>
+        <br/>This includes the price for the items and the shipping cost.
+        <br/>Formula: total = jitaMinSell x 1.13
+        <br/>Please note that the buy price at Jita may change.
+      </small>
     </div>
     <div *ngIf="!isPriceCalculated && !isPriceCalculationRunning && !isPriceCalculationFailed"
          class="alert alert-warning">
-      Please enter an Evepraisal link to calculate the total quote.
+      Please enter an Evepraisal link and click on "Get Quote!" to load the total price.
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button id="submitOrder" type="submit" class="btn btn-primary" [disabled]="!isPriceCalculated">Submit</button>
   </form>
-  <div *ngIf="submitted">
+
+  <div *ngIf="submitted" id="orderSubmittedMessage">
     <h3>Thank you for your order!</h3>
     With the order number <b>{{ orderId }}</b> you can check the status of your order. <br/>
-    After accepting the order, your goods will be shipped over and contracted to you. Upon accepting the contract you have to pay. Don't pay in advance.
+    After accepting the order, your goods will be shipped over and contracted to you. Upon accepting the contract you
+    have to pay. Don't pay in advance.
   </div>
 </div>
