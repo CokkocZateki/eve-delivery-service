@@ -15,6 +15,8 @@ describe('Protractor Demo App', function () {
 
   var EC = protractor.ExpectedConditions;
 
+  var orderId;
+
   beforeEach(function () {
     browser.get('http://localhost:4200');
   });
@@ -38,13 +40,20 @@ describe('Protractor Demo App', function () {
     browser.wait(EC.presenceOf(orderSubmittedMessage), 3000);
 
     expect(orderSubmittedMessage.isPresent()).toBeTruthy();
+
+    orderSubmittedMessage.getText().then(function (text) {
+      orderId = text.match(/([0-9a-z]{24})/gm);
+      expect(orderId.length).not.toBe(0);
+    });
   });
 
-  it('should show status box', function () {
+  it('should show status box and retrieve requested status', function () {
     showStatusButton.click();
 
     browser.wait(EC.presenceOf(statusDiv), 500);
     expect(statusDiv.isPresent()).toBeTruthy();
+
+
   });
 
   it('should show feedback box and be able to send feedback', function () {

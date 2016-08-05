@@ -42,4 +42,8 @@ export class ManagerService {
   ordersReadyForContracting() {
     return this.http.get(this.baseUrl + "count/ordersReadyForContracting");
   }
+
+  hasUnreadMail() {
+    return this.http.get(this.baseUrl + "hasUnreadMail");
+  }
 }

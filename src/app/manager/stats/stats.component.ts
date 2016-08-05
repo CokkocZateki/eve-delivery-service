@@ -18,10 +18,12 @@ export class StatsComponent implements OnInit {
 
   private requestClass = "";
   private shipmentClass = "";
+  private mailClass = "";
   private requestCount:any = "Loading ...";
   private activeShippingCount:any = "Loading ...";
   private waitingForShipping:any = "Loading ...";
   private ordersReadyForContracting:any = "Loading ...";
+  private hasUnreadMail:string = "Loading ...";
 
   constructor(private service:ManagerService) {
   }
@@ -40,40 +42,55 @@ export class StatsComponent implements OnInit {
       }
     );
 
-    this.service.activeShippingContracts().subscribe(
+    this.service.hasUnreadMail().subscribe(
       data => {
-        let body = data.json();
-        this.activeShippingCount = body.activeShippingContracts;
-      },
-      err => {
-        console.log(err);
-        this.activeShippingCount = "ERROR";
-      }
-    );
-
-    this.service.waitingForShippingContracts().subscribe(
-      data => {
-        let body = data.json();
-        this.waitingForShipping = body.waitingForShippingContracts;
-      },
-      err => {
-        console.log(err);
-        this.waitingForShipping = "ERROR";
-      }
-    );
-
-    this.service.ordersReadyForContracting().subscribe(
-      data => {
-        let body = data.json();
-        this.ordersReadyForContracting = body.ordersReadyForContracting;
-        if (this.ordersReadyForContracting > 0) {
-          this.shipmentClass = "alert alert-danger";
+        this.hasUnreadMail = data.json().hasUnreadMail;
+        if (this.hasUnreadMail === 'maybe') {
+          this.mailClass = "alert alert-warning";
+        } else if (this.hasUnreadMail === 'yes') {
+          this.mailClass = "alert alert-danger";
         }
       },
       err => {
         console.log(err);
-        this.ordersReadyForContracting = "ERROR";
+        this.hasUnreadMail = "ERROR";
       }
     );
+
+    // this.service.activeShippingContracts().subscribe(
+    //   data => {
+    //     let body = data.json();
+    //     this.activeShippingCount = body.activeShippingContracts;
+    //   },
+    //   err => {
+    //     console.log(err);
+    //     this.activeShippingCount = "ERROR";
+    //   }
+    // );
+    //
+    // this.service.waitingForShippingContracts().subscribe(
+    //   data => {
+    //     let body = data.json();
+    //     this.waitingForShipping = body.waitingForShippingContracts;
+    //   },
+    //   err => {
+    //     console.log(err);
+    //     this.waitingForShipping = "ERROR";
+    //   }
+    // );
+
+    // this.service.ordersReadyForContracting().subscribe(
+    //   data => {
+    //     let body = data.json();
+    //     this.ordersReadyForContracting = body.ordersReadyForContracting;
+    //     if (this.ordersReadyForContracting > 0) {
+    //       this.shipmentClass = "alert alert-danger";
+    //     }
+    //   },
+    //   err => {
+    //     console.log(err);
+    //     this.ordersReadyForContracting = "ERROR";
+    //   }
+    // );
   }
 }

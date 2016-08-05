@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-success" [disabled]="!order.setPrice"
+<button type="button" class="btn btn-success" [disabled]="disableButton"
         (click)="myModal.open()">{{ buttonTitle }}
 </button>
 
@@ -7,14 +7,19 @@
     <h4 class="modal-title">{{ modalTitle }}</h4>
   </modal-header>
   <modal-body>
-
-    <!--todo: insert content here-->
-    CONTENT
-
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="recipient">Copy Recipient
+    </button>
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="title">Copy Title
+    </button>
+    <button type="button" class="btn btn-primary"
+            ngIIclipboard [cbContent]="mail">Copy Mail
+    </button>
   </modal-body>
   <modal-footer>
     <button type="button" class="btn btn-danger"
-    (click)="myModal.close()">Cancel
+            (click)="myModal.close()">Cancel
     </button>
     <button type="button" class="btn btn-success"
             (click)="onConfirm(myModal)">Confirm

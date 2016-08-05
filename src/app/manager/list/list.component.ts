@@ -1,18 +1,19 @@
-import {Component, OnInit, provide} from '@angular/core';
+import {Component, OnInit, provide} from "@angular/core";
 import {ManagerService} from "../../services/manager.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {Order} from "../../common/order";
 import {OrderService} from "../../services/order.service";
-import {MODAL_DIRECTIVES} from 'ng2-bs3-modal/ng2-bs3-modal';
-import {ClipboardDirective} from 'angular2-clipboard';
+import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
+import {ClipboardDirective} from "angular2-clipboard";
 import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
+import {ConfirmDialogComponent} from "./confirm-dialog/confirm-dialog.component";
 
 
 @Component({
   moduleId: module.id,
   selector: 'list',
   templateUrl: 'list.component.html',
-  directives: [MODAL_DIRECTIVES, ClipboardDirective],
+  directives: [MODAL_DIRECTIVES, ClipboardDirective, ConfirmDialogComponent],
   providers: [ManagerService, OrderService, provide(AuthConfig, {useValue: new AuthConfig()}),AuthHttp],
   pipes: [NumberGrouping]
 })
@@ -128,13 +129,20 @@ export class ListComponent implements OnInit {
     }
 
     let collateral = stackPrice;
-    let reward = stackPrice * 0.02 + stackVolume * 300;
+    // todo: move this to the backend
+    let reward = collateral * 0.13 * 0.8;
 
     this.modalShippingCollateral = collateral;
     this.modalShippingReward = reward;
   }
 
   public loadAndSetPrice(order:Order) {
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i].id === order.id) {
+        this.data[i].price = "Loading ...";
+      }
+    }
+
     this.orderService.quote(order.link).subscribe(
       data => {
         let body = data.json();

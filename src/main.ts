@@ -5,6 +5,7 @@ import {HTTP_PROVIDERS} from "@angular/http";
 import {appRouterProviders} from "./app/app.route";
 import {AUTH_PROVIDERS} from 'angular2-jwt';
 import {provideForms, disableDeprecatedForms} from "@angular/forms";
+import "rxjs/Rx";
 
 if (environment.production) {
   enableProdMode();

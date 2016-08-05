@@ -14,7 +14,6 @@
       <th>Link</th>
       <th>Status</th>
       <th>Price</th>
-      <th>Items</th>
       <th>Operations</th>
     </tr>
     <tr *ngFor="let order of data">
@@ -26,30 +25,53 @@
       <td>
         <div *ngIf="order.setPrice">{{ order.setPrice | numberGroups }} ISK</div>
         <div *ngIf="!order.setPrice">
-          <button type="button" class="btn btn-primary" *ngIf="!order.setPrice"
-                  (click)="loadAndSetPrice(order)">Price
-          </button>
+          please set
         </div>
       </td>
       <td>
-        <button #someId *ngIf="order.status === 'confirmed'" type="button"
-                class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip
-        </button>
-      </td>
-      <td>
-        <button type="button" *ngIf="order.status === 'requested'" class="btn btn-success"
-                [disabled]="!order.setPrice"
-                (click)="showDialog(order, confirmModal)">Confirm
-        </button>
-        <button type="button" *ngIf="order.status === 'requested'" class="btn btn-danger"
-                (click)="showDialog(order, rejectModal)">Reject
-        </button>
-        <button type="button" *ngIf="order.status === 'confirmed'" class="btn btn-primary"
-                (click)="showShippingDialog(order, shippingModal)">Prepare Shipping
-        </button>
-        <button type="button" *ngIf="order.status === 'shipping'" class="btn btn-primary"
-                (click)="showDialog(order, contractedModal)">Contracted
-        </button>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+            Action <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li style="padding: 5px" *ngIf="!order.setPrice">
+              <button type="button" class="btn btn-primary"
+                      (click)="loadAndSetPrice(order)">Price
+              </button>
+            </li>
+            <li style="padding: 5px" *ngIf="order.status === 'requested'">
+              <confirm-dialog [disableButton]="!order.setPrice" [orderId]="order.id" [recipient]="getRecipient(order)"
+                              [mail]="generateMail('confirmed', order)" (orderConfirmed)="onStatusChange($event.value, 'confirmed');"
+                              ></confirm-dialog>
+            </li>
+            <!--<li><a href="#">Another action</a></li>-->
+            <!--<li><a href="#">Something else here</a></li>-->
+            <!--<li role="separator" class="divider"></li>-->
+            <!--<li><a href="#">Separated link</a></li>-->
+            <li style="padding: 5px">
+              <button type="button" *ngIf="order.status === 'requested'" class="btn btn-danger"
+                      (click)="showDialog(order, rejectModal)">Reject
+              </button>
+            </li>
+            <li style="padding: 5px">
+              <button #someId *ngIf="order.status === 'confirmed'" type="button"
+                      class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip
+              </button>
+            </li>
+            <li style="padding: 5px">
+              <button type="button" *ngIf="order.status === 'confirmed'" class="btn btn-primary"
+                      (click)="showShippingDialog(order, shippingModal)">Prepare Shipping
+              </button>
+            </li>
+            <li style="padding: 5px">
+              <button type="button" *ngIf="order.status === 'shipping'" class="btn btn-primary"
+                      (click)="showDialog(order, contractedModal)">Contracted
+              </button>
+            </li>
+          </ul>
+        </div>
+
       </td>
     </tr>
   </table>
@@ -63,28 +85,6 @@
           ngIIclipboard [cbContent]="clipboardData">Copy to Clipboard
   </button>
 </div>
-
-<modal #confirmModal>
-  <modal-header [show-close]="true">
-    <h4 class="modal-title">Confirm Order</h4>
-  </modal-header>
-  <modal-body *ngIf="modalOrder">
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="getRecipient(modalOrder)">Copy Recipient
-    </button>
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="getTitle('confirmed')">Copy Title
-    </button>
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="generateMail('confirmed', modalOrder)">Copy Mail
-    </button>
-  </modal-body>
-  <modal-footer>
-    <button type="button" class="btn btn-success"
-            (click)="onModalAction(modalOrder, 'confirmed', confirmModal)">Confirm
-    </button>
-  </modal-footer>
-</modal>
 
 <modal #rejectModal>
   <modal-header [show-close]="true">

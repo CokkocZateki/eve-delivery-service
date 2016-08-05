@@ -2,6 +2,6 @@
 exports.config = {
   framework: 'jasmine',
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['eve.spec.js'],
+  specs: ['client.spec.js'],
   useAllAngular2AppRoots: true
 }

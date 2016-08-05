@@ -1,25 +1,32 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, Output} from "@angular/core";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
-import {Order} from "../../../common/order";
+import {EventEmitter} from "@angular/platform-browser-dynamic/src/facade/async";
+import {ClipboardDirective} from "angular2-clipboard";
 
 @Component({
   selector: 'confirm-dialog',
   templateUrl: 'app/manager/list/confirm-dialog/confirm-dialog.component.html',
-  directives: [MODAL_DIRECTIVES]
+  directives: [MODAL_DIRECTIVES, ClipboardDirective]
 })
 export class ConfirmDialogComponent {
 
-  @Input() order:Order;
+  @Input() orderId:string;
+  @Input() recipient:string;
+  @Input() mail:string;
+  @Input() disableButton:boolean;
+
+  @Output() orderConfirmed = new EventEmitter();
+
+  title = "Delivery Service - Confirmed";
 
   buttonTitle:string = "Confirm";
   modalTitle:string = "Confirm Order";
 
-  constructor() { }
+  constructor() {
+  }
 
   onConfirm(myModal:any) {
-
-    // todo: implement confirmation logic
-
+    this.orderConfirmed.emit(this.orderId);
     myModal.close();
   }
 
