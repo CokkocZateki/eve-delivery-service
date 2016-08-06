@@ -13,7 +13,7 @@
   <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
     <fieldset class="form-group">
       <label for="characterName">Character Name</label>
-      <input [(ngModel)]="model.client" name="client" type="text" class="form-control" id="characterName"
+      <input [(ngModel)]="model.client" name="client" #client="ngModel" type="text" class="form-control" id="characterName"
              placeholder="Enter character name" required>
       <!--<div *ngIf="!name.valid || !name.pristine" class="alert alert-danger">-->
       <!--No name, no order! This is the character we will contract the items to.-->
@@ -54,7 +54,7 @@
          class="alert alert-warning">
       Please enter an Evepraisal link and click on "Get Quote!" to load the total price.
     </div>
-    <button id="submitOrder" type="submit" class="btn btn-primary" [disabled]="!isPriceCalculated">Submit</button>
+    <button id="submitOrder" type="submit" class="btn btn-primary" [disabled]="!isPriceCalculated || client.pristine">Submit</button>
   </form>
 
   <div *ngIf="submitted" id="orderSubmittedMessage">
