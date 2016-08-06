@@ -1,20 +1,19 @@
 import {Component, Input, Output} from "@angular/core";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
-import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
-import EventEmitter = webdriver.EventEmitter;
+import {EventEmitter} from "@angular/platform-browser-dynamic/src/facade/async";
+import {ClipboardDirective} from "angular2-clipboard";
 
 @Component({
   selector: 'shipping-dialog',
-  templateUrl: 'shipping-dialog.component.html',
-  directives: [MODAL_DIRECTIVES, ConfirmDialogComponent]
+  templateUrl: 'app/manager/list/shipping-dialog/shipping-dialog.component.html',
+  directives: [MODAL_DIRECTIVES, ClipboardDirective]
 })
 export class ShippingDialogComponent {
 
-  @Input() orderId:string;
   @Input() collateral:number;
   @Input() reward:number;
 
-  @Output() orderShipped = new EventEmitter();
+  @Output() orderIsShipping = new EventEmitter();
 
   buttonTitle:string = "Ship Me";
   modalTitle:string = "Shipping";
@@ -22,7 +21,7 @@ export class ShippingDialogComponent {
   constructor() { }
 
   onConfirm(myModal:any) {
-    this.orderShipped.emit(this.orderId);
+    this.orderIsShipping.emit(null);
     myModal.close();
   }
 

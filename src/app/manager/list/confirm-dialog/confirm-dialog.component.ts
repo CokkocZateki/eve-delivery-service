@@ -1,4 +1,4 @@
-import {Component, Input, Output} from "@angular/core";
+import {Component, Input, Output, OnInit} from "@angular/core";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
 import {EventEmitter} from "@angular/platform-browser-dynamic/src/facade/async";
 import {ClipboardDirective} from "angular2-clipboard";
@@ -10,7 +10,6 @@ import {ClipboardDirective} from "angular2-clipboard";
 })
 export class ConfirmDialogComponent {
 
-  @Input() orderId:string;
   @Input() recipient:string;
   @Input() mail:string;
   @Input() disableButton:boolean;
@@ -26,7 +25,7 @@ export class ConfirmDialogComponent {
   }
 
   onConfirm(myModal:any) {
-    this.orderConfirmed.emit(this.orderId);
+    this.orderConfirmed.emit(null);
     myModal.close();
   }
 

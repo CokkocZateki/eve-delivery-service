@@ -7,8 +7,8 @@
 
 <div class="content-box">
   <h2>Manage Orders</h2>
-  <div *ngIf="!data">Loading ...</div>
-  <table *ngIf="data">
+  <div *ngIf="!orders">Loading ...</div>
+  <table *ngIf="orders">
     <tr>
       <th>Client</th>
       <th>Link</th>
@@ -16,10 +16,10 @@
       <th>Price</th>
       <th>Operations</th>
     </tr>
-    <tr *ngFor="let order of data">
+    <tr *ngFor="let order of orders">
       <td>{{order.client}}</td>
       <td>
-        <a href="{{order.link}}" target="_blank">{{order.link}}</a>
+        <a href="{{order.link}}" target="_blank">evepraisal</a>
       </td>
       <td>{{order.status}}</td>
       <td>
@@ -35,33 +35,32 @@
             Action <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-            <li style="padding: 5px" *ngIf="!order.setPrice">
+            <li style="padding: 5px" *ngIf="!order.setPrice && order.status !== 'rejected'">
               <button type="button" class="btn btn-primary"
                       (click)="loadAndSetPrice(order)">Price
               </button>
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'requested'">
-              <confirm-dialog [disableButton]="!order.setPrice" [orderId]="order.id" [recipient]="getRecipient(order)"
-                              [mail]="generateMail('confirmed', order)" (orderConfirmed)="onStatusChange($event.value, 'confirmed');">
+              <confirm-dialog [disableButton]="!order.setPrice" [recipient]="getRecipient(order)"
+                              [mail]="generateMail('confirmed', order)" (orderConfirmed)="onStatusChange(order.id, 'confirmed');">
               </confirm-dialog>
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'requested'">
-              <reject-dialog [orderId]="order.id" [recipient]="getRecipient(order)"
-                              [mail]="generateMail('rejected', order)" (orderRejected)="onStatusChange($event.value, 'rejected');">
+              <reject-dialog [recipient]="getRecipient(order)"
+                              [mail]="generateMail('rejected', order)" (orderRejected)="onStatusChange(order.id, 'rejected');">
               </reject-dialog>
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'confirmed'">
-              <button #someId  type="button" class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip
-              </button>
+              <button #someId  type="button" class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip</button>
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'confirmed'">
-              <shipping-dialog [orderId]="order.id" [collateral]="calcCollateral(order)" [reward]="calcReward(order)"
-                               (orderShipped)="onStatusChange($event.value, 'shipping');">
+              <shipping-dialog [collateral]="calcCollateral(order)" [reward]="calcReward(order)"
+                               (orderIsShipping)="onStatusChange(order.id, 'shipping');">
               </shipping-dialog>
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'shipping'">
-              <contracted-dialog [orderId]="order.id" [recipient]="getRecipient(order)" [mail]="generateMail('contracted', order)"
-                (orderContracted)="onStatusChange($event.value, 'contracted');">
+              <contracted-dialog [recipient]="getRecipient(order)" [mail]="generateMail('contracted', order)"
+                (orderContracted)="onStatusChange(order.id, 'contracted');">
               </contracted-dialog>
             </li>
           </ul>

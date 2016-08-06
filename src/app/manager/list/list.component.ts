@@ -7,24 +7,23 @@ import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
 import {ClipboardDirective} from "angular2-clipboard";
 import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
 import {ConfirmDialogComponent} from "./confirm-dialog/confirm-dialog.component";
-import {RejectDialogComponent} from "./rejected-dialog-old/rejected-dialog.component";
+import {RejectDialogComponent} from "./rejected-dialog/rejected-dialog.component";
 import {ContractedDialogComponent} from "./contracted-dialog/contracted-dialog.component";
+import {ShippingDialogComponent} from "./shipping-dialog/shipping-dialog.component";
 
 
 @Component({
   moduleId: module.id,
   selector: 'list',
   templateUrl: 'list.component.html',
-  directives: [MODAL_DIRECTIVES, ClipboardDirective, ConfirmDialogComponent, RejectDialogComponent, ContractedDialogComponent],
+  directives: [MODAL_DIRECTIVES, ClipboardDirective, ConfirmDialogComponent, RejectDialogComponent,
+    ContractedDialogComponent, ShippingDialogComponent],
   providers: [ManagerService, OrderService, provide(AuthConfig, {useValue: new AuthConfig()}),AuthHttp],
   pipes: [NumberGrouping]
 })
 export class ListComponent implements OnInit {
 
-  public data:Array<any> = undefined;
-  public modalOrder:Order;
-  public modalShippingCollateral:number;
-  public modalShippingReward:number;
+  public orders:Array<any> = undefined;
   public clipboardData = "";
 
   private targetSystem = "7RM";
@@ -36,27 +35,13 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.service.list().subscribe(
       data => {
-        this.data = data.json();
+        this.orders = data.json();
       },
       err => {
+        alert(err);
         console.log(err);
       }
     );
-  }
-
-  /** DIALOGS **/
-
-  public showDialog(order:Order, dialog:any) {
-    dialog.open();
-    this.modalOrder = order;
-  }
-
-  public onModalAction(order:Order, status:string, dialog:any) {
-    this.onStatusChange(order.id, status);
-    this.modalOrder = null;
-    dialog.close();
-    this.modalShippingCollateral = null;
-    this.modalShippingReward = null;
   }
 
   /** CLIPBOARDING **/
@@ -98,11 +83,16 @@ export class ListComponent implements OnInit {
   /** ORDER UPDATES **/
 
   public onStatusChange(id:string, newStatus:string) {
+    for (let i = 0; i < this.orders.length; i++) {
+      if (this.orders[i].id === id) {
+        this.orders[i].status = "Updating ...";
+      }
+    }
     this.service.updateStatus(id, newStatus).subscribe(
       data => {
-        for (let i = 0; i < this.data.length; i++) {
-          if (this.data[i].id === id) {
-            this.data[i].status = newStatus;
+        for (let i = 0; i < this.orders.length; i++) {
+          if (this.orders[i].id === id) {
+            this.orders[i].status = newStatus;
           }
         }
       },
@@ -129,9 +119,9 @@ export class ListComponent implements OnInit {
   }
 
   public loadAndSetPrice(order:Order) {
-    for (let i = 0; i < this.data.length; i++) {
-      if (this.data[i].id === order.id) {
-        this.data[i].price = "Loading ...";
+    for (let i = 0; i < this.orders.length; i++) {
+      if (this.orders[i].id === order.id) {
+        this.orders[i].price = "Loading ...";
       }
     }
 
@@ -149,14 +139,18 @@ export class ListComponent implements OnInit {
   }
 
   public onPriceChange(orderId:string, price:string) {
-
+    for (let i = 0; i < this.orders.length; i++) {
+      if (this.orders[i].id === orderId) {
+        this.orders[i].price = "Loading ...";
+      }
+    }
     price = price.replace("ISK", "").replace(" ", "").replace(",", "");
 
     this.service.updatePrice(orderId, price).subscribe(
       data => {
-        for (let i = 0; i < this.data.length; i++) {
-          if (this.data[i].id === orderId) {
-            this.data[i].price = price;
+        for (let i = 0; i < this.orders.length; i++) {
+          if (this.orders[i].id === orderId) {
+            this.orders[i].price = price;
           }
         }
       },

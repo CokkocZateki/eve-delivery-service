@@ -5,12 +5,11 @@ import {ClipboardDirective} from "angular2-clipboard";
 
 @Component({
   selector: 'reject-dialog',
-  templateUrl: 'app/manager/list/rejected-dialog/rejected-dialog-old.component.html',
+  templateUrl: 'app/manager/list/rejected-dialog/rejected-dialog.component.html',
   directives: [MODAL_DIRECTIVES, ClipboardDirective]
 })
 export class RejectDialogComponent {
 
-  @Input() orderId:string;
   @Input() recipient:string;
   @Input() mail:string;
 
@@ -25,7 +24,7 @@ export class RejectDialogComponent {
   }
 
   onConfirm(myModal:any) {
-    this.orderRejected.emit(this.orderId);
+    this.orderRejected.emit(null);
     myModal.close();
   }
 
