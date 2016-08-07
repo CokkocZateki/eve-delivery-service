@@ -11,5 +11,11 @@ exports.config = {
   },
   baseUrl:'http://127.0.0.1:4200',
   specs: ['client.spec.js'],
-  useAllAngular2AppRoots: true
+  useAllAngular2AppRoots: true,
+
+  // Options to be passed to Jasmine-node.
+  jasmineNodeOpts: {
+    showColors: true,
+    defaultTimeoutInterval: 30000
+  }
 }
