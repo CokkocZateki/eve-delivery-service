@@ -1,6 +1,6 @@
 // conf.js
 exports.config = {
-  framework: 'jasmine',
+  framework: 'jasmine2',
   seleniumAddress: 'http://localhost:4444/wd/hub',
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
