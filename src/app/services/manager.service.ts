@@ -46,4 +46,12 @@ export class ManagerService {
   hasUnreadMail() {
     return this.http.get(this.baseUrl + "hasUnreadMail");
   }
+
+  volumeShipping() {
+    return this.http.get(this.baseUrl + "volume/shipping");
+  }
+
+  volumePending() {
+    return this.http.get(this.baseUrl + "volume/pending");
+  }
 }
