@@ -46,6 +46,12 @@ export class ListComponent implements OnInit {
 
   /** CLIPBOARDING **/
 
+  public getExchangeDescription(order:Order) {
+    let client = order.client;
+    let price = order.setPrice;
+    return "To '" + client + "' for " + new NumberGrouping().transform(price) + " ISK";
+  }
+
   public addItemsToClipboard(order:Order) {
     this.clipboardData += this.listItems(order);
   }
@@ -103,6 +109,16 @@ export class ListComponent implements OnInit {
   }
 
   /** PRICING **/
+
+  public calcExchangePrice(order:Order):number {
+    let collateral = this.calcCollateral(order);
+    let managementReward = parseInt(""+this.calcManagementReward(collateral));
+    return collateral + managementReward;
+  }
+
+  public calcManagementReward(basePrice:number):number {
+    return basePrice * 1.13 * 0.02;
+  }
 
   public calcCollateral(order:Order):number {
     let stackPrice = 0;

@@ -7,18 +7,24 @@
     <h4 class="modal-title">{{ modalTitle }}</h4>
   </modal-header>
   <modal-body>
-    <button type="button" class="btn btn-primary" [disabled]="!collateral"
-            ngIIclipboard [cbContent]="collateral">Copy Collateral
+
+    <p>
+      Base Price: {{ basePrice | numberGroups }} ISK <br/>
+      Exchange Price: {{ exchangePrice | numberGroups }} ISK
+    </p>
+
+    <button type="button" class="btn btn-primary" [disabled]="!exchangePrice"
+            ngIIclipboard [cbContent]="exchangePrice">Copy Exchange Price
     </button>
-    <button type="button" class="btn btn-primary" [disabled]="!reward"
-            ngIIclipboard [cbContent]="reward">Copy Reward
+    <button type="button" class="btn btn-primary" [disabled]="!exchangeDescription"
+            ngIIclipboard [cbContent]="exchangeDescription">Copy Exchange Description
     </button>
   </modal-body>
   <modal-footer>
     <button type="button" class="btn btn-danger"
     (click)="myModal.close()">Cancel
     </button>
-    <button type="button" class="btn btn-success" [disabled]="!reward || !collateral"
+    <button type="button" class="btn btn-success"
             (click)="onConfirm(myModal)">{{ buttonTitle }}
     </button>
   </modal-footer>
