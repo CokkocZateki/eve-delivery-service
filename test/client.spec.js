@@ -18,7 +18,7 @@ describe('Protractor Demo App', function () {
   var orderId;
 
   beforeEach(function () {
-    browser.get('http://localhost:4200');
+    browser.get('http://127.0.0.1:8080');
   });
 
   it('should have a title', function () {
