@@ -9,7 +9,7 @@ exports.config = {
     'browserName': 'chrome',
     //'browserName': 'firefox'
   },
-  baseUrl:'http://127.0.0.1:8080',
+  baseUrl:'http://127.0.0.1:4200',
   specs: ['client.spec.js'],
   useAllAngular2AppRoots: true
 }
