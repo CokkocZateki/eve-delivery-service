@@ -1,0 +1,13 @@
+<div id="status" class="content-box roundedCorners">
+  <h3>Stats</h3>
+  <div *ngIf="failed">Stats could not be loaded.</div>
+  <div id="statsDetails" *ngIf="!failed">
+    Average Delivery Time: {{ averageHours }} hours <br/>
+    <br/>
+    Open Requests: {{ requestCount }} <br/>
+    Processing:  {{ processingCount }} <br/>
+    Completed: {{ completedCount }} <br/>
+    <br/>
+    <small>The stats are cached for one hour and thus might not update after you placed an order.</small>
+  </div>
+</div>
