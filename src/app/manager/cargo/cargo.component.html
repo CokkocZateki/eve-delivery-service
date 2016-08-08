@@ -4,7 +4,8 @@
     <div class="progress-bar progress-bar-success" [style.width]="cargoPercentageFilled">
       <span style="color: #444">{{ cargoVolumeFilled }}</span>
     </div>
-    <div class="progress-bar progress-bar-warning progress-bar-striped" [style.width]="cargoPercentagePending">
+    <div *ngIf="cargoVolumePending && cargoVolumePending !== '0'"
+         class="progress-bar progress-bar-warning progress-bar-striped" [style.width]="cargoPercentagePending">
       <span style="color: #444">{{ cargoVolumePending }}</span>
     </div>
   </div>
