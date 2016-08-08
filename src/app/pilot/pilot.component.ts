@@ -52,4 +52,10 @@ export class PilotComponent implements OnInit {
       }
     }
   }
+
+  getCompleteMessage() {
+    var compliments = ['You\'re awesome!', 'Keep up the good work!', 'Keep on rollin\'', 'JF pilot of our hears!'];
+    var result = compliments[Math.floor(Math.random() * compliments.length)];
+    return result;
+  }
 }

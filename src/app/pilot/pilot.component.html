@@ -14,7 +14,7 @@
         <contracted-dialog *ngIf="!(order.status === 'contracted')" [recipient]="getRecipient(order)" [mail]="generateMail('contracted', order)"
                            (orderContracted)="onStatusChange(order.id, 'contracted');">
         </contracted-dialog>
-        <span *ngIf="order.status === 'contracted'">Complete :)</span>
+        <span *ngIf="order.status === 'contracted'">{{ getCompleteMessage() }}</span>
       </td>
     </tr>
   </table>
