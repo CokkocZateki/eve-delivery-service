@@ -7,7 +7,7 @@ import {ManagerService} from "./manager.service";
 export class OrderProcessingService {
 
   private targetSystem = "7RM";
-  private margin = "13%";
+  private margin = "10%"; // todo: remove after beta phase
 
   public constructor(private managerService:ManagerService) { }
 

@@ -19,7 +19,6 @@ export class OrderComponent {
 
   public model = new Order(null, null, null, null);
 
-  public isCollapsed:boolean = true;
   public isPriceCalculated:boolean = false;
   public isPriceCalculationRunning:boolean = false;
 

@@ -25,6 +25,11 @@ import {OrderProcessingService} from "../../services/orderProcessing.service";
 })
 export class ListComponent implements OnInit {
 
+
+  private deliveryFee = 1.10; // todo: update to 1.13 after beta
+  private managementMargin = 0.0; // todo: update to 0.2 after beta
+  private pilotMargin = 1.0; // todo: update to 0.8 after beta
+
   public orders:Array<any> = undefined;
   public clipboardData = "";
 
@@ -76,7 +81,7 @@ export class ListComponent implements OnInit {
   }
 
   public calcManagementReward(basePrice:number):number {
-    return basePrice * 1.13 * 0.02;
+      return basePrice * this.deliveryFee * this.managementMargin;
   }
 
   public calcCollateral(order:Order):number {
@@ -90,7 +95,7 @@ export class ListComponent implements OnInit {
   }
 
   public calcReward(order:Order):number {
-    return this.calcCollateral(order) * 0.13 * 0.8;
+    return this.calcCollateral(order) * this.deliveryFee * this.pilotMargin;
   }
 
   public loadAndSetPrice(order:Order) {

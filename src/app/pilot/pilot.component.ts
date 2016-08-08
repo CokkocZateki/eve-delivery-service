@@ -1,8 +1,7 @@
-import {Component, OnInit, provide} from '@angular/core';
+import {Component, OnInit, provide} from "@angular/core";
 import {Auth} from "../services/auth.service";
 import {PilotService} from "../services/pilot.service";
 import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
-import {ConfirmDialogComponent} from "../manager/list/confirm-dialog/confirm-dialog.component";
 import {OrderProcessingService} from "../services/orderProcessing.service";
 import {Order} from "../common/order";
 import {ManagerService} from "../services/manager.service";

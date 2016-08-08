@@ -6,8 +6,15 @@
   <!--todo: retrieve messages from a backing service-->
   <p>Let us be your delivery service. <b>We rapidly buy and ship it safely for you</b>. No Jita alt needed!
     <br/>Payment is due upon accepting the contract in 7RM, don't pay in advance!
-    Items are shipped to 7RM.
+    Items are shipped to 7RM. <br/>
+    Further systems can be added if there is demand.
   </p>
+
+  <div class="alert alert-success">
+    <b>LAST BETA DAY</b><br/>
+    Until 8. August 12:00 EVE time all shipping fees are reduced to <b>10%</b> and will return to 13% after that.
+    Enjoy your last day of beta phase and get some sweet orders up!
+  </div>
 
   <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
     <fieldset class="form-group">
@@ -45,7 +52,7 @@
       Expected total price: <b>{{ expectedPrice | numberGroups }}.00 ISK</b>
       <small>
         <br/>This includes the price for the items and the shipping cost.
-        <br/>Formula: total = jitaMinSell x 1.13
+        <br/>Formula: total = jitaMinSell x 1.10 (BETA ONLY)
         <br/>Please note that the buy price at Jita may change.
       </small>
     </div>
