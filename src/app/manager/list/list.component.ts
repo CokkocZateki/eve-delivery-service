@@ -10,6 +10,7 @@ import {ConfirmDialogComponent} from "./confirm-dialog/confirm-dialog.component"
 import {RejectDialogComponent} from "./rejected-dialog/rejected-dialog.component";
 import {ContractedDialogComponent} from "./contracted-dialog/contracted-dialog.component";
 import {ShippingDialogComponent} from "./shipping-dialog/shipping-dialog.component";
+import {OrderProcessingService} from "../../services/orderProcessing.service";
 
 
 @Component({
@@ -18,7 +19,8 @@ import {ShippingDialogComponent} from "./shipping-dialog/shipping-dialog.compone
   templateUrl: 'list.component.html',
   directives: [MODAL_DIRECTIVES, ClipboardDirective, ConfirmDialogComponent, RejectDialogComponent,
     ContractedDialogComponent, ShippingDialogComponent],
-  providers: [ManagerService, OrderService, provide(AuthConfig, {useValue: new AuthConfig()}),AuthHttp],
+  providers: [ManagerService, OrderService, provide(AuthConfig, {useValue: new AuthConfig()}),AuthHttp,
+    OrderProcessingService],
   pipes: [NumberGrouping]
 })
 export class ListComponent implements OnInit {
@@ -26,11 +28,8 @@ export class ListComponent implements OnInit {
   public orders:Array<any> = undefined;
   public clipboardData = "";
 
-  private targetSystem = "7RM";
-  private margin = "13%";
-
-  constructor(private service:ManagerService, private orderService:OrderService) {
-  }
+  constructor(private service:ManagerService, private orderService:OrderService,
+              private orderProcessing:OrderProcessingService) { }
 
   ngOnInit() {
     this.service.list().subscribe(
@@ -44,68 +43,28 @@ export class ListComponent implements OnInit {
     );
   }
 
-  /** CLIPBOARDING **/
+  /** FORWARDER **/
 
-  public getExchangeDescription(order:Order) {
-    let client = order.client;
-    let price = order.setPrice;
-    return "To '" + client + "' for " + new NumberGrouping().transform(price) + " ISK";
+  getRecipient(order:Order) {
+    return this.orderProcessing.getRecipient(order);
   }
+
+  generateMail(status:string, order:Order) {
+    return this.orderProcessing.generateMail(status, order);
+  }
+
+  onStatusChange(orderId:string, status:string) {
+    this.orders = this.orderProcessing.onStatusChange(orderId, status, this.orders);
+  }
+
+  getExchangeDescription(order:Order) {
+    return this.orderProcessing.getExchangeDescription(order);
+  }
+
+  /** CLIPBOARDING **/
 
   public addItemsToClipboard(order:Order) {
     this.clipboardData += this.listItems(order);
-  }
-
-  public getRecipient(order:Order):string {
-    return order.client;
-  }
-
-  public getTitle(status:string) {
-    if (status === 'confirmed') {
-      return "Delivery Service - Confirmed";
-    } else if (status === 'rejected') {
-      return "!! Delivery Service - Rejected !!";
-    } else if (status === 'contracted') {
-      return "Delivery Service - Contracted"
-    }
-  }
-
-  public generateMail(status:string, order:Order):string {
-    let result = "Hi " + order.client + "!<br><br>";
-
-    if (status === 'confirmed') {
-      result += "Thank you for your order (" + order.link + "). With a " + this.margin + " delivery fee to " + this.targetSystem + " it will cost " + new NumberGrouping().transform(order.setPrice) + ".00 ISK. Shipping will start soon!";
-    } else if (status === 'rejected') {
-      result += "We are sad to inform you that your order cannot be accepted. This is due to overly high shipping costs. Maybe you want to focus on importing modules and building ships locally?";
-    } else if (status === 'contracted') {
-      result += "Your order (" + order.link + ") has been contracted to you and costs " + new NumberGrouping().transform(order.setPrice) + ".00 ISK. Let me know when you need more!";
-    }
-
-    result += "<br><br>Cheers, Rihan";
-
-    return result;
-  }
-
-  /** ORDER UPDATES **/
-
-  public onStatusChange(id:string, newStatus:string) {
-    for (let i = 0; i < this.orders.length; i++) {
-      if (this.orders[i].id === id) {
-        this.orders[i].status = "Updating ...";
-      }
-    }
-    this.service.updateStatus(id, newStatus).subscribe(
-      data => {
-        for (let i = 0; i < this.orders.length; i++) {
-          if (this.orders[i].id === id) {
-            this.orders[i].status = newStatus;
-          }
-        }
-      },
-      err => {
-        console.log(err);
-      }
-    );
   }
 
   /** PRICING **/
