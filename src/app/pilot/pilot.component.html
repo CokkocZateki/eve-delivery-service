@@ -2,18 +2,20 @@
 <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
 
 <div *ngIf="auth.authenticated()" class="content-box">
-  Nothing to see here, yet. Check back soon!
-  <!--<script>getCurrentSelection()</script>-->
-  <!--<h3>Can you do a run today?</h3>-->
-  <!--<div class="btn-group btn-group-justified" role="group">-->
-    <!--<div class="btn-group" role="group">-->
-      <!--<button type="button" class="btn btn-success" (click)="onRunSelection(true)">Yes</button>-->
-    <!--</div>-->
-    <!--<div class="btn-group" role="group">-->
-      <!--<button type="button" class="btn btn-danger" (click)="onRunSelection(false)">No</button>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<p style="text-align: center;">-->
-  <!--The current selection is '{{ getSelectionTitle() }}'.-->
-  <!--</p>-->
+  <h1>Shipping Orders</h1>
+  <table class="table" *ngIf="orders">
+    <tr>
+      <th>Client Name</th>
+      <th>Process</th>
+    </tr>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.client }}</td>
+      <td>
+        <contracted-dialog *ngIf="!(order.status === 'contracted')" [recipient]="getRecipient(order)" [mail]="generateMail('contracted', order)"
+                           (orderContracted)="onStatusChange(order.id, 'contracted');">
+        </contracted-dialog>
+        <span *ngIf="order.status === 'contracted'">Complete :)</span>
+      </td>
+    </tr>
+  </table>
 </div>

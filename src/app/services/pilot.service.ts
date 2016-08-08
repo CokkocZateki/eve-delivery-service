@@ -7,8 +7,10 @@ export class PilotService {
 
   private baseUrl = environment.ip + "v1/secured/pilot/";
 
-  constructor(private authHttp:AuthHttp) {
+  constructor(private authHttp:AuthHttp) { }
 
+  listShippingOrders() {
+    return this.authHttp.get(this.baseUrl + "list/shipping");
   }
 
   public updateAvailability(canShip:boolean) {
