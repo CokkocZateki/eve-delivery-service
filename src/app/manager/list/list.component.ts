@@ -14,12 +14,11 @@ import {OrderProcessingService} from "../../services/orderProcessing.service";
 
 
 @Component({
-  moduleId: module.id,
   selector: 'list',
-  templateUrl: 'list.component.html',
+  templateUrl: 'app/manager/list/list.component.html',
   directives: [MODAL_DIRECTIVES, ClipboardDirective, ConfirmDialogComponent, RejectDialogComponent,
     ContractedDialogComponent, ShippingDialogComponent],
-  providers: [ManagerService, OrderService, provide(AuthConfig, {useValue: new AuthConfig()}),AuthHttp,
+  providers: [ManagerService, OrderService, provide(AuthConfig, {useValue: new AuthConfig()}), AuthHttp,
     OrderProcessingService],
   pipes: [NumberGrouping]
 })
@@ -34,7 +33,8 @@ export class ListComponent implements OnInit {
   public clipboardData = "";
 
   constructor(private service:ManagerService, private orderService:OrderService,
-              private orderProcessing:OrderProcessingService) { }
+              private orderProcessing:OrderProcessingService) {
+  }
 
   ngOnInit() {
     this.service.list().subscribe(
@@ -76,12 +76,12 @@ export class ListComponent implements OnInit {
 
   public calcExchangePrice(order:Order):number {
     let collateral = this.calcCollateral(order);
-    let managementReward = parseInt(""+this.calcManagementReward(collateral));
+    let managementReward = parseInt("" + this.calcManagementReward(collateral));
     return collateral + managementReward;
   }
 
   public calcManagementReward(basePrice:number):number {
-      return basePrice * this.deliveryFee * this.managementMargin;
+    return basePrice * this.deliveryFee * this.managementMargin;
   }
 
   public calcCollateral(order:Order):number {

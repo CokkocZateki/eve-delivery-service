@@ -1,0 +1,19 @@
+<div class="content-box">
+  <h1>Shipment</h1>
+  <table class="table" *ngIf="orders && orders.length > 0">
+    <tr>
+      <th>Client Name</th>
+      <th>Process</th>
+    </tr>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.client }}</td>
+      <td>
+        <contracted-dialog *ngIf="!(order.status === 'contracted')" [recipient]="getRecipient(order)" [mail]="generateMail('contracted', order)"
+                           (orderContracted)="onStatusChange(order.id, 'contracted');">
+        </contracted-dialog>
+        <span *ngIf="order.status === 'contracted'">{{ getCompleteMessage() }}</span>
+      </td>
+    </tr>
+  </table>
+  <div *ngIf="!orders || orders.length == 0" class="alert alert-warning">No orders to be shipped.</div>
+</div>
