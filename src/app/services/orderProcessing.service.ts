@@ -54,10 +54,11 @@ export class OrderProcessingService {
     } else if (status === 'rejected') {
       result += "We are sad to inform you that your order cannot be accepted. This is due to overly high shipping costs. Maybe you want to focus on importing modules and building ships locally?";
     } else if (status === 'contracted') {
-      result += "Your order (" + order.link + ") has been contracted to you and costs " + new NumberGrouping().transform(order.setPrice) + ".00 ISK. Let me know when you need more!";
+      result += "Your order (" + order.link + ") has been contracted to you and costs " + new NumberGrouping().transform(order.setPrice) + ".00 ISK. Let us know when you need more!<br/><br/>We appreciate it if you recommend us to your " +
+        "friends and leave us a message at the forums: https://www.pandemic-legion.pl/forums/index.php?/topic/3184-new-delivery-service/";
     }
 
-    result += "<br><br>Cheers, Rihan";
+    result += "<br><br>Your Horde Delivery Service";
 
     return result;
   }
