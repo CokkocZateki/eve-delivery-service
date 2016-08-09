@@ -25,7 +25,7 @@ import {OrderProcessingService} from "../../services/orderProcessing.service";
 export class ListComponent implements OnInit {
 
 
-  private deliveryFee = 1.13;
+  private deliveryFee = 0.13;
   private managementMargin = 0.2;
   private pilotMargin = 0.8;
 

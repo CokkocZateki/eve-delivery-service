@@ -4,9 +4,10 @@
 
 <modal #myModal>
   <modal-header [show-close]="true">
-    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <h4 class="modal-title">{{ modalTitle}}</h4>
   </modal-header>
   <modal-body>
+    <p>Buy Price: {{ basePrice | numberGroups }}.00 ISK</p>
     <button type="button" class="btn btn-primary"
             ngIIclipboard [cbContent]="recipient">Copy Recipient
     </button>

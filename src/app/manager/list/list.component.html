@@ -1,24 +1,17 @@
-<style>
-  td {
-    padding: 5px;
-    border: 1px solid;
-  }
-</style>
-
 <div id="orderList" class="content-box">
   <h2>Manage Orders</h2>
   <div *ngIf="!orders">Loading ...</div>
-  <table *ngIf="orders">
+  <table *ngIf="orders" class="table">
     <tr>
       <th>Client</th>
-      <th>Link</th>
+      <th class="hidden-xs">Link</th>
       <th>Status</th>
       <th>Price</th>
       <th>Operations</th>
     </tr>
     <tr *ngFor="let order of orders">
       <td>{{order.client}}</td>
-      <td>
+      <td class="hidden-xs">
         <a href="{{order.link}}" target="_blank">evepraisal</a>
       </td>
       <td>{{order.status}}</td>
@@ -40,8 +33,11 @@
                       (click)="loadAndSetPrice(order)">Price
               </button>
             </li>
+            <li style="padding: 5px" *ngIf="order.status === 'confirmed' || order.status === 'requested'">
+              <button #someId  type="button" class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip</button>
+            </li>
             <li style="padding: 5px" *ngIf="order.status === 'requested'">
-              <confirm-dialog [disableButton]="!order.setPrice" [recipient]="getRecipient(order)"
+              <confirm-dialog [disableButton]="!order.setPrice" [recipient]="getRecipient(order)" [basePrice]="calcCollateral(order)"
                               [mail]="generateMail('confirmed', order)" (orderConfirmed)="onStatusChange(order.id, 'confirmed');">
               </confirm-dialog>
             </li>
@@ -49,9 +45,6 @@
               <reject-dialog [recipient]="getRecipient(order)"
                               [mail]="generateMail('rejected', order)" (orderRejected)="onStatusChange(order.id, 'rejected');">
               </reject-dialog>
-            </li>
-            <li style="padding: 5px" *ngIf="order.status === 'confirmed'">
-              <button #someId  type="button" class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip</button>
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'confirmed'">
               <shipping-dialog [exchangePrice]="calcExchangePrice(order)"
