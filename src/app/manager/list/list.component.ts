@@ -25,9 +25,9 @@ import {OrderProcessingService} from "../../services/orderProcessing.service";
 export class ListComponent implements OnInit {
 
 
-  private deliveryFee = 1.10; // todo: update to 1.13 after beta
-  private managementMargin = 0.0; // todo: update to 0.2 after beta
-  private pilotMargin = 1.0; // todo: update to 0.8 after beta
+  private deliveryFee = 1.13;
+  private managementMargin = 0.2;
+  private pilotMargin = 0.8;
 
   public orders:Array<any> = undefined;
   public clipboardData = "";

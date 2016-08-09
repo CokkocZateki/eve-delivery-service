@@ -10,12 +10,6 @@
     Further systems can be added if there is demand.
   </p>
 
-  <div class="alert alert-success">
-    <b>LAST BETA DAY</b><br/>
-    Until 8. August 12:00 EVE time all shipping fees are reduced to <b>10%</b> and will return to 13% after that.
-    Enjoy your last day of beta phase and get some sweet orders up!
-  </div>
-
   <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
     <fieldset class="form-group">
       <label for="characterName">Character Name</label>
@@ -54,7 +48,7 @@
       Expected total price: <b>{{ expectedPrice | numberGroups }}.00 ISK</b>
       <small>
         <br/>This includes the price for the items and the shipping cost.
-        <br/>Formula: total = jitaMinSell x 1.10 (BETA ONLY)
+        <br/>Formula: total = jitaMinSell + 13%
         <br/>Please note that the buy price at Jita may change.
       </small>
     </div>
