@@ -66,12 +66,6 @@ export class ListComponent implements OnInit {
     return this.orderProcessing.getExchangeDescription(order);
   }
 
-  /** CLIPBOARDING **/
-
-  public addItemsToClipboard(order:Order) {
-    this.clipboardData += this.listItems(order);
-  }
-
   /** PRICING **/
 
   public calcExchangePrice(order:Order):number {

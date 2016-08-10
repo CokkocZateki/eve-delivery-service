@@ -34,7 +34,7 @@
               </button>
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'confirmed' || order.status === 'requested'">
-              <button #someId  type="button" class="btn btn-primary" (click)="addItemsToClipboard(order)">Clip</button>
+              <button type="button" class="btn btn-primary" ngIIclipboard [cbContent]="listItems(order)">Clip</button>
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'requested'">
               <confirm-dialog [disableButton]="!order.setPrice" [recipient]="getRecipient(order)" [basePrice]="calcCollateral(order)"
@@ -64,12 +64,4 @@
       </td>
     </tr>
   </table>
-</div>
-
-<div class="content-box" *ngIf="clipboardData">
-  <h3>Clipboard list</h3>
-  <div [innerHTML]="clipboardData"></div>
-  <button type="button" *ngIf="clipboardData" class="btn btn-primary"
-          ngIIclipboard [cbContent]="clipboardData">Copy to Clipboard
-  </button>
 </div>
