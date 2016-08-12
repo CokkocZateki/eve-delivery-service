@@ -4,6 +4,7 @@
   <table *ngIf="orders" class="table">
     <tr>
       <th>Client</th>
+      <th class="hidden-xs">Destination</th>
       <th class="hidden-xs">Link</th>
       <th>Status</th>
       <th>Price</th>
@@ -11,6 +12,7 @@
     </tr>
     <tr *ngFor="let order of orders">
       <td>{{order.client}}</td>
+      <td class="hidden-xs">{{order.destination}}</td>
       <td class="hidden-xs">
         <a href="{{order.link}}" target="_blank">evepraisal</a>
       </td>

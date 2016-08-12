@@ -1,0 +1,7 @@
+<div class="btn-group">
+  <label *ngFor="let item of radioItems" class="btn btn-default">
+    <input type="radio" name="options" (click)="changeDestination(item)"
+           [checked]="item === model.options">
+    {{ item }}
+  </label>
+</div>

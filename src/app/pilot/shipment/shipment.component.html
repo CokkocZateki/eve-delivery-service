@@ -3,10 +3,12 @@
   <table class="table" *ngIf="orders && orders.length > 0">
     <tr>
       <th>Client Name</th>
+      <th>Destination</th>
       <th>Process</th>
     </tr>
     <tr *ngFor="let order of orders">
       <td>{{ order.client }}</td>
+      <td>{{ order.destination }}</td>
       <td>
         <contracted-dialog *ngIf="!(order.status === 'contracted')" [recipient]="getRecipient(order)" [mail]="generateMail('contracted', order)"
                            (orderContracted)="onStatusChange(order.id, 'contracted');">
