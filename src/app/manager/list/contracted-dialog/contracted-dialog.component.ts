@@ -25,7 +25,7 @@ export class ContractedDialogComponent {
   }
 
   onConfirm(myModal:any) {
-    this.orderContracted.emit(this.orderId);
+    this.orderContracted.emit(null);
     myModal.close();
   }
 

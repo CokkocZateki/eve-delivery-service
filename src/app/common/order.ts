@@ -3,6 +3,7 @@ export class Order {
     public client: string,
     public link: string,
     public expectedPrice: number,
+    public destination: string,
     public id?:string,
     public status?: string,
     public items?: any,

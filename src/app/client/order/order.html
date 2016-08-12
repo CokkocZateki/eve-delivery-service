@@ -4,7 +4,8 @@
   <h3>Submit Order</h3>
 
   <div class="alert alert-success">
-    <b>The Horde Delivery Service is now public!</b> Through the beta phase we gained valuable insight and optimized our service
+    <b>The Horde Delivery Service is now public!</b> Through the beta phase we gained valuable insight and optimized our
+    service
     so that you get your orders as fast and secure as possible.
     We now service the Beanstar in 7RM and will extend our reach to GME on the upcoming weekend.
     <br/>
@@ -28,6 +29,12 @@
       <!--No name, no order! This is the character we will contract the items to.-->
       <!--</div>-->
       <!--<small *ngIf="name.valid && name.pristine">This is the character we will contract the items to.</small>-->
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="destinationWrapper">Destination</label>
+      <br/>
+      <destination id="destinationWrapper" (destinationChanged)="setDestination($event)">
+      </destination>
     </fieldset>
     <fieldset class="form-group">
 

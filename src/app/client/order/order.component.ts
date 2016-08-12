@@ -2,11 +2,13 @@ import {Component} from '@angular/core';
 import {OrderService} from "../../services/order.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {Order} from "../../common/order";
+import {DestinationComponent} from "./destination/destination.component";
 
 @Component({
   selector: 'order',
   providers: [OrderService],
   templateUrl: './app/client/order/order.html',
+  directives: [DestinationComponent],
   pipes: [NumberGrouping]
 })
 export class OrderComponent {
@@ -17,13 +19,17 @@ export class OrderComponent {
 
   }
 
-  public model = new Order(null, null, null, null);
+  public model = new Order(null, null, null, "7RM Beanstar", null);
 
   public isPriceCalculated:boolean = false;
   public isPriceCalculationRunning:boolean = false;
 
   public submitted:boolean = false;
   public orderId:string;
+
+  public setDestination(destination:string) {
+    this.model.destination = destination;
+  }
 
   public onSubmit() {
 
