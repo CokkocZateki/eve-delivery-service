@@ -55,7 +55,7 @@ export class ShipmentComponent implements OnInit {
   }
 
   getCompleteMessage() {
-    var compliments = ['You\'re awesome!', 'Keep up the good work!', 'Keep on rollin\'', 'JF pilot of our hears!'];
+    var compliments = ['You\'re awesome!', 'Keep up the good work!', 'Keep on rollin\'', 'JF pilot of our hearts!'];
     var result = compliments[Math.floor(Math.random() * compliments.length)];
     return result;
   }
