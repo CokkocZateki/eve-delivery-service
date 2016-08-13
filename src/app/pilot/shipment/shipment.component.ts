@@ -5,13 +5,15 @@ import {OrderProcessingService} from "../../services/orderProcessing.service";
 import {PilotService} from "../../services/pilot.service";
 import {Order} from "../../common/order";
 import {ManagerService} from "../../services/manager.service";
+import {NumberGrouping} from "../../common/numberGrouping.pipe";
 
 @Component({
   selector: 'shipment',
   templateUrl: './app/pilot/shipment/shipment.component.html',
   providers: [provide(AuthConfig, {useValue: new AuthConfig()}), AuthHttp, PilotService, OrderProcessingService,
     ManagerService],
-  directives: [ContractedDialogComponent]
+  directives: [ContractedDialogComponent],
+  pipes: [NumberGrouping]
 })
 export class ShipmentComponent implements OnInit {
 
