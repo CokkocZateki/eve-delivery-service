@@ -1,7 +1,7 @@
 <div class="btn-group">
   <label *ngFor="let item of radioItems" class="btn btn-default">
-    <input type="radio" name="options" (click)="changeDestination(item)"
-           [checked]="item === model.options">
-    {{ item }}
+    <img src="{{ item.imgUrl }}" width="150"/> <br/>
+    <input type="radio" name="options" (click)="changeDestination(item.name)"
+           [checked]="item.name === model.name">  {{ item.name }}
   </label>
 </div>

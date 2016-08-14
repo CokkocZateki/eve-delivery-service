@@ -8,9 +8,10 @@
   </modal-header>
   <modal-body>
 
+    <h3>Corporate Pilot</h3>
     <p>
       Base Price: {{ basePrice | numberGroups }} ISK <br/>
-      Exchange Price: {{ exchangePrice | numberGroups }} ISK
+      JF Exchange Price: {{ exchangePrice | numberGroups }} ISK
     </p>
 
     <button type="button" class="btn btn-primary" [disabled]="!exchangePrice"
@@ -19,10 +20,36 @@
     <button type="button" class="btn btn-primary" [disabled]="!exchangeDescription"
             ngIIclipboard [cbContent]="exchangeDescription">Copy Exchange Description
     </button>
+
+
+    <h3>External Service</h3>
+    <p>
+      Collateral: {{ basePrice | numberGroups }} ISK<br/>
+      Reward: {{ reward | numberGroups }} ISK
+    </p>
+
+    <button type="button" class="btn btn-primary" [disabled]="!basePrice"
+            ngIIclipboard [cbContent]="basePrice">Copy Collateral
+    </button>
+    <button type="button" class="btn btn-primary" [disabled]="!reward"
+            ngIIclipboard [cbContent]="reward">Copy Reward
+    </button>
+
+    <h3>Assign</h3>
+
+    <p>Currently: {{ assignee }}</p>
+
+    <!--todo: extend this for multiple pilots/services-->
+    <button type="button" class="btn btn-default" (click)="onAssign('corporate')">Corporate Pilot
+    </button>
+    <button type="button" class="btn btn-default" (click)="onAssign('service')">External Service
+    </button>
+
+
   </modal-body>
   <modal-footer>
     <button type="button" class="btn btn-danger"
-    (click)="myModal.close()">Cancel
+            (click)="myModal.close()">Cancel
     </button>
     <button type="button" class="btn btn-success"
             (click)="onConfirm(myModal)">{{ buttonTitle }}

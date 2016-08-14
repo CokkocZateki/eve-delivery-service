@@ -13,17 +13,24 @@ import {NumberGrouping} from "../../../common/numberGrouping.pipe";
 export class ShippingDialogComponent {
 
   // @Input() collateral:number;
-  // @Input() reward:number;
   @Input() exchangePrice:number;
   @Input() exchangeDescription:string;
   @Input() basePrice:number;
+  @Input() reward:number;
+  @Input() assignee:string;
 
   @Output() orderIsShipping = new EventEmitter();
+  @Output() assignOrder: EventEmitter<string> = new EventEmitter<string>();
 
   buttonTitle:string = "Ship Me";
   modalTitle:string = "Shipping";
 
   constructor() { }
+
+  onAssign(assignee:string) {
+    this.assignOrder.emit(assignee);
+    this.assignee = assignee;
+  }
 
   onConfirm(myModal:any) {
     this.orderIsShipping.emit(null);

@@ -7,6 +7,7 @@ export class Order {
     public id?:string,
     public status?: string,
     public items?: any,
-    public setPrice?: number
+    public setPrice?: number,
+    public assignee?: string
   ) {  }
 }
