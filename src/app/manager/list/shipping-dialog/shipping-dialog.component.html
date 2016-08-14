@@ -25,14 +25,14 @@
     <h3>External Service</h3>
     <p>
       Collateral: {{ basePrice | numberGroups }} ISK<br/>
-      Reward: {{ reward | numberGroups }} ISK
+      Reward: {{ serviceReward | numberGroups }} ISK
     </p>
 
     <button type="button" class="btn btn-primary" [disabled]="!basePrice"
             ngIIclipboard [cbContent]="basePrice">Copy Collateral
     </button>
-    <button type="button" class="btn btn-primary" [disabled]="!reward"
-            ngIIclipboard [cbContent]="reward">Copy Reward
+    <button type="button" class="btn btn-primary" [disabled]="!serviceReward"
+            ngIIclipboard [cbContent]="serviceReward">Copy Reward
     </button>
 
     <h3>Assign</h3>

@@ -16,7 +16,7 @@ export class ShippingDialogComponent {
   @Input() exchangePrice:number;
   @Input() exchangeDescription:string;
   @Input() basePrice:number;
-  @Input() reward:number;
+  @Input() serviceReward:number;
   @Input() assignee:string;
 
   @Output() orderIsShipping = new EventEmitter();

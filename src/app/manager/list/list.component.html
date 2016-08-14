@@ -54,7 +54,7 @@
               <shipping-dialog [exchangePrice]="calcExchangePrice(order)"
                                [exchangeDescription]="getExchangeDescription(order)"
                                [basePrice]="calcCollateral(order)"
-                               [reward]="calcReward(order)"
+                               [serviceReward]="calcServiceReward(order)"
                                [assignee]="order.assignee"
                                (orderIsShipping)="onStatusChange(order.id, 'shipping');"
                                (assignOrder)="onOrderAssigned(order.id, $event)">

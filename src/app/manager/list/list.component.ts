@@ -68,7 +68,8 @@ export class ListComponent implements OnInit {
 
   onOrderAssigned(orderId:string, assignee:string) {
     this.service.updateAssignee(orderId, assignee).subscribe(
-      data => {},
+      data => {
+      },
       err => {
         console.log(err);
         alert(err);
@@ -98,8 +99,25 @@ export class ListComponent implements OnInit {
     return stackPrice;
   }
 
-  public calcReward(order:Order):number {
-    return parseInt(""+this.calcCollateral(order) * this.deliveryFee * this.pilotMargin);
+  public calcServiceReward(order:Order):number {
+    var collateral = this.calcCollateral(order);
+    let items = order.items;
+    let totalVolume:number = 0;
+    for (let i = 0; i < items.length; i++) {
+      let item = items[i];
+      totalVolume += item.volume * item.quantity;
+    }
+
+    let volumePrice:number;
+    if (order.destination === '7RM Beanstar') {
+      volumePrice = 300;
+    } else {
+      volumePrice = 400;
+    }
+
+    let reward = totalVolume * volumePrice;
+
+    return parseInt("" + (collateral * 0.02 + reward));
   }
 
   public loadAndSetPrice(order:Order) {
