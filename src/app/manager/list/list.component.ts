@@ -66,6 +66,16 @@ export class ListComponent implements OnInit {
     return this.orderProcessing.getExchangeDescription(order);
   }
 
+  onOrderAssigned(orderId:string, assignee:string) {
+    this.service.updateAssignee(orderId, assignee).subscribe(
+      data => {},
+      err => {
+        console.log(err);
+        alert(err);
+      }
+    );
+  }
+
   /** PRICING **/
 
   public calcExchangePrice(order:Order):number {
@@ -89,7 +99,7 @@ export class ListComponent implements OnInit {
   }
 
   public calcReward(order:Order):number {
-    return this.calcCollateral(order) * this.deliveryFee * this.pilotMargin;
+    return parseInt(""+this.calcCollateral(order) * this.deliveryFee * this.pilotMargin);
   }
 
   public loadAndSetPrice(order:Order) {

@@ -72,7 +72,7 @@ export class OrderProcessingService {
   public getExchangeDescription(order:Order) {
     let client = order.client;
     let price = order.setPrice;
-    return "To '" + client + "' at '" + order.destination + "' for " + new NumberGrouping().transform(price) + " ISK";
+    return client + "@" + order.destination + ": " + new NumberGrouping().transform(price) + " ISK";
   }
 
 }

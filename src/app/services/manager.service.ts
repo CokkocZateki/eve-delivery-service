@@ -27,6 +27,10 @@ export class ManagerService {
     return this.http.post(this.baseUrl + "update/status?id=" + orderId + "&newStatus=" + newStatus, "");
   }
 
+  public updateAssignee(orderId:string, assignee:string) {
+    return this.http.post(this.baseUrl + "update/assignee?id=" + orderId + "&assignee=" + assignee, "");
+  }
+
   public countRequests() {
     return this.http.get(this.baseUrl + "count/requests");
   }
@@ -54,4 +58,6 @@ export class ManagerService {
   volumePending() {
     return this.http.get(this.baseUrl + "volume/pending");
   }
+
+
 }

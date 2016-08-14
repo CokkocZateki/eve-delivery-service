@@ -6,6 +6,7 @@
       <th>Client</th>
       <th class="hidden-xs">Destination</th>
       <th class="hidden-xs">Link</th>
+      <th class="hidden-xs">Assignee</th>
       <th>Status</th>
       <th>Price</th>
       <th>Operations</th>
@@ -16,6 +17,7 @@
       <td class="hidden-xs">
         <a href="{{order.link}}" target="_blank">evepraisal</a>
       </td>
+      <td class="hidden-xs">{{order.assignee}}</td>
       <td>{{order.status}}</td>
       <td>
         <div *ngIf="order.setPrice">{{ order.setPrice | numberGroups }} ISK</div>
@@ -52,7 +54,10 @@
               <shipping-dialog [exchangePrice]="calcExchangePrice(order)"
                                [exchangeDescription]="getExchangeDescription(order)"
                                [basePrice]="calcCollateral(order)"
-                               (orderIsShipping)="onStatusChange(order.id, 'shipping');">
+                               [reward]="calcReward(order)"
+                               [assignee]="order.assignee"
+                               (orderIsShipping)="onStatusChange(order.id, 'shipping');"
+                               (assignOrder)="onOrderAssigned(order.id, $event)">
               </shipping-dialog>
             </li>
             <li style="padding: 5px" *ngIf="order.status === 'shipping'">
