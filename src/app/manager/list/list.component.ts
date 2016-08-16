@@ -11,6 +11,7 @@ import {RejectDialogComponent} from "./rejected-dialog/rejected-dialog.component
 import {ContractedDialogComponent} from "./contracted-dialog/contracted-dialog.component";
 import {ShippingDialogComponent} from "./shipping-dialog/shipping-dialog.component";
 import {OrderProcessingService} from "../../services/orderProcessing.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -33,7 +34,7 @@ export class ListComponent implements OnInit {
   public clipboardData = "";
 
   constructor(private service:ManagerService, private orderService:OrderService,
-              private orderProcessing:OrderProcessingService) {
+              private orderProcessing:OrderProcessingService, private router: Router) {
   }
 
   ngOnInit() {
@@ -48,42 +49,8 @@ export class ListComponent implements OnInit {
     );
   }
 
-  /** FORWARDER **/
-
-  getRecipient(order:Order) {
-    return this.orderProcessing.getRecipient(order);
-  }
-
-  generateMail(status:string, order:Order) {
-    return this.orderProcessing.generateMail(status, order);
-  }
-
-  onStatusChange(orderId:string, status:string) {
-    this.orders = this.orderProcessing.onStatusChange(orderId, status, this.orders);
-  }
-
-  getExchangeDescription(order:Order) {
-    return this.orderProcessing.getExchangeDescription(order);
-  }
-
-  onOrderAssigned(orderId:string, assignee:string) {
-    this.service.updateAssignee(orderId, assignee).subscribe(
-      data => {
-      },
-      err => {
-        console.log(err);
-        alert(err);
-      }
-    );
-  }
-
   /** PRICING **/
 
-  public calcExchangePrice(order:Order):number {
-    let collateral = this.calcCollateral(order);
-    let managementReward = parseInt("" + this.calcManagementReward(collateral));
-    return collateral + managementReward;
-  }
 
   public calcManagementReward(basePrice:number):number {
     return basePrice * this.deliveryFee * this.managementMargin;
@@ -120,25 +87,25 @@ export class ListComponent implements OnInit {
     return parseInt("" + (collateral * 0.02 + reward));
   }
 
-  public loadAndSetPrice(order:Order) {
-    for (let i = 0; i < this.orders.length; i++) {
-      if (this.orders[i].id === order.id) {
-        this.orders[i].price = "Loading ...";
-      }
-    }
-
-    this.orderService.quote(order.link).subscribe(
-      data => {
-        let body = data.json();
-        order.setPrice = Number(body.price);
-        this.onPriceChange(order.id, order.setPrice + "");
-        this.checkShippingCosts(order);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  // public loadAndSetPrice(order:Order) {
+  //   for (let i = 0; i < this.orders.length; i++) {
+  //     if (this.orders[i].id === order.id) {
+  //       this.orders[i].price = "Loading ...";
+  //     }
+  //   }
+  //
+  //   this.orderService.quote(order.link).subscribe(
+  //     data => {
+  //       let body = data.json();
+  //       order.setPrice = Number(body.price);
+  //       this.onPriceChange(order.id, order.setPrice + "");
+  //       this.checkShippingCosts(order);
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
   public onPriceChange(orderId:string, price:string) {
     for (let i = 0; i < this.orders.length; i++) {
@@ -162,30 +129,30 @@ export class ListComponent implements OnInit {
     );
   }
 
-  private checkShippingCosts(order:Order) {
-    this.orderService.shippingPrice(order.link).subscribe(
-      data => {
-        let body = data.json();
-        let shippingPrice = Number(body.price);
-
-        if (shippingPrice > order.setPrice) {
-          alert("Order for " + order.client + " has a negative margin of " + (order.setPrice - shippingPrice) / 1000000 + " mil ISK.");
-        }
-
-        this.service.updateShippingPrice(order.id, "" + shippingPrice).subscribe(
-          data => {
-          },
-          err => {
-            alert("Could not set shipping price. See logs.");
-            console.log(err);
-          }
-        );
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  // private checkShippingCosts(order:Order) {
+  //   this.orderService.shippingPrice(order.link).subscribe(
+  //     data => {
+  //       let body = data.json();
+  //       let shippingPrice = Number(body.price);
+  //
+  //       if (shippingPrice > order.setPrice) {
+  //         alert("Order for " + order.client + " has a negative margin of " + (order.setPrice - shippingPrice) / 1000000 + " mil ISK.");
+  //       }
+  //
+  //       this.service.updateShippingPrice(order.id, "" + shippingPrice).subscribe(
+  //         data => {
+  //         },
+  //         err => {
+  //           alert("Could not set shipping price. See logs.");
+  //           console.log(err);
+  //         }
+  //       );
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
   /** UTILITY **/
 
@@ -200,4 +167,9 @@ export class ListComponent implements OnInit {
     return result;
   }
 
+  gotoDetail(order:Order) {
+    let link = ['/manager', order.id];
+    console.log(link);
+    this.router.navigate(link);
+  }
 }
