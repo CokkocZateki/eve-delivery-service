@@ -15,6 +15,10 @@ export class ManagerService {
     return this.http.get(this.baseUrl + "list");
   }
 
+  public getOrder(orderId:string) {
+    return this.http.get(this.baseUrl + "load?orderId=" + orderId);
+  }
+
   public updatePrice(orderId:string, price:string) {
     return this.http.post(this.baseUrl + "update/price?id=" + orderId + "&price=" + price, "");
   }

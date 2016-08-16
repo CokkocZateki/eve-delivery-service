@@ -10,7 +10,7 @@
     <tr *ngFor="let order of orders">
       <td>{{ order.client }}</td>
       <td>{{ order.destination }}</td>
-      <td>{{ order.setPrice | numberGroups }}.00 ISK</td>
+      <td>{{ order.expectedPrice | numberGroups }}.00 ISK</td>
       <td>
         <contracted-dialog *ngIf="!(order.status === 'contracted')" [recipient]="getRecipient(order)"
                            [mail]="generateMail('contracted', order)"

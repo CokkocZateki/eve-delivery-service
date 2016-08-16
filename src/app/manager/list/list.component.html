@@ -4,70 +4,20 @@
   <table *ngIf="orders" class="table">
     <tr>
       <th>Client</th>
-      <th class="hidden-xs">Destination</th>
       <th class="hidden-xs">Link</th>
-      <th class="hidden-xs">Assignee</th>
+      <th class="hidden-xs">Price</th>
       <th>Status</th>
-      <th>Price</th>
-      <th>Operations</th>
+      <th>Details</th>
     </tr>
     <tr *ngFor="let order of orders">
       <td>{{order.client}}</td>
-      <td class="hidden-xs">{{order.destination}}</td>
       <td class="hidden-xs">
         <a href="{{order.link}}" target="_blank">evepraisal</a>
       </td>
-      <td class="hidden-xs">{{order.assignee}}</td>
+      <td class="hidden-xs">{{ order.expectedPrice | numberGroups }} ISK</td>
       <td>{{order.status}}</td>
       <td>
-        <div *ngIf="order.setPrice">{{ order.setPrice | numberGroups }} ISK</div>
-        <div *ngIf="!order.setPrice">
-          please set
-        </div>
-      </td>
-      <td>
-        <div class="btn-group" *ngIf="order.status !== 'contracted'">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-            Action <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li style="padding: 5px" *ngIf="!order.setPrice && order.status !== 'rejected'">
-              <button type="button" class="btn btn-primary"
-                      (click)="loadAndSetPrice(order)">Price
-              </button>
-            </li>
-            <li style="padding: 5px" *ngIf="order.status === 'confirmed' || order.status === 'requested'">
-              <button type="button" class="btn btn-primary" ngIIclipboard [cbContent]="listItems(order)">Clip</button>
-            </li>
-            <li style="padding: 5px" *ngIf="order.status === 'requested'">
-              <confirm-dialog [disableButton]="!order.setPrice" [recipient]="getRecipient(order)" [basePrice]="calcCollateral(order)"
-                              [mail]="generateMail('confirmed', order)" (orderConfirmed)="onStatusChange(order.id, 'confirmed');">
-              </confirm-dialog>
-            </li>
-            <li style="padding: 5px" *ngIf="order.status === 'requested'">
-              <reject-dialog [recipient]="getRecipient(order)"
-                              [mail]="generateMail('rejected', order)" (orderRejected)="onStatusChange(order.id, 'rejected');">
-              </reject-dialog>
-            </li>
-            <li style="padding: 5px" *ngIf="order.status === 'confirmed'">
-              <shipping-dialog [exchangePrice]="calcExchangePrice(order)"
-                               [exchangeDescription]="getExchangeDescription(order)"
-                               [basePrice]="calcCollateral(order)"
-                               [serviceReward]="calcServiceReward(order)"
-                               [assignee]="order.assignee"
-                               (orderIsShipping)="onStatusChange(order.id, 'shipping');"
-                               (assignOrder)="onOrderAssigned(order.id, $event)">
-              </shipping-dialog>
-            </li>
-            <li style="padding: 5px" *ngIf="order.status === 'shipping'">
-              <contracted-dialog [recipient]="getRecipient(order)" [mail]="generateMail('contracted', order)"
-                (orderContracted)="onStatusChange(order.id, 'contracted');">
-              </contracted-dialog>
-            </li>
-          </ul>
-        </div>
-
+        <button class="btn btn-default" (click)="gotoDetail(order)">Open</button>
       </td>
     </tr>
   </table>
