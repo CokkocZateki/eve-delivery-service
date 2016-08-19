@@ -6,6 +6,7 @@
       <th>Client</th>
       <th class="hidden-xs">Link</th>
       <th class="hidden-xs">Price</th>
+      <th class="hidden-xs">Destination</th>
       <th>Status</th>
       <th>Details</th>
     </tr>
@@ -15,6 +16,7 @@
         <a href="{{order.link}}" target="_blank">evepraisal</a>
       </td>
       <td class="hidden-xs">{{ order.expectedPrice | numberGroups }} ISK</td>
+      <td class="hidden-xs">{{order.destination}}</td>
       <td>{{order.status}}</td>
       <td>
         <button class="btn btn-default" (click)="gotoDetail(order)">Open</button>
