@@ -69,8 +69,15 @@
 
   <div *ngIf="submitted" id="orderSubmittedMessage">
     <h3>Thank you for your order!</h3>
-    With the order number <b>{{ orderId }}</b> you can check the status of your order. <br/>
+    <p>With the order number <b>{{ orderId }}</b> you can check the status of your order. <br/>
     After accepting the order, your goods will be shipped over and contracted to you. Upon accepting the contract you
-    have to pay. Don't pay in advance.
+    have to pay. Don't pay in advance.</p>
+
+    <button type="button" class="btn btn-default"
+            ngIIclipboard [cbContent]="orderId">Copy ID
+    </button>
+    <button type="button" class="btn btn-primary"
+            (click)="showOrderPage()">Buy more
+    </button>
   </div>
 </div>

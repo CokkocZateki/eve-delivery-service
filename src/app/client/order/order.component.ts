@@ -3,12 +3,13 @@ import {OrderService} from "../../services/order.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {Order} from "../../common/order";
 import {DestinationComponent} from "./destination/destination.component";
+import {ClipboardDirective} from "angular2-clipboard";
 
 @Component({
   selector: 'order',
   providers: [OrderService],
   templateUrl: './app/client/order/order.html',
-  directives: [DestinationComponent],
+  directives: [DestinationComponent, ClipboardDirective],
   pipes: [NumberGrouping]
 })
 export class OrderComponent {
@@ -83,5 +84,10 @@ export class OrderComponent {
         console.log(err);
       }
     );
+  }
+
+  showOrderPage() {
+    this.model = new Order(null, null, null, "7RM Beanstar", null);
+    this.submitted = false;
   }
 }
