@@ -1,16 +1,16 @@
 import {Component, OnInit, provide} from '@angular/core';
-import {FeedbackService} from "../../services/feedback.service";
 import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
+import {FeedbackSecuredService} from "../../services/feedback.secured.service";
 
 @Component({
   moduleId: module.id,
   selector: 'feedback',
   templateUrl: 'feedback.component.html',
-  providers: [FeedbackService, provide(AuthConfig, {useValue: new AuthConfig()}), AuthHttp]
+  providers: [FeedbackSecuredService, provide(AuthConfig, {useValue: new AuthConfig()}), AuthHttp]
 })
 export class FeedbackComponent implements OnInit {
 
-  constructor(private service:FeedbackService) { }
+  constructor(private service:FeedbackSecuredService) { }
 
   feedbackList:any;
 

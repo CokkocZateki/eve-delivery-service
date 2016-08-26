@@ -5,7 +5,7 @@
 
   <!--todo: retrieve messages from a backing service-->
   <p>Let us be your delivery service. <b>We rapidly buy and ship it safely for you</b>. No Jita alt needed!
-    <br/>Payment is due upon accepting the contract in 7RM, don't pay in advance!
+    <br/>Payment is due upon accepting the contract at the destination, don't pay in advance!
     Items are shipped to 7RM and GME.
   </p>
 
@@ -68,9 +68,10 @@
 
   <div *ngIf="submitted" id="orderSubmittedMessage">
     <h3>Thank you for your order!</h3>
-    <p>With the order number <b>{{ orderId }}</b> you can check the status of your order. <br/>
-    After accepting the order, your goods will be shipped over and contracted to you. Upon accepting the contract you
-    have to pay. Don't pay in advance.</p>
+    <p>With the order number <b>{{ orderId }}</b> you can check the status of your order. It will also be included
+      in all mails.<br/>
+    After we accept the order, your goods will be shipped over and contracted to you. Upon accepting the contract you
+    have to pay. Don't pay in advance!</p>
 
     <button type="button" class="btn btn-default"
             ngIIclipboard [cbContent]="orderId">Copy ID

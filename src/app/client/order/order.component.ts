@@ -4,6 +4,7 @@ import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {Order} from "../../common/order";
 import {DestinationComponent} from "./destination/destination.component";
 import {ClipboardDirective} from "angular2-clipboard";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'order',
@@ -16,7 +17,7 @@ export class OrderComponent {
   private expectedPrice:number;
   private isPriceCalculationFailed = false;
 
-  public constructor(private orderService:OrderService) {
+  public constructor(private orderService:OrderService, private router: Router) {
 
   }
 
@@ -89,5 +90,8 @@ export class OrderComponent {
   showOrderPage() {
     this.model = new Order(null, null, null, "7RM Beanstar", null);
     this.submitted = false;
+    this.expectedPrice = null;
+    this.isPriceCalculated = false;
+    this.router.navigate(['/']);
   }
 }
