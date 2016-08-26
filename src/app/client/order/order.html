@@ -68,10 +68,14 @@
 
   <div *ngIf="submitted" id="orderSubmittedMessage">
     <h3>Thank you for your order!</h3>
-    <p>With the order number <b>{{ orderId }}</b> you can check the status of your order. It will also be included
+    <p>With the order ID <b>{{ orderId }}</b> you can check the status of your order. It will also be included
       in all mails.<br/>
     After we accept the order, your goods will be shipped over and contracted to you. Upon accepting the contract you
     have to pay. Don't pay in advance!</p>
+
+    <p>
+      If you the need the same order multiple times, just click on Order this again.
+    </p>
 
     <button type="button" class="btn btn-default"
             ngIIclipboard [cbContent]="orderId">Copy ID
