@@ -65,6 +65,7 @@ export class OrderProcessingService {
     }
 
     result += "<br><br>Your Horde Delivery Service";
+    result += "<br><br>Order ID: " + order.id;
 
     return result;
   }
