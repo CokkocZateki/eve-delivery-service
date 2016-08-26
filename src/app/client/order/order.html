@@ -77,6 +77,9 @@
             ngIIclipboard [cbContent]="orderId">Copy ID
     </button>
     <button type="button" class="btn btn-primary"
+            (click)="showOrderPageUntouched()">Order this again
+    </button>
+    <button type="button" class="btn btn-primary"
             (click)="showOrderPage()">Buy more
     </button>
   </div>

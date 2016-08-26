@@ -94,4 +94,9 @@ export class OrderComponent {
     this.isPriceCalculated = false;
     this.router.navigate(['/']);
   }
+
+  showOrderPageUntouched() {
+    this.submitted = false;
+    this.router.navigate(['/']);
+  }
 }
