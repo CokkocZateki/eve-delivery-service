@@ -16,6 +16,8 @@ import {Router} from "@angular/router";
 export class OrderComponent {
   private expectedPrice:number;
   private isPriceCalculationFailed = false;
+  // this is a workaround-ish to enable submit when we show the order page again for a certain order
+  isReorder:boolean = false;
 
   public constructor(private orderService:OrderService, private router: Router) {
 
@@ -50,6 +52,8 @@ export class OrderComponent {
         // todo: show frontend error message
       }
     );
+
+    this.isReorder = false;
   }
 
   public askQuote(link:string) {
@@ -93,5 +97,11 @@ export class OrderComponent {
     this.expectedPrice = null;
     this.isPriceCalculated = false;
     this.router.navigate(['/']);
+  }
+
+  showOrderPageUntouched() {
+    this.submitted = false;
+    this.router.navigate(['/']);
+    this.isReorder = true;
   }
 }
