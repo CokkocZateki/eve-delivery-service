@@ -61,7 +61,9 @@
          class="alert alert-warning">
       Please enter an Evepraisal link and click on "Get Quote!" to load the total price.
     </div>
-    <button id="submitOrder" type="submit" class="btn btn-primary" [disabled]="!isPriceCalculated || client.pristine">
+    <!--comparing against isReorder makes sure the submit button is enabled when an order is reordered-->
+    <button id="submitOrder" type="submit" class="btn btn-primary"
+            [disabled]="(!isPriceCalculated || client.pristine) && !isReorder">
       Submit
     </button>
   </form>
