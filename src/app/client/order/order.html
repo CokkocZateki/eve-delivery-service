@@ -23,7 +23,8 @@
     <fieldset class="form-group">
       <label for="destinationWrapper">Destination</label>
       <br/>
-      <destination id="destinationWrapper" (destinationChanged)="setDestination($event)">
+      <destination id="destinationWrapper" [defaultDestination]="model.destination"
+                   (destinationChanged)="setDestination($event)">
       </destination>
     </fieldset>
     <fieldset class="form-group">
