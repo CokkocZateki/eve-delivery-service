@@ -13,6 +13,13 @@
     If you have any questions, feel free to contact Rihan Shazih ingame.
   </p>
 
+  <div class="alert alert-danger">
+    <b>No shipment from 03.09 18:00 to to 05.09. 18:00 UTC</b><br/><br/>
+    Horde Delivery is taking a little break with Exotic Dancers at the beach. Thus we will not ship during that time.
+    Feel free to put up orders that will be shipped asap as we're back.<br/><br/>
+    Thank you for your patience!
+  </div>
+
   <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
     <fieldset class="form-group">
       <label for="characterName">Character Name</label>
@@ -66,6 +73,20 @@
          class="alert alert-warning">
       Please enter an Evepraisal link and click on "Get Quote!" to load the total price.
     </div>
+
+    <!--<div class="well">-->
+      <!--<div id="period-group" class="btn-group" data-toggle="buttons">-->
+        <!--<label class="btn btn-primary">-->
+          <!--<input type="radio" name="mailNotifications" id="mailNotificationsYes"-->
+                 <!--(click)="setMailNotifications(true)"> Yes, notify me!-->
+        <!--</label>-->
+        <!--<label class="btn btn-primary active">-->
+          <!--<input type="radio" name="mailNotifications" id="mailNotificationsNo"-->
+                 <!--(click)="setMailNotifications(false)"> No, I don't care.-->
+        <!--</label>-->
+      <!--</div>-->
+    <!--</div>-->
+
     <!--comparing against isReorder makes sure the submit button is enabled when an order is reordered-->
     <button id="submitOrder" type="submit" class="btn btn-primary"
             [disabled]="(!isPriceCalculated || client.pristine) && !isReorder">
@@ -77,8 +98,8 @@
     <h3>Thank you for your order!</h3>
     <p>With the order ID <b>{{ orderId }}</b> you can check the status of your order. It will also be included
       in all mails.<br/>
-    After we accept the order, your goods will be shipped over and contracted to you. Upon accepting the contract you
-    have to pay. Don't pay in advance!</p>
+      After we accept the order, your goods will be shipped over and contracted to you. Upon accepting the contract you
+      have to pay. Don't pay in advance!</p>
 
     <p>
       If you the need the same order multiple times, just click on Order this again.
