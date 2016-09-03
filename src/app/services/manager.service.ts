@@ -35,26 +35,6 @@ export class ManagerService {
     return this.http.post(this.baseUrl + "update/assignee?id=" + orderId + "&assignee=" + assignee, "");
   }
 
-  public countRequests() {
-    return this.http.get(this.baseUrl + "count/requests");
-  }
-
-  public activeShippingContracts() {
-    return this.http.get(this.baseUrl + "count/activeShippingContracts");
-  }
-
-  waitingForShippingContracts() {
-    return this.http.get(this.baseUrl + "count/waitingForShippingContracts");
-  }
-
-  ordersReadyForContracting() {
-    return this.http.get(this.baseUrl + "count/ordersReadyForContracting");
-  }
-
-  hasUnreadMail() {
-    return this.http.get(this.baseUrl + "hasUnreadMail");
-  }
-
   volumeShipping() {
     return this.http.get(this.baseUrl + "volume/shipping");
   }
