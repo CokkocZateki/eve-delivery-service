@@ -47,6 +47,13 @@ export class ManagerDetailComponent implements OnInit {
     return this.orderProcessing.generateMail(status, order);
   }
 
+  deleteOrder(order:Order) {
+    this.service.delete(order.id).subscribe(
+      data => this.goBack(),
+      err => alert(err)
+    )
+  }
+
   // onStatusChange(orderId:string, status:string) {
   //   this.orders = this.orderProcessing.onStatusChange(orderId, status, this.orders);
   // }
@@ -142,7 +149,12 @@ export class ManagerDetailComponent implements OnInit {
 
   updateStatus(order:Order, newStatus:string) {
     this.service.updateStatus(order.id, newStatus).subscribe(
-      data => order.status = newStatus,
+      data => {
+        order.status = newStatus;
+        if (order.status === 'contracted') {
+          this.goBack();
+        }
+      },
       err => {
         console.log(err);
         alert(err);

@@ -63,5 +63,20 @@ export class ManagerService {
     return this.http.get(this.baseUrl + "volume/pending");
   }
 
+  sumRequested() {
+    return this.http.get(this.baseUrl + "sum/requested");
+  }
+
+  sumConfirmed() {
+    return this.http.get(this.baseUrl + "sum/confirmed");
+  }
+
+  sumShipping() {
+    return this.http.get(this.baseUrl + "sum/shipping");
+  }
+
+  delete(id:string) {
+    return this.http.post(this.baseUrl + "delete?id=" + id, "");
+  }
 
 }

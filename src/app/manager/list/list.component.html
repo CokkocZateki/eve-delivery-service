@@ -19,8 +19,23 @@
       <td class="hidden-xs">{{order.destination}}</td>
       <td>{{order.status}}</td>
       <td>
-        <button class="btn btn-default" (click)="gotoDetail(order)">Open</button>
+        <button class="{{ getOpenButtonClass(order) }}" (click)="gotoDetail(order)">Open</button>
       </td>
     </tr>
   </table>
+
+  <div class="row">
+    <div class="col-md-3">
+      Requested: {{ sumRequested | numberGroups }} ISK
+    </div>
+    <div class="col-md-3">
+      Confirmed: {{ sumConfirmed | numberGroups }} ISK
+    </div>
+    <div class="col-md-3">
+      Shipping: {{ sumShipping | numberGroups }} ISK
+    </div>
+    <div class="col-md-3">
+      Total: {{ getTotalSum() | numberGroups }} ISK
+    </div>
+  </div>
 </div>

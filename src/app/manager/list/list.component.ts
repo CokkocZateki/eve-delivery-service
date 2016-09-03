@@ -33,6 +33,10 @@ export class ListComponent implements OnInit {
   public orders:Array<any> = undefined;
   public clipboardData = "";
 
+  public sumRequested = 0.0;
+  public sumConfirmed = 0.0;
+  public sumShipping = 0.0;
+
   constructor(private service:ManagerService, private orderService:OrderService,
               private orderProcessing:OrderProcessingService, private router: Router) {
   }
@@ -47,6 +51,34 @@ export class ListComponent implements OnInit {
         console.log(err);
       }
     );
+
+    this.service.sumConfirmed().subscribe(
+      data => this.sumConfirmed = data.json().sum,
+      err => alert(err)
+    );
+
+    this.service.sumRequested().subscribe(
+      data => this.sumRequested = data.json().sum,
+      err => alert(err)
+    );
+
+    this.service.sumShipping().subscribe(
+      data => this.sumShipping = data.json().sum,
+      err => alert(err)
+    )
+  }
+
+  getTotalSum() {
+    return this.sumRequested + this.sumConfirmed + this.sumShipping;
+  }
+
+  getOpenButtonClass(order:Order) {
+    let status = order.status;
+    if (status === 'requested') {
+      return "btn btn-danger";
+    } else {
+      return "btn btn-default";
+    }
   }
 
   /** PRICING **/
