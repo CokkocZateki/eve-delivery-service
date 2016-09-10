@@ -49,7 +49,7 @@
       <tr *ngFor="let item of data">
         <td>{{ item.name }}</td>
         <td>{{ item.station }}</td>
-        <td>{{ item.timestamp }}</td>
+        <td *ngIf="item.timestamp">{{ item.timestamp | toJsDate | date: 'short' }}</td>
       </tr>
     </table>
   </div>
