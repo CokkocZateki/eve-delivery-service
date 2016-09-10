@@ -1,16 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {MarketService} from "../services/market.service";
+import {MarketItem} from "../common/marketItem";
+import {LocalDateTimeToDate} from "../common/localDateTimeToDate";
 
 @Component({
   moduleId: module.id,
   selector: 'market',
   templateUrl: 'market.component.html',
   styleUrls: ['market.component.css'],
-  providers: [MarketService]
+  providers: [MarketService],
+  pipes: [LocalDateTimeToDate]
 })
 export class MarketComponent implements OnInit {
 
-  model:any;
+  model:MarketItem = new MarketItem(null, null, null);
 
   data = [];
 
@@ -27,14 +30,11 @@ export class MarketComponent implements OnInit {
     )
   }
 
-  addItem(value:string) {
-    var item = {
-      name: value
-    };
-    this.data.unshift(item);
-    this.model = "";
-    this.service.add(value).subscribe(
+  addItem() {
+    this.service.add(this.model).subscribe(
       data => {
+        this.data.unshift(this.model);
+        this.model = new MarketItem(null, null, null);
       },
       err => alert(err)
     )

@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Order} from "../common/order";
 import {Http} from "@angular/http";
 import {environment} from "../environment";
+import {MarketItem} from "../common/marketItem";
 
 @Injectable()
 export class MarketService {
@@ -12,7 +13,7 @@ export class MarketService {
 
   }
 
-  public add(item:string) {
+  public add(item:MarketItem) {
     return this.http.post(this.baseUrl + "add", item);
   }
 

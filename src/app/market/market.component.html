@@ -24,26 +24,34 @@
     <b><a href="http://hordedelivery.com">http://hordedelivery.com</a></b> - <i>super simple stuff</i>!
   </div>
 
-
-    <div class="input-group">
-      <input [(ngModel)]="model" name="itemName" #itemName="ngModel"
-             type="text" class="form-control" id="itemName"
-             placeholder="Item Name"
-             required>
-      <span class="input-group-btn">
+  <div class="input-group">
+    <input [(ngModel)]="model.name" name="itemName" #itemName="ngModel"
+           type="text" class="form-control" id="itemName"
+           placeholder="Item Name" required>
+    <input [(ngModel)]="model.station" name="itemStation" #itemStation="ngModel"
+           type="text" class="form-control" id="itemStation"
+           placeholder="Station" required>
+    <span class="input-group-btn">
         <button id="submitItem" class="btn btn-default" type="button"
-                (click)="addItem(model)" [disabled]="!itemName.valid || itemName.pristine">Request!</button>
+                (click)="addItem()" [disabled]="itemName.pristine || itemStation.pristine">Request!</button>
         </span>
-    </div>
+  </div>
 
   <br/>
 
-    <div>
-      <ul>
-        <li *ngFor="let item of data">
-          {{ item.name }}
-        </li>
-      </ul>
-    </div>
+  <div>
+    <table class="table">
+      <tr>
+        <th>Item Name</th>
+        <th>Station</th>
+        <th>Last updated (EvE time)</th>
+      </tr>
+      <tr *ngFor="let item of data">
+        <td>{{ item.name }}</td>
+        <td>{{ item.station }}</td>
+        <td *ngIf="item.timestamp">{{ item.timestamp | toJsDate | date: 'short' }}</td>
+      </tr>
+    </table>
+  </div>
 
 </div>
