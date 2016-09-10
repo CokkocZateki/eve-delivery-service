@@ -1,0 +1,19 @@
+<div class="content-box">
+  <div class="input-group">
+    <input [(ngModel)]="model" name="itemName" #itemName="ngModel"
+           type="text" class="form-control" id="itemName"
+           placeholder="Item Name"
+           required>
+    <span class="input-group-btn">
+        <button id="submitItem" class="btn btn-default" type="button"
+                (click)="addItem(model)" [disabled]="!itemName.valid || itemName.pristine">Request!</button>
+        </span>
+  </div>
+
+
+  <ul>
+    <li *ngFor="let item of data">
+      {{ item }}
+    </li>
+  </ul>
+</div>
