@@ -1,6 +1,0 @@
-<div class="content-box">
-  <h1>Pilot Availability</h1>
-  <div *ngFor="let p of pilotStats">
-    <div class="{{ getPilotAvailabilityClass(p) }}">{{ p.name }}: {{ p.canShip }} ({{ p.date | date }})</div>
-  </div>
-</div>
