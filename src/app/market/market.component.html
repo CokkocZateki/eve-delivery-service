@@ -1,20 +1,49 @@
-<div class="content-box">
-  <div class="input-group">
-    <input [(ngModel)]="model" name="itemName" #itemName="ngModel"
-           type="text" class="form-control" id="itemName"
-           placeholder="Item Name"
-           required>
-    <span class="input-group-btn">
+<div class="content-box roundedCorners">
+  <h1>Market Seeder</h1>
+
+  <div class="alert alert-warning">
+    <b>Early Alpha</b>
+    <p>
+      This page is early alpha. Expect bugs and send us all the feedback you have! Either mail Rihan Shazih ingame
+      or use the feedback form at <b><a href="http://hordedelivery.com">http://hordedelivery.com</a></b>.
+    </p>
+  </div>
+
+  <p>
+    This tool shall provide information about which items need to be seeded due them being highly overpriced or not
+    available at all.
+  </p>
+  <p>
+    <b>Consumers</b> just enter the item name and wait for the items to be seeded.
+    <b>Seeders</b> feel free to use this information for whatever you like. Just don't be a dick.
+  </p>
+
+  <div class="alert alert-info">
+    <b>Advertisement</b><br/>
+    <i>Why wait</i> for the items to be seeded when you can directly order everything you need?
+    <b><a href="http://hordedelivery.com">http://hordedelivery.com</a></b> - <i>super simple stuff</i>!
+  </div>
+
+
+    <div class="input-group">
+      <input [(ngModel)]="model" name="itemName" #itemName="ngModel"
+             type="text" class="form-control" id="itemName"
+             placeholder="Item Name"
+             required>
+      <span class="input-group-btn">
         <button id="submitItem" class="btn btn-default" type="button"
                 (click)="addItem(model)" [disabled]="!itemName.valid || itemName.pristine">Request!</button>
         </span>
-  </div>
+    </div>
 
-  <div>
-    <ul>
-      <li *ngFor="let item of data">
-        {{ item.name }}
-      </li>
-    </ul>
-  </div>
+  <br/>
+
+    <div>
+      <ul>
+        <li *ngFor="let item of data">
+          {{ item.name }}
+        </li>
+      </ul>
+    </div>
+
 </div>
