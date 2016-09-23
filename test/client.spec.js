@@ -8,7 +8,6 @@ describe('Protractor Demo App', function () {
   var orderSubmittedMessage = element(by.id('orderSubmittedMessage'));
   var showStatusButton = element(by.id('showStatusButton'));
   var statusDiv = element(by.id('status'));
-  var showFeedbackButton = element(by.id('showFeedbackForm'));
   var feedbackInput = element(by.id('feedbackInput'));
   var feedbackSubmittedMessage = element(by.id('feedbackSubmittedMessage'));
   var submitFeedback = element(by.id('submitFeedback'));
