@@ -3,17 +3,18 @@
   <h1>Horde Delivery Service</h1>
   <h3>Submit Order</h3>
 
-  <!--todo: retrieve messages from a backing service-->
-  <p>Let us be your delivery service. <b>We rapidly buy and ship it safely for you</b>. No Jita alt needed!
+  <p>
+    <b>We rapidly buy and ship safely for you</b>. No Jita alt needed!
     <br/>Payment is due upon accepting the contract at the destination, don't pay in advance!
-    Items are shipped to 7RM and GME.
   </p>
 
   <p>
-    If you have any questions, feel free to contact Rihan Shazih ingame.
+    If you have any <b>questions or feedback</b>, feel free to contact Rihan Shazih ingame or on the
+    <!--todo: add link-->
+    <a href="#">forums</a>.
   </p>
 
-  <div class="alert alert-info">
+  <div>
     <b>Anti Market Fuckery</b>
     <br/>
     If items are overpriced or not seeded, report them at <b><a href="http://hordedelivery.com/market">http://hordedelivery.com/market</a></b>.
@@ -28,10 +29,6 @@
       <input [(ngModel)]="model.client" name="client" #client="ngModel" type="text" class="form-control"
              id="characterName"
              placeholder="Enter character name" required>
-      <!--<div *ngIf="!name.valid || !name.pristine" class="alert alert-danger">-->
-      <!--No name, no order! This is the character we will contract the items to.-->
-      <!--</div>-->
-      <!--<small *ngIf="name.valid && name.pristine">This is the character we will contract the items to.</small>-->
     </fieldset>
     <fieldset class="form-group">
       <label for="destinationWrapper">Destination</label>
@@ -75,19 +72,6 @@
          class="alert alert-warning">
       Please enter an Evepraisal link and click on "Get Quote!" to load the total price.
     </div>
-
-    <!--<div class="well">-->
-      <!--<div id="period-group" class="btn-group" data-toggle="buttons">-->
-        <!--<label class="btn btn-primary">-->
-          <!--<input type="radio" name="mailNotifications" id="mailNotificationsYes"-->
-                 <!--(click)="setMailNotifications(true)"> Yes, notify me!-->
-        <!--</label>-->
-        <!--<label class="btn btn-primary active">-->
-          <!--<input type="radio" name="mailNotifications" id="mailNotificationsNo"-->
-                 <!--(click)="setMailNotifications(false)"> No, I don't care.-->
-        <!--</label>-->
-      <!--</div>-->
-    <!--</div>-->
 
     <!--comparing against isReorder makes sure the submit button is enabled when an order is reordered-->
     <button id="submitOrder" type="submit" class="btn btn-primary"
