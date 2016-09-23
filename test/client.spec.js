@@ -8,7 +8,6 @@ describe('Protractor Demo App', function () {
   var orderSubmittedMessage = element(by.id('orderSubmittedMessage'));
   var showStatusButton = element(by.id('showStatusButton'));
   var statusDiv = element(by.id('status'));
-  var showFeedbackButton = element(by.id('showFeedbackForm'));
   var feedbackInput = element(by.id('feedbackInput'));
   var feedbackSubmittedMessage = element(by.id('feedbackSubmittedMessage'));
   var submitFeedback = element(by.id('submitFeedback'));
@@ -52,21 +51,6 @@ describe('Protractor Demo App', function () {
 
     browser.wait(EC.presenceOf(statusDiv), 500);
     expect(statusDiv.isPresent()).toBeTruthy();
-
-
-  });
-
-  it('should show feedback box and be able to send feedback', function () {
-    showFeedbackButton.click();
-
-    browser.wait(EC.presenceOf(feedbackInput), 500);
-    expect(feedbackInput.isPresent()).toBeTruthy();
-
-    feedbackInput.sendKeys('Test');
-    submitFeedback.click();
-
-    browser.wait(EC.presenceOf(feedbackSubmittedMessage), 1000);
-    expect(feedbackSubmittedMessage.isPresent()).toBeTruthy();
   });
 
 });
