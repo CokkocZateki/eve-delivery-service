@@ -52,21 +52,6 @@ describe('Protractor Demo App', function () {
 
     browser.wait(EC.presenceOf(statusDiv), 500);
     expect(statusDiv.isPresent()).toBeTruthy();
-
-
-  });
-
-  it('should show feedback box and be able to send feedback', function () {
-    showFeedbackButton.click();
-
-    browser.wait(EC.presenceOf(feedbackInput), 500);
-    expect(feedbackInput.isPresent()).toBeTruthy();
-
-    feedbackInput.sendKeys('Test');
-    submitFeedback.click();
-
-    browser.wait(EC.presenceOf(feedbackSubmittedMessage), 1000);
-    expect(feedbackSubmittedMessage.isPresent()).toBeTruthy();
   });
 
 });
