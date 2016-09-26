@@ -12,7 +12,16 @@ import {FeedbackComponent} from "./feedback/feedback.component";
 })
 export class ManagerComponent {
 
+  authenticated:boolean = false;
+
   constructor(private auth:Auth) {
   }
 
+  public isNotAuthenticated():boolean {
+    return !this.authenticated;
+  }
+
+  public isAuthenticated():boolean {
+    return this.authenticated;
+  }
 }
