@@ -22,6 +22,13 @@ export class ShipmentComponent implements OnInit {
 
   allClients:string = "";
 
+  mailTitle:string = "Horde Delivery - Contracted";
+  mailBody:string = "Hi!<br/><br/>" +
+    "Your order has been contracted to you. Let us know when you need more!<br/><br/>" +
+    "Would you like to see more items seeded? Try the new Market Seeder: http://hordedelivery.com/market<br/><br/>" +
+    "We appreciate it if you recommend us to your friends and leave us a message at the forums: https://www.pandemic-legion.pl/forums/index.php?/topic/3184-new-delivery-service/<br/><br/>" +
+    "Your Horde Delivery Service";
+
   constructor(private service:PilotService, private orderProcessing:OrderProcessingService) {
   }
 

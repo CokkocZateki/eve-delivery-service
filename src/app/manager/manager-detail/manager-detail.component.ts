@@ -29,8 +29,8 @@ export class ManagerDetailComponent implements OnInit {
 
   exchangePrice:number;
 
-  titleConfirmed = "Delivery Service - Confirmed";
-  titleContracted = "Delivery Service - Contracted";
+  titleConfirmed = "Horde Delivery - Confirmed";
+  titleContracted = "Horde Delivery - Contracted";
 
   constructor(private route:ActivatedRoute, private service:ManagerService, private orderProcessing:OrderProcessingService) {
   }
