@@ -18,6 +18,7 @@ export class CallbackComponent implements OnInit {
     _router.routerState.queryParams.subscribe(
       data => {
         this.token = data['code'];
+        console.log(this.token);
         this.state = data['state'];
       });
   }
