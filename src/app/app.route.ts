@@ -13,7 +13,7 @@ const routes: RouterConfig = [
   { path: 'pilot', component: PilotComponent },
   { path: 'market', component: MarketComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'win', component: RaffleComponent },
+  { path: 'raffle', component: RaffleComponent },
   { path: '**', component: ClientComponent }
 ];
 

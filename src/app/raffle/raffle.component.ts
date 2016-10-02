@@ -13,15 +13,15 @@ export class RaffleComponent implements OnInit {
   radioItems = [
     {
       option: 'Horde Gila',
-      imgUrl: 'app/client/order/destination/keepstar.png'
+      imgUrl: 'app/raffle/gila.png'
     },
     {
-      option: '10 Horde Caracals',
-      imgUrl: 'app/client/order/destination/keepstar.png'
+      option: '10 Fade Caracals',
+      imgUrl: 'app/raffle/caracal.png'
     },
     {
       option: 'Indy\'s wet dream',
-      imgUrl: 'app/client/order/destination/fortizar.png'
+      imgUrl: 'app/raffle/indy.png'
     }];
 
   model:any;
