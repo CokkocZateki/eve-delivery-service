@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import {Order} from "../common/order";
 import {Http} from "@angular/http";
 import {environment} from "../environment";
 
