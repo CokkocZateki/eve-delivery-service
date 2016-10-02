@@ -1,19 +1,35 @@
 <div class="content-box roundedCorners">
   <h1>Horde Delivery Raffle</h1>
 
-  <h2>Prices for Raffle #1</h2>
-  <ol>
-    <li>Ship</li>
-    <li>2nd ship</li>
-  </ol>
-  <p>
-    Raffle #1 will end at October, 9th.
-  </p>
+  <h2>How to win</h2>
 
-
-  <h2>How it works</h2>
   <p>Everyone who enlists here and orders at least two times per week (Mo-Su) can win one of the following prices.
     Prices will be handed out on the following monday.</p>
 
+
   <h2>Sign up for Raffle #1</h2>
+  <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
+    1. Choose your prize
+    <br/>
+    <div class="btn-group">
+      <label *ngFor="let item of radioItems" class="btn btn-default">
+        <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=150%C3%97150&w=150&h=150" width="150"/> <br/>
+        <input type="radio" name="options" (click)="changeDestination(item.option)"
+               [checked]="item.option === model.option"> {{ item.option }}
+      </label>
+    </div>
+    <br/>
+    <br/>
+    2. Enter your name
+    <br/>
+    <input [(ngModel)]="model.name" name="nameInput" #nameInput="ngModel"
+           type="text" class="form-control" id="charName"
+           placeholder="Enter your character name"
+           required>
+    <br/>
+    <button id="submitOrder" type="submit" class="btn btn-primary"
+            [disabled]="(nameInput.pristine)">
+      Submit
+    </button>
+  </form>
 </div>
