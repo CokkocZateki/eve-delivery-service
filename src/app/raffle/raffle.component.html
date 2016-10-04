@@ -2,7 +2,10 @@
   <div *ngIf="!isSubmitted">
     <h1>Horde Delivery Raffle</h1>
 
-    Order at least two times until October, 9th 18:00 EvE time an win dank prizes.
+    <div class="alert-info alert">
+    <b>Order</b> at least <b>two times</b> until October, 9th 18:00 EvE time an win dank prizes.
+    </div>
+
 
     <h2>Sign up for Raffle #1</h2>
     <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
