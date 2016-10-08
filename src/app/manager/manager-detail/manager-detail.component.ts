@@ -195,5 +195,10 @@ export class ManagerDetailComponent implements OnInit {
     window.history.back();
   }
 
+  shippingAndBack(order:Order) {
+    this.updateStatus(order, 'shipping');
+    this.goBack();
+  }
+
 
 }
