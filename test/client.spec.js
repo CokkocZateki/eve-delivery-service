@@ -6,7 +6,6 @@ describe('Protractor Demo App', function () {
   var quoteResult = element(by.id('quoteResult'));
   var submitOrder = element(by.id('submitOrder'));
   var orderSubmittedMessage = element(by.id('orderSubmittedMessage'));
-  var showStatusButton = element(by.id('showStatusButton'));
   var statusDiv = element(by.id('status'));
   var feedbackInput = element(by.id('feedbackInput'));
   var feedbackSubmittedMessage = element(by.id('feedbackSubmittedMessage'));
@@ -47,8 +46,6 @@ describe('Protractor Demo App', function () {
   });
 
   it('should show status box and retrieve requested status', function () {
-    showStatusButton.click();
-
     browser.wait(EC.presenceOf(statusDiv), 500);
     expect(statusDiv.isPresent()).toBeTruthy();
   });
