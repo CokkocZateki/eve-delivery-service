@@ -1,17 +1,8 @@
-<div style="text-align: center">
-  <button id="showStatusButton" type="button" class="btn btn-primary" (click)="showStatusForm=true"
-          *ngIf="!showStatusForm">Check your Status
-  </button>
-  <!--todo: move the buttons to super class; with input/output-->
-  <br/>
-  <br/>
-</div>
-
-<div id="status" class="content-box roundedCorners" *ngIf="showStatusForm">
+<div id="status" class="content-box roundedCorners">
 
   <h2>Check your status</h2>
 
-    <label for="orderCodeInput">Order Code</label>
+  <label for="orderCodeInput">Order Code</label>
   <div class="input-group">
     <input #statusInput="ngModel" [(ngModel)]="model"
            type="text" class="form-control" id="orderCodeInput"

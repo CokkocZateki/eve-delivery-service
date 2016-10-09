@@ -8,7 +8,6 @@ import {OrderService} from "../../services/order.service";
 })
 export class StatusComponent {
 
-  public showStatusForm:boolean;
   public model:string;
 
   public constructor(private orderService:OrderService) {
@@ -28,13 +27,11 @@ export class StatusComponent {
             this.status = "We received your order and will check in with you soon.";
           } else if (statusName === 'rejected') {
             this.status = "Your order was rejected. Please check your eve mails for further details.";
-          } else if (statusName === 'confirmed') {
-            this.status = "Your order was confirmed and will be shipped soon! ";
-          } else if (statusName === 'shipping') {
-            this.status = "Your items are doing a space trip and will be with you soon!";
+          } else if (statusName === 'confirmed' || statusName === 'shipping') {
+            this.status = "Your order was confirmed and will arrive soon! ";
           } else if (statusName === 'contracted') {
             this.status = "There is a contract waiting for you :) Your order has been contracted. Thank you for using " +
-              "the Horde Supermarket and see you again soon!";
+              "Horde Delivery and see you again soon!";
           }
 
           else {
