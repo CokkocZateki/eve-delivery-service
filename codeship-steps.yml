@@ -6,3 +6,12 @@
       image_name: michaelbahr/horde-delivery-frontend
       registry: https://index.docker.io/v1/
       encrypted_dockercfg_path: dockercfg.encrypted
+    - name: docker_pull
+      command: ssh frontend@139.59.178.23 'docker pull michaelbahr/horde-delivery-frontend'
+#    - name: docker_stop
+#      command: ssh frontend@139.59.178.23 'docker stop frontend'
+#    - name: docker_remove
+#      command: ssh frontend@139.59.178.23 'docker rm frontend'
+    - name: docker_run
+      command: ssh frontend@139.59.178.23 'docker run --name=frontend --restart=always -d -p 9000:4200 michaelbahr/horde-delivery-frontend'
+
