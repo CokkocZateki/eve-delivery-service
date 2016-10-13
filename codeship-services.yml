@@ -2,3 +2,5 @@ frontend:
   build:
     image: michaelbahr/horde-delivery-frontend
     dockerfile_path: Dockerfile
+deploy:
+  image: ubuntu
