@@ -1,25 +1,8 @@
 - type: serial
   steps:
-     - name: test_env_vars
-       service: deploy
-       command: printenv
-#    - name: dockerhub_push
-#      type: push
-#      image_name: michaelbahr/horde-delivery-frontend
-#      registry: https://index.docker.io/v1/
-#      encrypted_dockercfg_path: dockercfg.encrypted
+    - name: test_env_vars
+      service: deploy
+      command: printenv
     - name: deploy
       service: deploy
-#      command: ssh frontend@139.59.178.23 'docker run --name=frontend --restart=always -d -p 9000:4200 michaelbahr/horde-delivery-frontend'
-      command: ssh -oStrictHostKeyChecking=no frontend@139.59.178.23 'time'
-
-#    - name: docker_pull
-#      service: frontend
-#      command: ssh frontend@139.59.178.23 'docker pull michaelbahr/horde-delivery-frontend'
-#    - name: docker_stop
-#      service: frontend
-#      command: ssh frontend@139.59.178.23 'docker stop frontend || true && docker rm frontend || true'
-#    - name: docker_run
-#      service: frontend
-#      command: ssh frontend@139.59.178.23 'docker run --name=frontend --restart=always -d -p 9000:4200 michaelbahr/horde-delivery-frontend'
-
+      command: ssh -oStrictHostKeyChecking=no frontend@139.59.178.23 'time >> log && exit'
