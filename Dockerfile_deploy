@@ -5,4 +5,4 @@ RUN chmod 0755 /home
 RUN chmod 0700 /home/.ssh
 ADD deploy.sh /home
 RUN chmod +x /home/deploy.sh
-RUN echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config
+#RUN echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config
