@@ -1,5 +1,8 @@
 FROM tutum/ubuntu:trusty
 
-RUN mkdir -p "/home/.ssh"
-RUN echo -e $PRIVATE_SSH_KEY >> /home/.ssh/id_rsa
-RUN chmod 0600 /home/.ssh/id_rsa
+RUN mkdir -p /home/.ssh
+RUN chmod 0755 /home
+RUN chmod 0700 /home/.ssh
+ADD deploy.sh /home
+RUN chmod +x /home/deploy.sh
+RUN echo "    IdentityFile ~/.ssh/id_rsa" >> /etc/ssh/ssh_config

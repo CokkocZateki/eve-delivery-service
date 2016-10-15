@@ -5,4 +5,6 @@
       command: printenv
     - name: deploy
       service: deploy
-      command: ssh -oStrictHostKeyChecking=no frontend@139.59.178.23 'time >> log && exit'
+      command: /home/deploy.sh
+
+#-oStrictHostKeyChecking=no
