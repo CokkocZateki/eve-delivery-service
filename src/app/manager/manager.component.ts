@@ -1,27 +1,22 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ListComponent} from "./list/list.component";
 import {Auth} from "../services/auth.service";
 import {CargoComponent} from "./cargo/cargo.component";
 import {FeedbackComponent} from "./feedback/feedback.component";
+import {SsoAuth} from "../services/ssoauth.service";
 
 @Component({
   selector: 'manager',
   directives: [ListComponent, CargoComponent, FeedbackComponent],
   templateUrl: 'app/manager/manager.component.html',
-  providers: [Auth]
+  providers: [SsoAuth]
 })
-export class ManagerComponent {
+export class ManagerComponent implements OnInit {
 
-  authenticated:boolean = false;
-
-  constructor(private auth:Auth) {
+  constructor(private auth:SsoAuth) {
   }
 
-  public isNotAuthenticated():boolean {
-    return !this.authenticated;
+  ngOnInit() {
   }
 
-  public isAuthenticated():boolean {
-    return this.authenticated;
-  }
 }

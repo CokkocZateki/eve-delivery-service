@@ -18,25 +18,12 @@ export class CallbackComponent implements OnInit {
     _router.routerState.queryParams.subscribe(
       data => {
         this.token = data['code'];
-        console.log(this.token);
         this.state = data['state'];
       });
   }
 
   ngOnInit() {
-
-    this.auth.login(this.token).subscribe(
-      data => {
-        let sessionId = data.json().sessionId;
-        localStorage.setItem('session', sessionId);
-        this._router.navigateByUrl("/" + this.state);
-      },
-      err => {
-        alert(err);
-      }
-    )
-
-
+    this.auth.login(this.token, this.state);
   }
 
 
