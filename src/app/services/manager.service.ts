@@ -13,9 +13,9 @@ export class ManagerService {
 
   auth(): any {
     let session = localStorage.getItem("horde-delivery-session");
+    let character = localStorage.getItem("horde-delivery-character");
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' +
-      btoa('username:' + session));
+    headers.append('Authorization', 'Basic ' + btoa(character + ':' + session));
     return {headers: headers};
   }
 

@@ -32,11 +32,15 @@ export class SsoAuth {
     this.http.post(this.baseUrl + "create?code=" + token, "", {headers: headers}).subscribe(
       data => {
         var session = data.json().session;
+        var character = data.json().character;
         localStorage.setItem("horde-delivery-session", session);
+        localStorage.setItem("horde-delivery-character", character);
+
         this._router.navigate(['/' + state]);
       },
       err => {
         localStorage.removeItem('horde-delivery-session');
+        localStorage.removeItem("horde-delivery-character");
       }
     );
   };
@@ -48,6 +52,7 @@ export class SsoAuth {
   public logout() {
     // Remove token from localStorage
     localStorage.removeItem('horde-delivery-session');
+    localStorage.removeItem("horde-delivery-character");
 
     // todo: delete session in backend
 
