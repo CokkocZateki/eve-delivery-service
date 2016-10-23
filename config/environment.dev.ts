@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
   ip: "http://localhost:4000/",
-  authIp: "http://localhost:4001/"
+  ipV2: "https://localhost:8444"
 };

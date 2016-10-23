@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
       data => this.serviceDown = false,
       err => {
         this.serviceDown = true;
-        console.log(err);
       }
     );
   }
