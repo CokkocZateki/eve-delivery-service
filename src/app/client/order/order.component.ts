@@ -92,7 +92,7 @@ export class OrderComponent {
   }
 
   showOrderPage() {
-    this.model = new Order(null, null, null, "7RM Beanstar", null);
+    this.model = new Order(this.model.client, null, null, this.model.destination, null);
     this.submitted = false;
     this.expectedPrice = null;
     this.isPriceCalculated = false;
