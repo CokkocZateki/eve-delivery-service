@@ -1,62 +1,70 @@
 import {Injectable} from "@angular/core";
 import {environment} from "../environment";
-import {AuthHttp} from "angular2-jwt/angular2-jwt";
+import {Http, Headers} from "@angular/http";
 
 @Injectable()
 export class ManagerService {
 
-  private baseUrl = environment.ip + "v1/secured/manager/";
+  private baseUrl = environment.ipV2 + "/secured/manager/";
 
-  constructor(private http:AuthHttp) {
+  constructor(private http: Http) {
 
+  }
+
+  auth(): any {
+    let session = localStorage.getItem("horde-delivery-session");
+    let headers = new Headers();
+    headers.append('Authorization', 'Basic ' +
+      btoa('username:' + session));
+    return {headers: headers};
   }
 
   public list() {
-    return this.http.get(this.baseUrl + "list");
+    return this.http.get(this.baseUrl + "list", this.auth());
   }
 
-  public getOrder(orderId:string) {
-    return this.http.get(this.baseUrl + "load?orderId=" + orderId);
+  public getOrder(orderId: string) {
+    return this.http.get(this.baseUrl + "load?orderId=" + orderId, this.auth());
   }
 
-  public updatePrice(orderId:string, price:string) {
-    return this.http.post(this.baseUrl + "update/price?id=" + orderId + "&price=" + price, "");
+  public updatePrice(orderId: string, price: string) {
+    return this.http.post(this.baseUrl + "update/price?id=" + orderId + "&price=" + price, "", this.auth());
   }
 
-  public updateShippingPrice(orderId:string, shippingPrice:string) {
+  public updateShippingPrice(orderId: string, shippingPrice: string) {
     return this.http.post(this.baseUrl + "update/shippingPrice?id=" + orderId + "&shippingPrice=" + shippingPrice, "");
   }
 
-  public updateStatus(orderId:string, newStatus:string) {
-    return this.http.post(this.baseUrl + "update/status?id=" + orderId + "&newStatus=" + newStatus, "");
+  public updateStatus(orderId: string, newStatus: string) {
+    return this.http.post(this.baseUrl + "update/status?id=" + orderId + "&newStatus=" + newStatus, "", this.auth());
   }
 
-  public updateAssignee(orderId:string, assignee:string) {
-    return this.http.post(this.baseUrl + "update/assignee?id=" + orderId + "&assignee=" + assignee, "");
+  public updateAssignee(orderId: string, assignee: string) {
+    return this.http.post(this.baseUrl + "update/assignee?id=" + orderId + "&assignee=" + assignee, "", this.auth());
   }
 
   volumeShipping() {
-    return this.http.get(this.baseUrl + "volume/shipping");
+    return this.http.get(this.baseUrl + "volume/shipping", this.auth());
   }
 
   volumePending() {
-    return this.http.get(this.baseUrl + "volume/pending");
+    return this.http.get(this.baseUrl + "volume/pending", this.auth());
   }
 
   sumRequested() {
-    return this.http.get(this.baseUrl + "sum/requested");
+    return this.http.get(this.baseUrl + "sum/requested", this.auth());
   }
 
   sumConfirmed() {
-    return this.http.get(this.baseUrl + "sum/confirmed");
+    return this.http.get(this.baseUrl + "sum/confirmed", this.auth());
   }
 
   sumShipping() {
-    return this.http.get(this.baseUrl + "sum/shipping");
+    return this.http.get(this.baseUrl + "sum/shipping", this.auth());
   }
 
-  delete(id:string) {
-    return this.http.post(this.baseUrl + "delete?id=" + id, "");
+  delete(id: string) {
+    return this.http.post(this.baseUrl + "delete?id=" + id, "", this.auth());
   }
 
 }

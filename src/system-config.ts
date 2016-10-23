@@ -62,7 +62,6 @@ const barrels:string[] = [
   'app/pilot/shipment',
   'app/client/order/destination',
   'app/manager/manager-detail',
-  'app/manager/feedback',
   'app/market',
   'app/callback',
   /** @cli-barrel */

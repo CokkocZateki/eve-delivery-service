@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class SsoAuth {
 
-  private baseUrl = "https://hordedelivery.com:8443/session/";
+  private baseUrl = "https://localhost:8443/session/";
   private isAuthenticated:boolean;
 
   constructor(private http: Http, private _router:Router) {
@@ -21,7 +21,6 @@ export class SsoAuth {
         this.isAuthenticated = isValid === 'true';
       },
       err => {
-        console.log(err);
         localStorage.removeItem('horde-delivery-session');
         this.isAuthenticated = false;
       }
@@ -37,9 +36,7 @@ export class SsoAuth {
         this._router.navigate(['/' + state]);
       },
       err => {
-        console.log(err);
         localStorage.removeItem('horde-delivery-session');
-        alert(err);
       }
     );
   };
