@@ -1,0 +1,10 @@
+- type: serial
+  steps:
+    - name: test_env_vars
+      service: deploy
+      command: printenv
+    - name: deploy
+      service: deploy
+      command: /home/deploy.sh
+
+#-oStrictHostKeyChecking=no

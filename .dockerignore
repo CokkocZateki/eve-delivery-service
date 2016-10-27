@@ -1,4 +1,6 @@
-tmp
-node_modules
+## this file lists stuff that won't be loaded into the docker context
 .idea
+node_modules
 dist
+tmp
+public

@@ -14,7 +14,7 @@ export class CargoComponent implements OnInit {
   public cargoPercentagePending: string;
   public cargoVolumePending: string;
 
-  public cargoMax = 300000 * 2;
+  public cargoMax = 330000;
 
   constructor(private service: ManagerService) {
   }
