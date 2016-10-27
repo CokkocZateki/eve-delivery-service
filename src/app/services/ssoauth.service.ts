@@ -1,5 +1,5 @@
 import {Injectable}      from '@angular/core';
-import {Http, RequestOptions, Headers} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {environment} from "../environment";
 import {Router} from "@angular/router";
 
@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class SsoAuth {
 
-  private baseUrl = "https://localhost:8443/session/";
+  private baseUrl = environment.ipAuth + "/session/";
   private isAuthenticated:boolean;
 
   constructor(private http: Http, private _router:Router) {
