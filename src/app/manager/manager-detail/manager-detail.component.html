@@ -1,10 +1,6 @@
 <button class="btn btn-default" (click)="goBack()">Back</button>
 <div class="content-box">
-  <!--<p>{{order|json}}</p>-->
-
-
   <h1>Order Details</h1>
-
 
   <div *ngIf="!order">Loading ...</div>
   <div *ngIf="order">
@@ -44,15 +40,18 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
-        <div class="input-group">
-          <span class="form-control">Assignee: {{order.assignee}}</span>
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button" (click)="switchAssignee(order)">
-              <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+      <div class="col-md-4 btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" style="width: 100%">
+          Assignee: {{order.assignee}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li style="padding: 5px">
+            <button type="button" class="btn btn-default" (click)="setAssignee(order, pilot.name)"
+                    *ngFor="let pilot of pilots">{{ pilot.name }}
             </button>
-          </span>
-        </div>
+          </li>
+        </ul>
       </div>
       <div class="col-md-4">
         <div class="input-group">

@@ -7,9 +7,7 @@ export class ManagerService {
 
   private baseUrl = environment.ipV2 + "/secured/manager/";
 
-  constructor(private http: Http) {
-
-  }
+  constructor(private http: Http) { }
 
   auth(): any {
     let session = localStorage.getItem("horde-delivery-session");
@@ -21,6 +19,10 @@ export class ManagerService {
 
   public list() {
     return this.http.get(this.baseUrl + "list", this.auth());
+  }
+
+  public names() {
+    return this.http.get(this.baseUrl + "names", this.auth());
   }
 
   public getOrder(orderId: string) {

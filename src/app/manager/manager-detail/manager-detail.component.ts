@@ -2,7 +2,6 @@ import {Component, OnInit, provide} from "@angular/core";
 import {Params, ActivatedRoute} from "@angular/router";
 import {ManagerService} from "../../services/manager.service";
 import {Order} from "../../common/order";
-import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {ClipboardDirective} from "angular2-clipboard";
 import {LocalDateTimeToDate} from "../../common/localDateTimeToDate";
@@ -11,7 +10,7 @@ import {OrderProcessingService} from "../../services/orderProcessing.service";
 @Component({
   selector: 'manager-detail',
   templateUrl: 'app/manager/manager-detail/manager-detail.component.html',
-  providers: [ManagerService, provide(AuthConfig, {useValue: new AuthConfig()}), AuthHttp, OrderProcessingService],
+  providers: [ManagerService, OrderProcessingService],
   pipes: [NumberGrouping, LocalDateTimeToDate],
   directives: [ClipboardDirective]
 })
@@ -21,33 +20,35 @@ export class ManagerDetailComponent implements OnInit {
   corporateManagementMargin = 0.2;
   corporatePilotMargin = 0.8;
 
-  buyPrice:number;
-  corporateManagementReward:number;
-  corporatePilotReward:number;
-  serviceManagementReward:number;
-  serviceContractReward:number;
+  buyPrice: number;
+  corporateManagementReward: number;
+  corporatePilotReward: number;
+  serviceManagementReward: number;
+  serviceContractReward: number;
 
-  exchangePrice:number;
+  exchangePrice: number;
+
+  pilots:any;
 
   titleConfirmed = "Horde Delivery - Confirmed";
   titleContracted = "Horde Delivery - Contracted";
 
-  constructor(private route:ActivatedRoute, private service:ManagerService, private orderProcessing:OrderProcessingService) {
+  constructor(private route: ActivatedRoute, private service: ManagerService, private orderProcessing: OrderProcessingService) {
   }
 
-  order:Order;
+  order: Order;
 
   /** FORWARDER **/
 
-  getRecipient(order:Order) {
+  getRecipient(order: Order) {
     return this.orderProcessing.getRecipient(order);
   }
 
-  generateMail(status:string, order:Order) {
+  generateMail(status: string, order: Order) {
     return this.orderProcessing.generateMail(status, order);
   }
 
-  deleteOrder(order:Order) {
+  deleteOrder(order: Order) {
     this.service.delete(order.id).subscribe(
       data => this.goBack(),
       err => alert(err)
@@ -58,11 +59,11 @@ export class ManagerDetailComponent implements OnInit {
   //   this.orders = this.orderProcessing.onStatusChange(orderId, status, this.orders);
   // }
 
-  getExchangeDescription(order:Order) {
+  getExchangeDescription(order: Order) {
     return this.orderProcessing.getExchangeDescription(order);
   }
 
-  onOrderAssigned(orderId:string, assignee:string) {
+  onOrderAssigned(orderId: string, assignee: string) {
     this.service.updateAssignee(orderId, assignee).subscribe(
       data => {
       },
@@ -74,7 +75,7 @@ export class ManagerDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.forEach((params:Params) => {
+    this.route.params.forEach((params: Params) => {
         let id = params['id'];
 
         this.service.getOrder(id).subscribe(
@@ -89,6 +90,13 @@ export class ManagerDetailComponent implements OnInit {
         );
       }
     );
+
+    this.service.names().subscribe(
+      data => {
+        this.pilots = data.json();
+      },
+      err => console.log(err)
+    )
   }
 
   private calculate() {
@@ -100,21 +108,21 @@ export class ManagerDetailComponent implements OnInit {
     this.exchangePrice = this.calcExchangePrice()
   }
 
-  public calcExchangePrice():number {
+  public calcExchangePrice(): number {
     return parseInt("" + (this.buyPrice + this.corporateManagementReward));
   }
 
-  private calcCorporateManagementReward():number {
+  private calcCorporateManagementReward(): number {
     let basePrice = this.buyPrice;
     return parseInt("" + (basePrice * this.corporateDeliveryFee * this.corporateManagementMargin));
   }
 
-  private calcCorporatePilotReward():number {
+  private calcCorporatePilotReward(): number {
     let basePrice = this.buyPrice;
     return parseInt("" + (basePrice * this.corporateDeliveryFee * this.corporatePilotMargin));
   }
 
-  private calcServiceContractReward():number {
+  private calcServiceContractReward(): number {
     let collateralFee = this.buyPrice * 0.02;
 
     let volumeUnitFee;
@@ -133,11 +141,11 @@ export class ManagerDetailComponent implements OnInit {
     return parseInt("" + (collateralFee + volumeFee));
   }
 
-  private calcServiceManagementReward():number {
+  private calcServiceManagementReward(): number {
     return parseInt("" + (this.order.expectedPrice - this.buyPrice - this.serviceContractReward));
   }
 
-  private calcBuyPrice():number {
+  private calcBuyPrice(): number {
     let stackPrice = 0;
     let items = this.order.items;
     for (let i = 0; i < items.length; i++) {
@@ -147,7 +155,7 @@ export class ManagerDetailComponent implements OnInit {
     return stackPrice;
   }
 
-  updateStatus(order:Order, newStatus:string) {
+  updateStatus(order: Order, newStatus: string) {
     this.service.updateStatus(order.id, newStatus).subscribe(
       data => {
         order.status = newStatus;
@@ -162,12 +170,8 @@ export class ManagerDetailComponent implements OnInit {
     );
   }
 
-  switchAssignee(order:Order) {
-    if (order.assignee === 'service') {
-      order.assignee = 'corporate';
-    } else {
-      order.assignee = 'service';
-    }
+  setAssignee(order: Order, name:string) {
+    order.assignee = name;
 
     // todo: update service against service
     this.service.updateAssignee(order.id, order.assignee).subscribe(
@@ -180,7 +184,7 @@ export class ManagerDetailComponent implements OnInit {
     );
   }
 
-  listItems(order:Order):string {
+  listItems(order: Order): string {
     let result = "";
     let items = order.items;
 
@@ -195,7 +199,7 @@ export class ManagerDetailComponent implements OnInit {
     window.history.back();
   }
 
-  shippingAndBack(order:Order) {
+  shippingAndBack(order: Order) {
     this.updateStatus(order, 'shipping');
     this.goBack();
   }

@@ -1,5 +1,4 @@
-import {Component, OnInit, provide} from "@angular/core";
-import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
+import {Component, OnInit} from "@angular/core";
 import {ContractedDialogComponent} from "../../manager/list/contracted-dialog/contracted-dialog.component";
 import {OrderProcessingService} from "../../services/orderProcessing.service";
 import {PilotService} from "../../services/pilot.service";
@@ -11,8 +10,7 @@ import {ClipboardDirective} from "angular2-clipboard";
 @Component({
   selector: 'shipment',
   templateUrl: './app/pilot/shipment/shipment.component.html',
-  providers: [provide(AuthConfig, {useValue: new AuthConfig()}), AuthHttp, PilotService, OrderProcessingService,
-    ManagerService],
+  providers: [PilotService, OrderProcessingService, ManagerService],
   directives: [ContractedDialogComponent, ClipboardDirective],
   pipes: [NumberGrouping],
 })
@@ -55,9 +53,30 @@ export class ShipmentComponent implements OnInit {
   contractedAll() {
     for (var i = 0; i < this.orders.length; i++) {
       let order = this.orders[i];
-      this.orders = this.orderProcessing.onStatusChange(order.id, 'contracted', this.orders);
+      this.orders = this.onStatusChangeB(order.id, 'contracted', this.orders);
       order.status = 'contracted';
     }
+  }
+
+  public onStatusChangeB(id:string, newStatus:string, orders:Array<Order>):Array<Order> {
+    for (let i = 0; i < orders.length; i++) {
+      if (orders[i].id === id) {
+        orders[i].status = "Updating ...";
+      }
+    }
+    this.service.updateStatus(id, newStatus).subscribe(
+      data => {
+        for (let i = 0; i < orders.length; i++) {
+          if (orders[i].id === id) {
+            orders[i].status = newStatus;
+          }
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    return orders;
   }
 
 
@@ -72,7 +91,7 @@ export class ShipmentComponent implements OnInit {
   }
 
   onStatusChange(orderId:string, status:string) {
-    this.orders = this.orderProcessing.onStatusChange(orderId, status, this.orders);
+    this.orders = this.onStatusChangeB(orderId, status, this.orders);
     for (var i = 0; i < this.orders.length; i++) {
       if (orderId === this.orders[i].id) {
         this.orders[i].status = 'contracted';
