@@ -6,12 +6,13 @@ import {Order} from "../../common/order";
 import {ManagerService} from "../../services/manager.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {ClipboardDirective} from "angular2-clipboard";
+import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'shipment',
   templateUrl: './app/pilot/shipment/shipment.component.html',
   providers: [PilotService, OrderProcessingService, ManagerService],
-  directives: [ContractedDialogComponent, ClipboardDirective],
+  directives: [ContractedDialogComponent, ClipboardDirective, ConfirmDialogComponent],
   pipes: [NumberGrouping],
 })
 export class ShipmentComponent implements OnInit {
@@ -19,6 +20,8 @@ export class ShipmentComponent implements OnInit {
   public orders:Array<any> = undefined;
 
   allClients:string = "";
+  isContractedAll:boolean = false;
+  isContractingAll:boolean = false;
 
   mailTitle:string = "Horde Delivery - Contracted";
   mailBody:string = "Hi!<br/><br/>" +
@@ -47,14 +50,6 @@ export class ShipmentComponent implements OnInit {
     for (var i = 0; i < this.orders.length; i++) {
       let order = this.orders[i];
       this.allClients += order.client + ", ";
-    }
-  }
-
-  contractedAll() {
-    for (var i = 0; i < this.orders.length; i++) {
-      let order = this.orders[i];
-      this.orders = this.onStatusChangeB(order.id, 'contracted', this.orders);
-      order.status = 'contracted';
     }
   }
 
@@ -97,5 +92,19 @@ export class ShipmentComponent implements OnInit {
         this.orders[i].status = 'contracted';
       }
     }
+  }
+
+  contractedAll() {
+    this.isContractingAll = true;
+    this.service.contractedAll().subscribe(
+      data => {
+        this.isContractedAll = true;
+        this.isContractingAll = false;
+        for (var i = 0; i < this.orders.length; i++) {
+          this.orders[i].status = 'contracted';
+        }
+      },
+      err => alert(err)
+    );
   }
 }

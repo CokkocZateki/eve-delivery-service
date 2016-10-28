@@ -1,0 +1,17 @@
+
+<button type="button" class="btn btn-success pull-right" (click)="myModal.open()">Contracted All
+</button>
+
+<modal #myModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Are you sure?</h4>
+  </modal-header>
+  <modal-footer>
+    <button type="button" class="btn btn-danger"
+            (click)="myModal.close()">Cancel
+    </button>
+    <button type="button" class="btn btn-success"
+            (click)="onConfirm(myModal)">Confirm
+    </button>
+  </modal-footer>
+</modal>

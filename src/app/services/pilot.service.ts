@@ -41,4 +41,8 @@ export class PilotService {
     return this.http.get(this.baseUrl + "availability/all", this.auth());
   }
 
+  contractedAll() {
+    return this.http.post(this.baseUrl + "contracted/all", "", this.auth());
+  }
+
 }

@@ -1,21 +1,26 @@
 <div class="content-box">
   <h1>Shipment</h1>
 
-
   <div *ngIf="orders && orders.length > 0">
 
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="allClients">Copy All Recipients
-    </button>
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="mailTitle">Copy Mail Title
-    </button>
-    <button type="button" class="btn btn-primary"
-            ngIIclipboard [cbContent]="mailBody">Copy Mail Body
-    </button>
-    <button type="button" class="btn btn-success"
-            (click)="contractedAll()">Contracted All
-    </button>
+    <div class="row">
+      <div class="col-md-10">
+        <button type="button" class="btn btn-primary"
+                ngIIclipboard [cbContent]="allClients">Copy All Recipients
+        </button>
+        <button type="button" class="btn btn-primary"
+                ngIIclipboard [cbContent]="mailTitle">Copy Mail Title
+        </button>
+        <button type="button" class="btn btn-primary"
+                ngIIclipboard [cbContent]="mailBody">Copy Mail Body
+        </button>
+      </div>
+      <div class="col-md-2">
+        <confirm-dialog *ngIf="!isContractedAll && !isContractingAll" (contractedAll)="contractedAll()"></confirm-dialog>
+        <span *ngIf="isContractingAll && !isContractedAll">Submitting ...</span>
+        <span *ngIf="isContractedAll">Complete.</span>
+      </div>
+    </div>
 
     <hr/>
 
