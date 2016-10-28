@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  ip: "http://139.59.178.23:4000/"
+  ip: "https://hordedelivery.com:4001/",
+  ipV2: "https://hordedelivery.com:8444/",
+  ipAuth: "https://hordedelivery.com:8443"
 };

@@ -5,7 +5,6 @@ import {Order} from "../../common/order";
 import {OrderService} from "../../services/order.service";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
 import {ClipboardDirective} from "angular2-clipboard";
-import {AuthHttp, AuthConfig} from "angular2-jwt/angular2-jwt";
 import {ConfirmDialogComponent} from "./confirm-dialog/confirm-dialog.component";
 import {RejectDialogComponent} from "./rejected-dialog/rejected-dialog.component";
 import {ContractedDialogComponent} from "./contracted-dialog/contracted-dialog.component";
@@ -19,8 +18,7 @@ import {Router} from "@angular/router";
   templateUrl: 'app/manager/list/list.component.html',
   directives: [MODAL_DIRECTIVES, ClipboardDirective, ConfirmDialogComponent, RejectDialogComponent,
     ContractedDialogComponent, ShippingDialogComponent],
-  providers: [ManagerService, OrderService, provide(AuthConfig, {useValue: new AuthConfig()}), AuthHttp,
-    OrderProcessingService],
+  providers: [ManagerService, OrderService, OrderProcessingService],
   pipes: [NumberGrouping]
 })
 export class ListComponent implements OnInit {
@@ -47,24 +45,23 @@ export class ListComponent implements OnInit {
         this.orders = data.json();
       },
       err => {
-        alert(err);
         console.log(err);
       }
     );
 
     this.service.sumConfirmed().subscribe(
       data => this.sumConfirmed = data.json().sum,
-      err => alert(err)
+      err => console.log(err)
     );
 
     this.service.sumRequested().subscribe(
       data => this.sumRequested = data.json().sum,
-      err => alert(err)
+      err => console.log(err)
     );
 
     this.service.sumShipping().subscribe(
       data => this.sumShipping = data.json().sum,
-      err => alert(err)
+      err => console.log(err)
     )
   }
 
@@ -201,7 +198,6 @@ export class ListComponent implements OnInit {
 
   gotoDetail(order:Order) {
     let link = ['/manager', order.id];
-    console.log(link);
     this.router.navigate(link);
   }
 }

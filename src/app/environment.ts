@@ -4,5 +4,7 @@
 
 export const environment = {
   production: false,
-  ip: ""  // just variable initialization, values are taken from config/environment.STAGE.ts
+  ip: "",  // just variable initialization, values are taken from config/environment.STAGE.ts
+  ipV2: "",
+  ipAuth: ""
 };

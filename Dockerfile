@@ -13,13 +13,14 @@ ADD angular-cli* /home/app/
 ADD package.json /home/app
 ADD tslint.json /home/app
 ADD typings.json /home/app
+
+RUN npm install --silent
+
 #ADD e2e /home/app/e2e
 ADD config /home/app/config
 ADD src /home/app/src
 #ADD test /home/app/test
 
 EXPOSE 4200
-
-RUN npm install
 
 ENTRYPOINT ng serve -prod
