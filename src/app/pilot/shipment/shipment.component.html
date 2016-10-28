@@ -60,5 +60,6 @@
       </tr>
     </table>
   </div>
-  <div *ngIf="!orders || orders.length == 0" class="alert alert-warning">No orders to be shipped.</div>
+  <div *ngIf="orders && orders.length == 0" class="alert alert-warning">No orders to be shipped.</div>
+  <div *ngIf="!orders" class="alert alert-info">Loading ...</div>
 </div>
