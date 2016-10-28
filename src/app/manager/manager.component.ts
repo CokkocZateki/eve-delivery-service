@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ListComponent} from "./list/list.component";
 import {CargoComponent} from "./cargo/cargo.component";
 import {SsoAuth} from "../services/ssoauth.service";
+import {environment} from "../environment";
 
 @Component({
   selector: 'manager',
@@ -10,6 +11,8 @@ import {SsoAuth} from "../services/ssoauth.service";
   providers: [SsoAuth]
 })
 export class ManagerComponent implements OnInit {
+
+  ssoHref = environment.ssoUrl + "&state=manager";
 
   constructor(private auth:SsoAuth) {
   }

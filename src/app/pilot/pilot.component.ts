@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ShipmentComponent} from "./shipment/shipment.component";
 import {SsoAuth} from "../services/ssoauth.service";
 import {PilotService} from "../services/pilot.service";
+import {environment} from "../environment";
 
 @Component({
   selector: 'pilot',
@@ -15,6 +16,7 @@ export class PilotComponent implements OnInit {
 
   }
 
+  ssoHref = environment.ssoUrl + "&state=pilot";
   currentPilot: any;
   name:string;
 
