@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class SsoAuth {
 
-  private baseUrl = environment.ipAuth + "/session/";
+  private baseUrl = environment.ipAuth + "session/";
   private isAuthenticated:boolean;
 
   constructor(private http: Http, private _router:Router) {
@@ -25,6 +25,11 @@ export class SsoAuth {
         this.isAuthenticated = false;
       }
     );
+  }
+
+  public isAuthorized(role:string) {
+    let session = localStorage.getItem("horde-delivery-session");
+    return this.http.get(this.baseUrl + "authorized?sessionId=" + session + "&role=" + role);
   }
 
   public login(token: string, state:string) {

@@ -3,6 +3,7 @@ import {ShipmentComponent} from "./shipment/shipment.component";
 import {SsoAuth} from "../services/ssoauth.service";
 import {PilotService} from "../services/pilot.service";
 import {environment} from "../environment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'pilot',
@@ -12,7 +13,7 @@ import {environment} from "../environment";
 })
 export class PilotComponent implements OnInit {
 
-  constructor(private auth: SsoAuth, private service: PilotService) {
+  constructor(private auth: SsoAuth, private service: PilotService, private router:Router) {
 
   }
 
@@ -21,6 +22,11 @@ export class PilotComponent implements OnInit {
   name:string;
 
   ngOnInit() {
+    this.auth.isAuthorized("pilot").subscribe(
+      data => {},
+      err => this.router.navigate(['/unauthorized'])
+    );
+
     this.service.getDetails().subscribe(
       data => {
         this.currentPilot = data.json();
