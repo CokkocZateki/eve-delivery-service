@@ -5,7 +5,7 @@ import {Http, Headers} from "@angular/http";
 @Injectable()
 export class ManagerService {
 
-  private baseUrl = environment.ipV2 + "/secured/manager/";
+  private baseUrl = environment.ipV2 + "secured/manager/";
 
   constructor(private http: Http) { }
 
