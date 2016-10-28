@@ -23,5 +23,4 @@ ADD src /home/app/src
 
 EXPOSE 4200
 
-
 ENTRYPOINT ng serve -prod
