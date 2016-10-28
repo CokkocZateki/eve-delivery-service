@@ -13,20 +13,15 @@ import {Router} from "@angular/router";
 })
 export class PilotComponent implements OnInit {
 
-  constructor(private auth: SsoAuth, private service: PilotService, private router:Router) {
+  constructor(private auth: SsoAuth, private service: PilotService, private router: Router) {
 
   }
 
   ssoHref = environment.ssoUrl + "&state=pilot";
   currentPilot: any;
-  name:string;
+  name: string;
 
   ngOnInit() {
-    this.auth.isAuthorized("pilot").subscribe(
-      data => {},
-      err => this.router.navigate(['/unauthorized'])
-    );
-
     this.service.getDetails().subscribe(
       data => {
         this.currentPilot = data.json();

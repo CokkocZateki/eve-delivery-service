@@ -19,10 +19,14 @@ export class ManagerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.isAuthorized("manager").subscribe(
-      data => {},
-      err => this.router.navigate(['/unauthorized'])
-    );
+    if (this.auth.authenticated()) {
+      this.auth.isAuthorized("manager").subscribe(
+        data => {
+          console.log("authorized");
+        },
+        err => this.router.navigate(['/unauthorized'])
+      );
+    }
   }
 
 }

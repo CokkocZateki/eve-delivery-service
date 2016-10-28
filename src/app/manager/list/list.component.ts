@@ -11,6 +11,7 @@ import {ContractedDialogComponent} from "./contracted-dialog/contracted-dialog.c
 import {ShippingDialogComponent} from "./shipping-dialog/shipping-dialog.component";
 import {OrderProcessingService} from "../../services/orderProcessing.service";
 import {Router} from "@angular/router";
+import {SsoAuth} from "../../services/ssoauth.service";
 
 
 @Component({
@@ -36,10 +37,17 @@ export class ListComponent implements OnInit {
   public sumShipping = 0.0;
 
   constructor(private service:ManagerService, private orderService:OrderService,
-              private orderProcessing:OrderProcessingService, private router: Router) {
+              private orderProcessing:OrderProcessingService, private router: Router,
+              private auth:SsoAuth) {
   }
 
   ngOnInit() {
+    this.auth.isAuthorized("manager").subscribe(
+      data => { },
+      err => this.router.navigate(['/unauthorized'])
+    );
+
+
     this.service.list().subscribe(
       data => {
         this.orders = data.json();
