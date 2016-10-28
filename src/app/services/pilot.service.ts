@@ -5,7 +5,7 @@ import {Http, Headers} from "@angular/http";
 @Injectable()
 export class PilotService {
 
-  private baseUrl = environment.ipV2 + "/secured/pilot/";
+  private baseUrl = environment.ipV2 + "secured/pilot/";
 
   constructor(private http:Http) { }
 
