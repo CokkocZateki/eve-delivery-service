@@ -42,7 +42,7 @@
         <td><a href="{{ order.link }}" target="_blank">Items</a></td>
         <td>
           <div class="input-group">
-            <span class="form-control">{{ order.expectedPrice | numberGroups }}.00 ISK</span>
+            <span class="form-control">{{ order.expectedPrice | numberGroups }} ISK</span>
             <span class="input-group-btn">
             <button class="btn btn-default" type="button" ngIIclipboard [cbContent]="order.expectedPrice">
               <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
