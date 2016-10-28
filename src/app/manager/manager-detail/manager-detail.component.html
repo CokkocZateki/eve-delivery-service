@@ -93,7 +93,7 @@
 
     <div class="row">
       <div class="col-md-4">Buy price: {{ buyPrice | numberGroups }} ISK</div>
-      <div class="col-md-4" [ngClass]="{'bg-success': order.assignee === 'corporate' }">Manager: {{ corporateManagementReward | numberGroups }} ISK</div>
+      <div class="col-md-4" [ngClass]="{'bg-success': order.assignee !== 'service' }">Manager: {{ corporateManagementReward | numberGroups }} ISK</div>
       <div class="col-md-4" [ngClass]="{'bg-success': order.assignee === 'service' }">Manager: {{ serviceManagementReward | numberGroups}} ISK</div>
     </div>
     <div class="row">
@@ -119,9 +119,9 @@
     <div *ngIf="order.status === 'confirmed'">
       <h3>Contract Setup for {{order.assignee}}</h3>
       <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-primary" *ngIf="order.assignee === 'corporate'"
+        <button type="button" class="btn btn-primary" *ngIf="order.assignee !== 'service'"
                 ngIIclipboard [cbContent]="exchangePrice">Copy Exchange Price</button>
-        <button type="button" class="btn btn-primary" *ngIf="order.assignee === 'corporate'"
+        <button type="button" class="btn btn-primary" *ngIf="order.assignee !== 'service'"
                 ngIIclipboard [cbContent]="getExchangeDescription(order)">Copy Exchange Description
         </button>
         <button type="button" class="btn btn-primary" ngIIclipboard [cbContent]="order.destination"
