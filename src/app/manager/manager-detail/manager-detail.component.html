@@ -41,17 +41,15 @@
     </div>
     <div class="row">
       <div class="col-md-4 btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false" style="width: 100%">
-          Assignee: {{order.assignee}} <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li style="padding: 5px">
-            <button type="button" class="btn btn-default" (click)="setAssignee(order, pilot.name)"
-                    *ngFor="let pilot of pilots">{{ pilot.name }}
-            </button>
-          </li>
-        </ul>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Assignee: {{order.assignee}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li *ngFor="let pilot of pilots"><a (click)="setAssignee(order, pilot.name)">{{ pilot.name }}</a></li>
+          </ul>
+        </div>
       </div>
       <div class="col-md-4">
         <div class="input-group">
