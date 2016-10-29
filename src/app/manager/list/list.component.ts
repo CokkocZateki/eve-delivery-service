@@ -24,26 +24,28 @@ import {SsoAuth} from "../../services/ssoauth.service";
 })
 export class ListComponent implements OnInit {
 
+  consolidationActive: boolean = true;
 
   private deliveryFee = 0.13;
   private managementMargin = 0.2;
   private pilotMargin = 0.8;
 
-  public orders:Array<any> = undefined;
+  public orders: Array<any> = undefined;
   public clipboardData = "";
 
   public sumRequested = 0.0;
   public sumConfirmed = 0.0;
   public sumShipping = 0.0;
 
-  constructor(private service:ManagerService, private orderService:OrderService,
-              private orderProcessing:OrderProcessingService, private router: Router,
-              private auth:SsoAuth) {
+  constructor(private service: ManagerService, private orderService: OrderService,
+              private orderProcessing: OrderProcessingService, private router: Router,
+              private auth: SsoAuth) {
   }
 
   ngOnInit() {
     this.auth.isAuthorized("manager").subscribe(
-      data => { },
+      data => {
+      },
       err => this.router.navigate(['/unauthorized'])
     );
 
@@ -77,7 +79,7 @@ export class ListComponent implements OnInit {
     return this.sumRequested + this.sumConfirmed + this.sumShipping;
   }
 
-  getOpenButtonClass(order:Order) {
+  getOpenButtonClass(order: Order) {
     let status = order.status;
     if (status === 'requested') {
       return "btn btn-danger";
@@ -89,11 +91,11 @@ export class ListComponent implements OnInit {
   /** PRICING **/
 
 
-  public calcManagementReward(basePrice:number):number {
+  public calcManagementReward(basePrice: number): number {
     return basePrice * this.deliveryFee * this.managementMargin;
   }
 
-  public calcCollateral(order:Order):number {
+  public calcCollateral(order: Order): number {
     let stackPrice = 0;
     let items = order.items;
     for (let i = 0; i < items.length; i++) {
@@ -103,16 +105,16 @@ export class ListComponent implements OnInit {
     return stackPrice;
   }
 
-  public calcServiceReward(order:Order):number {
+  public calcServiceReward(order: Order): number {
     var collateral = this.calcCollateral(order);
     let items = order.items;
-    let totalVolume:number = 0;
+    let totalVolume: number = 0;
     for (let i = 0; i < items.length; i++) {
       let item = items[i];
       totalVolume += item.volume * item.quantity;
     }
 
-    let volumePrice:number;
+    let volumePrice: number;
     if (order.destination === '7RM Beanstar') {
       volumePrice = 300;
     } else {
@@ -144,7 +146,7 @@ export class ListComponent implements OnInit {
   //   );
   // }
 
-  public onPriceChange(orderId:string, price:string) {
+  public onPriceChange(orderId: string, price: string) {
     for (let i = 0; i < this.orders.length; i++) {
       if (this.orders[i].id === orderId) {
         this.orders[i].price = "Loading ...";
@@ -193,7 +195,7 @@ export class ListComponent implements OnInit {
 
   /** UTILITY **/
 
-  public listItems(order:Order):string {
+  public listItems(order: Order): string {
     let result = "";
     let items = order.items;
 
@@ -204,8 +206,15 @@ export class ListComponent implements OnInit {
     return result;
   }
 
-  gotoDetail(order:Order) {
+  gotoDetail(order: Order) {
     let link = ['/manager', order.id];
     this.router.navigate(link);
+  }
+
+  consolidate(order: Order) {
+    this.service.consolidate(order).subscribe(
+      data => alert("done. please refresh"),
+      err => alert(err)
+    );
   }
 }

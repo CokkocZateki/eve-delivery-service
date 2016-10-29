@@ -3,6 +3,7 @@
   <div *ngIf="!orders">Loading ...</div>
   <table *ngIf="orders" class="table">
     <tr>
+      <th *ngIf="consolidationActive">Consolidation</th>
       <th>Client</th>
       <th class="hidden-xs">Link</th>
       <th class="hidden-xs">Price</th>
@@ -12,6 +13,9 @@
       <th>Details</th>
     </tr>
     <tr *ngFor="let order of orders">
+      <td>
+        <button class="btn btn-default" (click)="consolidate(order)">Consolidate</button>
+      </td>
       <td>{{order.client}}</td>
       <td class="hidden-xs">
         <a href="{{order.link}}" target="_blank">evepraisal</a>

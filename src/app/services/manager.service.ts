@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {environment} from "../environment";
 import {Http, Headers} from "@angular/http";
+import {Order} from "../common/order";
 
 @Injectable()
 export class ManagerService {
@@ -67,6 +68,11 @@ export class ManagerService {
 
   delete(id: string) {
     return this.http.post(this.baseUrl + "delete?id=" + id, "", this.auth());
+  }
+
+  consolidate(order:Order) {
+    console.log(order);
+    return this.http.post(this.baseUrl + "consolidate?client=" + order.client + "&destination=" + order.destination, "", this.auth());
   }
 
 }
