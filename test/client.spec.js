@@ -20,7 +20,7 @@ describe('Protractor Demo App', function () {
   });
 
   it('should have a title', function () {
-    expect(browser.getTitle()).toEqual('Horde Delivery Service');
+    expect(browser.getTitle()).toEqual('Horde Delivery');
   });
 
   it('should get quote and submitting should show result page', function () {
