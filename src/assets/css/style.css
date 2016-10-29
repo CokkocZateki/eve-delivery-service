@@ -347,3 +347,7 @@ pre {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
+
+.content-wide {
+  width: 100%;
+}

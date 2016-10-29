@@ -1,65 +1,67 @@
-<div class="content-box roundedCorners">
-  <div *ngIf="!isSubmitted">
-    <h1>Horde Delivery Raffle</h1>
+<div class="content">
+  <div class="content-box roundedCorners">
+    <div *ngIf="!isSubmitted">
+      <h1>Horde Delivery Raffle</h1>
 
-    <div class="alert-info alert">
-    <b>Order</b> at least <b>two times</b> until October, 16th 18:00 EvE time and win dank prizes.
-    </div>
-
-
-    <h2>Sign up for Raffle #1</h2>
-    <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
-      <h4>
-        1. Choose your prize
-      </h4>
-      <div class="btn-group">
-        <label *ngFor="let item of radioItems" class="btn btn-default">
-          <img src="{{ item.imgUrl }}" width="150" height="150"/> <br/>
-          <input type="radio" name="options" (click)="changeDestination(item.option)"
-                 [checked]="item.option === model.option"> {{ item.option }}
-        </label>
+      <div class="alert-info alert">
+        <b>Order</b> at least <b>two times</b> until October, 16th 18:00 EvE time and win dank prizes.
       </div>
-      <br/>
-      Explanation:
+
+
+      <h2>Sign up for Raffle #1</h2>
+      <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
+        <h4>
+          1. Choose your prize
+        </h4>
+        <div class="btn-group">
+          <label *ngFor="let item of radioItems" class="btn btn-default">
+            <img src="{{ item.imgUrl }}" width="150" height="150"/> <br/>
+            <input type="radio" name="options" (click)="changeDestination(item.option)"
+                   [checked]="item.option === model.option"> {{ item.option }}
+          </label>
+        </div>
+        <br/>
+        Explanation:
+        <ul>
+          <li>
+            <a href="http://evepraisal.com/e/12969170" target="_blank">Horde Gila</a>
+          </li>
+          <li>
+            <a href="http://evepraisal.com/e/12969190" target="_blank">10 Fade Caracals</a>
+          </li>
+          <li>
+            Indy's wet dream: 300k m3 free shipping from or to Jita.
+          </li>
+        </ul>
+        All prizes will be given out. <br/>
+        <h4>
+          2. Enter your name
+        </h4>
+        <input [(ngModel)]="model.name" name="nameInput" #nameInput="ngModel"
+               type="text" class="form-control" id="charName"
+               placeholder="Enter your character name"
+               required>
+        <br/>
+        <button id="submitOrder" type="submit" class="btn btn-primary"
+                [disabled]="(nameInput.pristine)">
+          Submit
+        </button>
+      </form>
+    </div>
+    <div *ngIf="isSubmitted">
+      Your raffle entry has been submitted. Good luck!
+    </div>
+    <br/>
+    <div>
+      <h3>
+        The Rules
+      </h3>
       <ul>
-        <li>
-          <a href="http://evepraisal.com/e/12969170" target="_blank">Horde Gila</a>
-        </li>
-        <li>
-          <a href="http://evepraisal.com/e/12969190" target="_blank">10 Fade Caracals</a>
-        </li>
-        <li>
-          Indy's wet dream: 300k m3 free shipping from or to Jita.
-        </li>
+        <li>You must order on at least two days during the raffle term to be eligible to win.</li>
+        <li>Only your last raffle entry will be considered. Feel free to update as often as you want.</li>
+        <li>Raffle entries that are submitted after the deadline will not be considered.</li>
+        <li>Rules may change without further notice.</li>
       </ul>
-      All prizes will be given out. <br/>
-      <h4>
-        2. Enter your name
-      </h4>
-      <input [(ngModel)]="model.name" name="nameInput" #nameInput="ngModel"
-             type="text" class="form-control" id="charName"
-             placeholder="Enter your character name"
-             required>
-      <br/>
-      <button id="submitOrder" type="submit" class="btn btn-primary"
-              [disabled]="(nameInput.pristine)">
-        Submit
-      </button>
-    </form>
-  </div>
-  <div *ngIf="isSubmitted">
-    Your raffle entry has been submitted. Good luck!
-  </div>
-  <br/>
-  <div>
-    <h3>
-      The Rules
-    </h3>
-    <ul>
-      <li>You must order on at least two days during the raffle term to be eligible to win.</li>
-      <li>Only your last raffle entry will be considered. Feel free to update as often as you want.</li>
-      <li>Raffle entries that are submitted after the deadline will not be considered.</li>
-      <li>Rules may change without further notice.</li>
-    </ul>
+    </div>
   </div>
 </div>

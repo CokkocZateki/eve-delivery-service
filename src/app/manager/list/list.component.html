@@ -7,6 +7,7 @@
       <th class="hidden-xs">Link</th>
       <th class="hidden-xs">Price</th>
       <th class="hidden-xs">Destination</th>
+      <th class="hidden-xs">Assignee</th>
       <th>Status</th>
       <th>Details</th>
     </tr>
@@ -17,6 +18,7 @@
       </td>
       <td class="hidden-xs">{{ order.expectedPrice | numberGroups }} ISK</td>
       <td class="hidden-xs">{{order.destination}}</td>
+      <td class="hidden-xs">{{order.assignee}}</td>
       <td>{{order.status}}</td>
       <td>
         <button class="{{ getOpenButtonClass(order) }}" (click)="gotoDetail(order)">Open</button>

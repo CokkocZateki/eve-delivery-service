@@ -1,66 +1,69 @@
-<div class="content-box roundedCorners">
+<div class="content">
+  <div class="content-box roundedCorners">
 
-  <div class="row">
-    <div class="col-md-12">
-      <h1>Market Seeder</h1>
-      <div class="alert alert-warning">
-        <b>Early Alpha</b>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Market Seeder</h1>
+        <div class="alert alert-warning">
+          <b>Early Alpha</b>
+          <p>
+            This page is early alpha. Expect bugs and send us all the feedback you have! Either mail Rihan Shazih ingame
+            or use the <a href="https://www.pandemic-legion.pl/forums/index.php?/topic/7925-the-market-seeder-platform">forums</a>.
+          </p>
+        </div>
         <p>
-          This page is early alpha. Expect bugs and send us all the feedback you have! Either mail Rihan Shazih ingame
-          or use the <a href="https://www.pandemic-legion.pl/forums/index.php?/topic/7925-the-market-seeder-platform">forums</a>.
+          This tool shall provide information about which items need to be seeded due them being highly overpriced or
+          not
+          available at all.
         </p>
-      </div>
-      <p>
-        This tool shall provide information about which items need to be seeded due them being highly overpriced or not
-        available at all.
-      </p>
-      <p>
-        <b>Consumers</b> just enter the item name and wait for the items to be seeded.
-        <b>Seeders</b> feel free to use this information for whatever you like. Just don't be a dick.
-      </p>
+        <p>
+          <b>Consumers</b> just enter the item name and wait for the items to be seeded.
+          <b>Seeders</b> feel free to use this information for whatever you like. Just don't be a dick.
+        </p>
 
-      <div class="alert alert-info">
-        <b>Advertisement</b><br/>
-        <i>Why wait</i> for the items to be seeded when you can directly order everything you need?
-        <b><a href="http://hordedelivery.com">http://hordedelivery.com</a></b> - <i>super simple stuff</i>!
-      </div>
+        <div class="alert alert-info">
+          <b>Advertisement</b><br/>
+          <i>Why wait</i> for the items to be seeded when you can directly order everything you need?
+          <b><a href="http://hordedelivery.com">http://hordedelivery.com</a></b> - <i>super simple stuff</i>!
+        </div>
 
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="input-group">
-        <input [(ngModel)]="model.name" name="itemName" #itemName="ngModel"
-               type="text" class="form-control" id="itemName"
-               placeholder="Item Name" required>
-        <input [(ngModel)]="model.station" name="itemStation" #itemStation="ngModel"
-               type="text" class="form-control" id="itemStation"
-               placeholder="Station" required>
-        <span class="input-group-btn">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="input-group">
+          <input [(ngModel)]="model.name" name="itemName" #itemName="ngModel"
+                 type="text" class="form-control" id="itemName"
+                 placeholder="Item Name" required>
+          <input [(ngModel)]="model.station" name="itemStation" #itemStation="ngModel"
+                 type="text" class="form-control" id="itemStation"
+                 placeholder="Station" required>
+          <span class="input-group-btn">
             <button id="submitItem" class="btn btn-default" type="button"
                     (click)="addItem()" [disabled]="itemName.pristine || itemStation.pristine">Request!</button>
           </span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
+    <div class="row">
 
-    <div class="col-md-12">
-      <div>
-        <table class="table">
-          <tr>
-            <th>Item Name</th>
-            <th>Station</th>
-            <th class="hidden-xs">Last updated (EvE time)</th>
-          </tr>
-          <tr *ngFor="let item of data">
-            <td>{{ item.name }}</td>
-            <td>{{ item.station }}</td>
-            <td *ngIf="item.timestamp" class="hidden-xs">{{ item.timestamp | toJsDate | date: 'short' }}</td>
-          </tr>
-        </table>
+      <div class="col-md-12">
+        <div>
+          <table class="table">
+            <tr>
+              <th>Item Name</th>
+              <th>Station</th>
+              <th class="hidden-xs">Last updated (EvE time)</th>
+            </tr>
+            <tr *ngFor="let item of data">
+              <td>{{ item.name }}</td>
+              <td>{{ item.station }}</td>
+              <td *ngIf="item.timestamp" class="hidden-xs">{{ item.timestamp | toJsDate | date: 'short' }}</td>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </div>
