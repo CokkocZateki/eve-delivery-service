@@ -18,7 +18,7 @@ export class ConfirmDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.isAuthorized("manager").subscribe(
+    this.auth.isAuthorized("pilot").subscribe(
       data => { },
       err => this.router.navigate(['/unauthorized'])
     );
