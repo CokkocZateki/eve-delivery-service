@@ -5,6 +5,7 @@ import {StatsComponent} from "./stats/stats.component";
 import {TestimonialsComponent} from "./testimonials/testimonials.component";
 import {SsoAuth} from "../services/ssoauth.service";
 import {environment} from "../environment";
+import {Router} from "@angular/router";
 
 @Component({
   moduleId: module.id,
@@ -16,11 +17,14 @@ import {environment} from "../environment";
 })
 export class FrontPageComponent implements OnInit {
 
-  constructor(private auth: SsoAuth) { }
+  constructor(private auth: SsoAuth, private router:Router) { }
 
   ssoHref = environment.ssoUrl + "&state=client";
 
   ngOnInit() {
   }
 
+  goToClientPage() {
+    this.router.navigate(['/client']);
+  }
 }

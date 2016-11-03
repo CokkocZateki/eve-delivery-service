@@ -9,12 +9,15 @@
 
     <div *ngIf="auth.authenticated()">
       <div class="navbar-header">
-        <span class="navbar-brand">Hello {{ name }}!</span>
+
+        <p class="navbar-btn">
+          <button class="btn btn-success btn-margin" (click)="goToClientPage()">Open Dashboard</button>
+        </p>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <p class="navbar-btn">
-            <button class="btn btn-primary btn-margin" (click)="auth.logout()">Log Out</button>
+          <p class="navbar-btn" style="padding-right: 10px">
+            <button class="btn btn-default btn-margin" (click)="auth.logout()">Log Out</button>
           </p>
         </li>
       </ul>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SsoAuth} from "../services/ssoauth.service";
 import {ClientService} from "../services/client.service";
 import {QueueComponent} from "./queue/queue.component";
+import {Router} from "@angular/router";
 
 @Component({
   moduleId: module.id,
@@ -13,7 +14,7 @@ import {QueueComponent} from "./queue/queue.component";
 })
 export class ClientComponent implements OnInit {
 
-  constructor(private auth: SsoAuth, private service: ClientService) {
+  constructor(private auth: SsoAuth, private service: ClientService, private router:Router) {
   }
 
   currentUser: any;
@@ -28,6 +29,10 @@ export class ClientComponent implements OnInit {
       // TODO: better error message
       err => alert(err)
     );
+  }
+
+  goToFrontpage() {
+    this.router.navigate(['/'])
   }
 
 }

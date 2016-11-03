@@ -12,10 +12,15 @@
         <span *ngIf="!clientName" class="navbar-brand">Loading ...</span>
         <span *ngIf="clientName" class="navbar-brand">Hello {{ clientName }}!</span>
       </div>
-      <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+      <ul class="nav navbar-nav navbar-right" >
         <li>
           <p class="navbar-btn">
-            <button class="btn btn-primary btn-margin" (click)="auth.logout()">Log Out</button>
+            <button class="btn btn-success btn-margin" (click)="goToFrontpage()" style="margin-right: 10px">Order now!</button>
+          </p>
+        </li>
+        <li>
+          <p class="navbar-btn">
+            <button class="btn btn-default btn-margin" (click)="auth.logout()" style="margin-right: 10px">Log Out</button>
           </p>
         </li>
       </ul>

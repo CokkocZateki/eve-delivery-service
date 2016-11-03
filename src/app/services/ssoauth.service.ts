@@ -61,6 +61,7 @@ export class SsoAuth {
 
     // todo: delete session in backend
 
-    this._router.navigate(['/']);
+    // no routing, because it wouldn't reload the frontpage
+    window.location.href = 'http://hordedelivery.com';
   };
 }
