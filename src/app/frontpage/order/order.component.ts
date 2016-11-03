@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'order',
   providers: [OrderService],
-  templateUrl: './app/client/order/order.html',
+  templateUrl: './app/frontpage/order/order.html',
   directives: [DestinationComponent, ClipboardDirective],
   pipes: [NumberGrouping]
 })

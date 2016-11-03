@@ -3,7 +3,7 @@ import {StatsService} from "../../services/stats.service";
 
 @Component({
   selector: 'stats',
-  templateUrl: './app/client/stats/stats.component.html',
+  templateUrl: './app/frontpage/stats/stats.component.html',
   providers: [StatsService]
 })
 export class StatsComponent implements OnInit {

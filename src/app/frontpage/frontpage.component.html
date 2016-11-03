@@ -9,10 +9,9 @@
 
     <div *ngIf="auth.authenticated()">
       <div class="navbar-header">
-        <span *ngIf="!clientName" class="navbar-brand">Loading ...</span>
-        <span *ngIf="clientName" class="navbar-brand">Hello {{ clientName }}!</span>
+        <span class="navbar-brand">Hello {{ name }}!</span>
       </div>
-      <ul class="nav navbar-nav navbar-right" style="padding-right: 10px">
+      <ul class="nav navbar-nav navbar-right">
         <li>
           <p class="navbar-btn">
             <button class="btn btn-primary btn-margin" (click)="auth.logout()">Log Out</button>
@@ -24,8 +23,16 @@
 </div>
 
 <div style="height:30px"></div>
-<div class="content-box" *ngIf="!clientName">Loading ...</div>
 
-<div *ngIf="auth.authenticated() && currentUser" class="content">
-  <app-queue></app-queue>
+<div class="content">
+  <order></order>
+  <status></status>
+  <testimonials></testimonials>
+  <stats></stats>
+  <div class="content-box roundedCorners">
+    <p>
+      If you have any <b>questions or feedback</b>, feel free to contact Rihan Shazih ingame or on the
+      <a href="https://www.pandemic-legion.pl/forums/index.php?/topic/3184-horde-delivery-service/">forums</a>.
+    </p>
+  </div>
 </div>

@@ -46,8 +46,8 @@ const barrels:string[] = [
   // App specific barrels.
   'app',
   'app/shared',
-  'app/client/client',
-  'app/client',
+  'app/frontpage/client',
+  'app/frontpage',
   'app/manage',
   'app/manager',
   'app/manager/login',
@@ -56,15 +56,17 @@ const barrels:string[] = [
   'app/manager/pilot-status',
   'app/admin',
   'app/manager/list/order-dialog',
-  'app/client/stats',
+  'app/frontpage/stats',
   'app/manager/cargo',
-  'app/client/testimonials',
+  'app/frontpage/testimonials',
   'app/pilot/shipment',
-  'app/client/order/destination',
+  'app/frontpage/order/destination',
   'app/manager/manager-detail',
   'app/market',
   'app/callback',
   'app/unauthorized',
+  'app/client',
+  'app/client/queue',
   /** @cli-barrel */
 ];
 
