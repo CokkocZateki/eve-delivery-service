@@ -4,7 +4,7 @@ import {OrderService} from "../../services/order.service";
 @Component({
   selector: 'status',
   providers: [OrderService],
-  templateUrl: './app/client/status/status.html',
+  templateUrl: './app/frontpage/status/status.html',
 })
 export class StatusComponent {
 

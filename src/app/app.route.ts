@@ -1,5 +1,5 @@
 import {provideRouter, RouterConfig} from "@angular/router";
-import {ClientComponent} from "./client/client.component";
+import {FrontPageComponent} from "./frontpage/frontpage.component";
 import {ManagerComponent} from "./manager/manager.component";
 import {PilotComponent} from "./pilot/pilot.component";
 import {ManagerDetailComponent} from "./manager/manager-detail/manager-detail.component";
@@ -14,7 +14,7 @@ const routes: RouterConfig = [
   { path: 'market', component: MarketComponent },
   { path: 'callback', component: CallbackComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
-  { path: '**', component: ClientComponent }
+  { path: '**', component: FrontPageComponent }
 ];
 
 export const appRouterProviders = [

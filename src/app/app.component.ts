@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ErrorComponent} from "./errors/error.component";
-import {OrderComponent} from "./client/order/order.component";
-import {StatusComponent} from "./client/status/status.component";
+import {OrderComponent} from "./frontpage/order/order.component";
+import {StatusComponent} from "./frontpage/status/status.component";
 import {Http} from "@angular/http";
 import {environment} from "./environment";
 import { ROUTER_DIRECTIVES } from '@angular/router';

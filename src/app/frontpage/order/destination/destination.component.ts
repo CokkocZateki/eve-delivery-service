@@ -3,7 +3,7 @@ import {EventEmitter} from "@angular/compiler/src/facade/async";
 
 @Component({
   selector: 'destination',
-  templateUrl: 'app/client/order/destination/destination.component.html',
+  templateUrl: 'app/frontpage/order/destination/destination.component.html',
 })
 export class DestinationComponent implements OnInit {
 
@@ -13,11 +13,11 @@ export class DestinationComponent implements OnInit {
   radioItems = [
     {
       name: '7RM Beanstar',
-      imgUrl: 'app/client/order/destination/keepstar.png'
+      imgUrl: 'app/frontpage/order/destination/keepstar.png'
     },
     {
       name: 'GME Fortizar',
-      imgUrl: 'app/client/order/destination/fortizar.png'
+      imgUrl: 'app/frontpage/order/destination/fortizar.png'
     }];
 
   model:any;

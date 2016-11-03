@@ -3,17 +3,22 @@ import {OrderComponent} from "./order/order.component";
 import {StatusComponent} from "./status/status.component";
 import {StatsComponent} from "./stats/stats.component";
 import {TestimonialsComponent} from "./testimonials/testimonials.component";
+import {SsoAuth} from "../services/ssoauth.service";
+import {environment} from "../environment";
 
 @Component({
   moduleId: module.id,
-  selector: 'client',
-  templateUrl: 'client.component.html',
+  selector: 'frontpage',
+  templateUrl: 'frontpage.component.html',
   directives: [OrderComponent, StatusComponent, StatsComponent, TestimonialsComponent],
-  styleUrls: ['client.component.css']
+  styleUrls: ['frontpage.component.css'],
+  providers: [SsoAuth]
 })
-export class ClientComponent implements OnInit {
+export class FrontPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: SsoAuth) { }
+
+  ssoHref = environment.ssoUrl + "&state=client";
 
   ngOnInit() {
   }
