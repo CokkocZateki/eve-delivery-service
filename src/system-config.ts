@@ -66,6 +66,7 @@ const barrels:string[] = [
   'app/callback',
   'app/unauthorized',
   'app/client',
+  'app/client/queue',
   /** @cli-barrel */
 ];
 
