@@ -65,6 +65,7 @@ const barrels:string[] = [
   'app/market',
   'app/callback',
   'app/unauthorized',
+  'app/client',
   /** @cli-barrel */
 ];
 

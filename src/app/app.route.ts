@@ -6,8 +6,10 @@ import {ManagerDetailComponent} from "./manager/manager-detail/manager-detail.co
 import {MarketComponent} from "./market/market.component";
 import {CallbackComponent} from "./callback/callback.component";
 import {UnauthorizedComponent} from "./unauthorized/unauthorized.component";
+import {ClientComponent} from "./client/client.component";
 
 const routes: RouterConfig = [
+  { path: 'client', component: ClientComponent },
   { path: 'manager', component: ManagerComponent },
   { path: 'manager/:id', component: ManagerDetailComponent },
   { path: 'pilot', component: PilotComponent },
