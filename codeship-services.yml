@@ -1,4 +1,4 @@
 frontend:
   build:
-    image: michaelbahr/horde-delivery-frontend:1.1.1
+    image: michaelbahr/horde-delivery-frontend
     dockerfile_path: Dockerfile
