@@ -38,8 +38,15 @@
                    (destinationChanged)="setDestination($event)">
       </destination>
     </fieldset>
-    <fieldset class="form-group">
 
+    <fieldset class="form-group">
+      <label for="multiplierInput">Multiplier</label>
+      <input id="multiplierInput" type="number" class="form-control" placeholder="Multiplier" [(ngModel)]="multiplier"
+             name="multiplierInput" #multiplierInput="ngModel" min="1" step="1" required>
+      <small>This will increase the item count by the value you define. The evepraisal link will not be updated.</small>
+    </fieldset>
+
+    <fieldset class="form-group">
       <label for="evepraisalLink">Evepraisal Link</label>
       <div class="input-group">
         <input [(ngModel)]="model.link" name="linkInput" #linkInput="ngModel"

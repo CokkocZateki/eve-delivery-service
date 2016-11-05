@@ -6,18 +6,18 @@ import {environment} from "../environment";
 @Injectable()
 export class OrderService {
 
-  private baseUrl = environment.ip + "v1/order/";
+  private baseUrl = environment.ipV2 + "order/";
 
   constructor(private http:Http) {
 
   }
 
-  public create(model:Order) {
-    return this.http.post(this.baseUrl + "create", model);
+  public create(model:Order, multiplier:number) {
+    return this.http.post(this.baseUrl + "create"  + "?multiplier=" + multiplier, model);
   }
 
-  public quote(praisalLink:string) {
-    return this.http.get(this.baseUrl + "quote?link=" + praisalLink);
+  public quote(praisalLink:string, multiplier:number) {
+    return this.http.get(this.baseUrl + "quote?link=" + praisalLink + "&multiplier=" + multiplier);
   }
 
   public status(orderId:string) {

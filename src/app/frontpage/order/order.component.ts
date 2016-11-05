@@ -30,6 +30,7 @@ export class OrderComponent {
 
   public submitted:boolean = false;
   public orderId:string;
+  public multiplier:number = 1;
 
   public setDestination(destination:string) {
     this.model.destination = destination;
@@ -39,7 +40,7 @@ export class OrderComponent {
 
     this.model.expectedPrice = this.expectedPrice;
 
-    this.orderService.create(this.model).subscribe(
+    this.orderService.create(this.model, this.multiplier).subscribe(
       data => {
         // todo: can we migrate the .json call into a .map(res => res.json() call in the service?
         let body = data.json();
@@ -75,7 +76,7 @@ export class OrderComponent {
   private calculatePrice(praisalLInk:string){
     this.isPriceCalculationFailed = false;
 
-    this.orderService.quote(praisalLInk).subscribe(
+    this.orderService.quote(praisalLInk, this.multiplier).subscribe(
       data => {
         let body = data.json();
         this.expectedPrice = body.price;
