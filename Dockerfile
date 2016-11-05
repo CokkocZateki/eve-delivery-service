@@ -6,7 +6,7 @@ RUN useradd --user-group --create-home --shell /bin/false app
 ENV HOME=/home/app
 WORKDIR $HOME
 
-RUN npm install -g angular-cli@1.0.0-beta.10 && npm cache clean
+RUN npm install -g angular-cli@1.0.0-beta.10 --silent && npm cache clean
 
 ADD typings /home/app/typings
 ADD angular-cli* /home/app/
