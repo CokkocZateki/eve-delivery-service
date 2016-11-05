@@ -1,9 +1,4 @@
 frontend:
   build:
-    image: michaelbahr/horde-delivery-frontend
+    image: michaelbahr/horde-delivery-frontend:1.1.1
     dockerfile_path: Dockerfile
-deploy:
-  build:
-    image: michaelbahr/horde-delivery-frontend-deploy
-    dockerfile_path: Dockerfile_deploy
-  encrypted_env_file: sshkey.env.encrypted
