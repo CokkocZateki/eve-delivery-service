@@ -25,6 +25,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
+  <!--toast notifications-->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
   <!--cookie consent-->
   <link rel="stylesheet" type="text/css"
         href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.2/cookieconsent.min.css"/>
@@ -61,9 +64,33 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<!-- Auth0 Lock script -->
-<script src="http://cdn.auth0.com/js/lock/10.0.0/lock.min.js"></script>
+<script>
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-left",
+    "preventDuplicates": false,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "10000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  };
+  toastr.options.onclick = function() { window.location = "http://hordedelivery.com/updates"; }
+  var lastVersion = localStorage.getItem("lastVersion");
+  var currentVersion = "1.1.1";
+  if (lastVersion && lastVersion !== currentVersion) {
+    toastr["info"]("Horde Delivery was updated. Click here for more information.", "Updates");
+  }
+  localStorage.setItem("lastVersion", currentVersion);
+</script>
 
 </body>
 </html>
