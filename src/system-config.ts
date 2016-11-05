@@ -67,6 +67,7 @@ const barrels:string[] = [
   'app/unauthorized',
   'app/client',
   'app/client/queue',
+  'app/updates',
   /** @cli-barrel */
 ];
 
