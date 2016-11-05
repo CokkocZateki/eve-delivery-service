@@ -10,6 +10,7 @@
         <th>Destination</th>
         <th>Items</th>
         <th>Price</th>
+        <th></th>
       </tr>
       <tr *ngFor="let order of orders">
         <td>{{ order.destination }}</td>
@@ -18,6 +19,10 @@
           <span *ngIf="order.link === 'http://evepraisal.com'">Consolidated</span>
         </td>
         <td>{{ order.expectedPrice | numberGroups }} ISK</td>
+        <td>
+          <confirm-dialog *ngIf="order.status === 'requested'" (deleted)="deleteOrder(order)"></confirm-dialog>
+          <span *ngIf="order.status !== 'requested'">Order confirmed</span>
+        </td>
       </tr>
     </table>
     <small>Multiple orders may be consolidated into one. The evepraisal gets lost due to shitty consolidation.</small>

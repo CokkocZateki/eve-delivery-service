@@ -25,4 +25,7 @@ export class ClientService {
     return this.http.get(this.baseUrl + "queue", this.auth());
   }
 
+  delete(orderId: string) {
+    return this.http.post(this.baseUrl + "delete?id=" + orderId, "", this.auth());
+  }
 }
