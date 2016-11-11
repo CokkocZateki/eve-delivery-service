@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PilotService} from "../../services/pilot.service";
 
 @Component({
   moduleId: module.id,
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelfServiceComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pilotService:PilotService) { }
 
   ngOnInit() {
+    // this.pilotService.getRequestedOrders()
   }
+
+
 
 }
