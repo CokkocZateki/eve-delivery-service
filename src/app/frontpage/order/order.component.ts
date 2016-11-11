@@ -14,25 +14,25 @@ import {Router} from "@angular/router";
   pipes: [NumberGrouping]
 })
 export class OrderComponent {
-  private expectedPrice:number;
+  private expectedPrice: number;
   private isPriceCalculationFailed = false;
   // this is a workaround-ish to enable submit when we show the order page again for a certain order
-  isReorder:boolean = false;
+  isReorder: boolean = false;
 
-  public constructor(private orderService:OrderService, private router: Router) {
+  public constructor(private orderService: OrderService, private router: Router) {
 
   }
 
   public model = new Order(null, null, null, "7RM Beanstar", null);
 
-  public isPriceCalculated:boolean = false;
-  public isPriceCalculationRunning:boolean = false;
+  public isPriceCalculated: boolean = false;
+  public isPriceCalculationRunning: boolean = false;
 
-  public submitted:boolean = false;
-  public orderId:string;
-  public multiplier:number = 1;
+  public submitted: boolean = false;
+  public orderId: string;
+  public multiplier: number = 1;
 
-  public setDestination(destination:string) {
+  public setDestination(destination: string) {
     this.model.destination = destination;
   }
 
@@ -57,11 +57,11 @@ export class OrderComponent {
     this.isReorder = false;
   }
 
-  public askQuote(link:string) {
+  public askQuote(link: string) {
     this.isPriceCalculated = false;
 
     let needle = "evepraisal.com/e/";
-    let orderId:number;
+    let orderId: number;
 
     if (link.indexOf(needle) > -1) {
       orderId = Number(link.split(needle)[1]);
@@ -73,7 +73,7 @@ export class OrderComponent {
     }
   }
 
-  private calculatePrice(praisalLInk:string){
+  private calculatePrice(praisalLInk: string) {
     this.isPriceCalculationFailed = false;
 
     this.orderService.quote(praisalLInk, this.multiplier).subscribe(
@@ -104,5 +104,10 @@ export class OrderComponent {
     this.submitted = false;
     this.router.navigate(['/']);
     this.isReorder = true;
+  }
+
+  multiplierChanged() {
+    this.expectedPrice = null;
+    this.isPriceCalculated = false;
   }
 }

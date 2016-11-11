@@ -1,22 +1,13 @@
 <div id="status" class="content-box roundedCorners">
 
   <h2>Check your status</h2>
-
-  <label for="orderCodeInput">Order Code</label>
-  <div class="input-group">
-    <input #statusInput="ngModel" [(ngModel)]="model"
-           type="text" class="form-control" id="orderCodeInput"
-           placeholder="Enter the order code" name="statusInput"
-           required pattern="[a-z0-9]+">
-    <span class="input-group-btn">
-        <button id="submitLink" class="btn btn-default" type="button"
-                (click)="requestStatus(statusInput.value)"
-                [disabled]="!statusInput.valid || statusInput.pristine">Get Status!</button>
-        </span>
-  </div>
-
-
-  <div *ngIf="status" class="alert alert-primary">
-    Current status: {{ status }} 
-  </div>
+  <p *ngIf="!auth.authenticated()">
+    <a [attr.href]="ssoHref">
+      <img
+        src="https://images.contentful.com/idjq7aai9ylm/12vrPsIMBQi28QwCGOAqGk/33234da7672c6b0cdca394fc8e0b1c2b/EVE_SSO_Login_Buttons_Small_Black.png?w=195&h=30"/>
+    </a>
+  </p>
+  <p *ngIf="auth.authenticated()" class="navbar-btn">
+    <button class="btn btn-success btn-margin" (click)="goToClientPage()">Open Dashboard</button>
+  </p>
 </div>
