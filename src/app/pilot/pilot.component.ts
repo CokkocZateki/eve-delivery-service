@@ -4,12 +4,13 @@ import {SsoAuth} from "../services/ssoauth.service";
 import {PilotService} from "../services/pilot.service";
 import {environment} from "../environment";
 import {Router} from "@angular/router";
+import {SelfServiceComponent} from "./self-service/self-service.component";
 
 @Component({
   selector: 'pilot',
   templateUrl: 'app/pilot/pilot.component.html',
   providers: [SsoAuth, PilotService],
-  directives: [ShipmentComponent]
+  directives: [ShipmentComponent, SelfServiceComponent]
 })
 export class PilotComponent implements OnInit {
 

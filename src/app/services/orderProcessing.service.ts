@@ -32,7 +32,7 @@ export class OrderProcessingService {
     return orders;
   }
 
-  public getRecipient(order:Order):string {
+  public getRecipients(order:Order):string {
     return order.client;
   }
 
