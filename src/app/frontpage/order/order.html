@@ -39,12 +39,16 @@
       </destination>
     </fieldset>
 
-    <fieldset class="form-group">
-      <label for="multiplierInput">Multiplier</label>
-      <input id="multiplierInput" type="number" class="form-control" placeholder="Multiplier" [(ngModel)]="multiplier"
-             name="multiplierInput" #multiplierInput="ngModel" min="1" step="1" required (ngModelChange)="multiplierChanged($event)">
-      <small>This will multiply the item count by the value you define. The evepraisal link will not be updated.</small>
-    </fieldset>
+    <!--<fieldset class="form-group">-->
+      <!--<label for="multiplierInput">Multiplier</label>-->
+      <!--<input id="multiplierInput" type="number" class="form-control" placeholder="Multiplier" [(ngModel)]="multiplier"-->
+             <!--name="multiplierInput" #multiplierInput="ngModel" min="1" step="1" required (ngModelChange)="multiplierChanged($event)">-->
+      <!--<small>This will multiply the item count by the value you define. The evepraisal link will not be updated.</small>-->
+    <!--</fieldset>-->
+
+    <div class="alert alert-info">
+      Due to bugs multi-order is currently not available. Should be fixed by 17.11.2016.
+    </div>
 
     <fieldset class="form-group">
       <label for="evepraisalLink">Evepraisal Link</label>
