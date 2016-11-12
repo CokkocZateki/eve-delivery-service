@@ -41,7 +41,7 @@ export class ManagerDetailComponent implements OnInit {
   /** FORWARDER **/
 
   getRecipient(order: Order) {
-    return this.orderProcessing.getRecipient(order);
+    return this.orderProcessing.getRecipients(order);
   }
 
   generateMail(status: string, order: Order) {
