@@ -9,13 +9,14 @@ import {ManagerService} from "../../../services/manager.service";
 import {ClientComponent} from "./client/client.component";
 import {ItemsComponent} from "./items/items.component";
 import {ProcessBoughtComponent} from "./process-bought/process-bought.component";
+import {ProcessSkipComponent} from "./process-skip/process-skip.component";
 
 @Component({
   selector: 'order-detail',
   templateUrl: 'app/pilot/self-service/order-detail/order-detail.component.html',
   providers: [OrderProcessingService, PilotSelfService, ManagerService],
   pipes: [NumberGrouping],
-  directives: [ClipboardDirective, ClientComponent, ItemsComponent, ProcessBoughtComponent]
+  directives: [ClipboardDirective, ClientComponent, ItemsComponent, ProcessBoughtComponent, ProcessSkipComponent]
 })
 export class OrderDetailComponent implements OnInit {
 

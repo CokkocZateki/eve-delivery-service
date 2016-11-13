@@ -1,0 +1,23 @@
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-default" (click)="skipOrder()">Skip order</button>
+  <button class="btn btn-default" type="button" (click)="myModal.open()">
+    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+  </button>
+</div>
+
+<modal #myModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Help - Skip Order</h4>
+  </modal-header>
+  <modal-body>
+    Click this button if you didn't buy the items and want to skip this order. The order will
+    be made available to other pilots.
+    <br/><br/>
+    If you don't understand this (that's totally fine) please contact Rihan Shazih.
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-success"
+            (click)="myModal.close()">Ok
+    </button>
+  </modal-footer>
+</modal>
