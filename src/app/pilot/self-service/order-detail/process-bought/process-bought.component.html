@@ -1,1 +1,23 @@
-<button type="button" class="btn btn-success" (click)="acceptOrder()">I bought the items</button>
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-success" (click)="acceptOrder()">Items bought</button>
+  <button class="btn btn-success" type="button" (click)="myModal.open()">
+    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+  </button>
+</div>
+
+<modal #myModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Help - Items Bought</h4>
+  </modal-header>
+  <modal-body>
+    Click this button after you bought the items and created a courier to your jump freighter alt. The order will
+    show up in your shipment list.
+    <br/><br/>
+    If you don't understand this (that's totally fine) please contact Rihan Shazih.
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-success"
+            (click)="myModal.close()">Ok
+    </button>
+  </modal-footer>
+</modal>
