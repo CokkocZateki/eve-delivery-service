@@ -76,4 +76,20 @@ export class OrderDetailComponent implements OnInit {
     window.history.back();
   }
 
+  getVolume(order:Order) {
+    return 10000;
+  }
+
+  acceptOrder() {
+
+  }
+
+  skipOrder() {
+
+    this.goBack();
+  }
+
+  flagOrder() {
+
+  }
 }

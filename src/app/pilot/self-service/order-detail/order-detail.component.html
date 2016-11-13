@@ -9,16 +9,23 @@
       <h3>Details</h3>
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <app-client [order]="order"></app-client>
         </div>
-        <div class="col-md-4">
-            <span class="form-control">Destination: {{order.destination}}</span>
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <app-items [order]="order"></app-items>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">
+            <span class="form-control">Destination: {{order.destination}}</span>
+        </div>
+        <div class="col-md-6">
+          <span class="form-control">Volume: {{order.destination}}</span>
+        </div>
+      </div>
+
+
 
 
 
@@ -27,67 +34,20 @@
       Reward: {{ reward | numberGroups }} ISK<br/>
       Client Price: {{ order.expectedPrice | numberGroups }} ISK<br/>
 
-      <!--<div *ngIf="order.status === 'requested'">-->
-        <!--<h3>Contract Request</h3>-->
-        <!--<div class="btn-group">-->
-          <!--<button type="button" class="btn btn-primary"-->
-                  <!--ngIIclipboard [cbContent]="getRecipient(order)">Copy Mail Recipient-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-primary"-->
-                  <!--ngIIclipboard [cbContent]="titleConfirmed">Copy Mail Title-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-primary"-->
-                  <!--ngIIclipboard [cbContent]="generateMail('confirmed', order)">Copy Confirmation Mail Body-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-success" (click)="updateStatus(order, 'confirmed')">Confirmed</button>-->
-          <!--<button type="button" class="btn btn-danger" (click)="updateStatus(order, 'rejected')">Rejected</button>-->
-        <!--</div>-->
-      <!--</div>-->
+      <h3>Process</h3>
 
-      <!--<div *ngIf="order.status === 'confirmed'">-->
-        <!--<h3>Contract Setup for {{order.assignee}}</h3>-->
-        <!--<div class="btn-group" role="group" aria-label="...">-->
-          <!--<button type="button" class="btn btn-primary" *ngIf="order.assignee !== 'service'"-->
-                  <!--ngIIclipboard [cbContent]="exchangePrice">Copy Exchange Price-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-primary" *ngIf="order.assignee !== 'service'"-->
-                  <!--ngIIclipboard [cbContent]="getExchangeDescription(order)">Copy Exchange Description-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-primary" ngIIclipboard [cbContent]="order.destination"-->
-                  <!--*ngIf="order.assignee === 'service'">Copy Destination-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-primary" ngIIclipboard [cbContent]="serviceContractReward"-->
-                  <!--*ngIf="order.assignee === 'service'">Copy Reward-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-primary" ngIIclipboard [cbContent]="buyPrice"-->
-                  <!--*ngIf="order.assignee === 'service'">Copy Collateral-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-success" (click)="updateStatus(order, 'shipping')">Shipping</button>-->
-          <!--<button type="button" class="btn btn-success" (click)="shippingAndBack(order)">Shipping and Back</button>-->
-        <!--</div>-->
-      <!--</div>-->
+      <div class="row">
+        <div class="col-md-4">
+          <button type="button" class="btn btn-success" (click)="acceptOrder()">I bought the items</button>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-default" (click)="skipOrder()">I want to skip this order</button>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-warning" (click)="flagOrder()">I want to flag this order</button>
+        </div>
+      </div>
 
-      <!--<div *ngIf="order.status === 'shipping'">-->
-        <!--<h3>Contract Completion</h3>-->
-        <!--<div class="btn-group" role="group" aria-label="...">-->
-          <!--<button type="button" class="btn btn-primary"-->
-                  <!--ngIIclipboard [cbContent]="order.expectedPrice">Copy Client Price-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-primary"-->
-                  <!--ngIIclipboard [cbContent]="order.client">Copy Mail Recipient-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-primary"-->
-                  <!--ngIIclipboard [cbContent]="titleContracted">Copy Mail Title-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-primary"-->
-                  <!--ngIIclipboard [cbContent]="generateMail('contracted', order)">Copy Mail Body-->
-          <!--</button>-->
-          <!--<button type="button" class="btn btn-success" (click)="updateStatus(order, 'contracted')">Contracted</button>-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<hr/>-->
-      <!--<button type="button" class="btn btn-danger" (click)="deleteOrder(order)">Delete</button>-->
     </div>
   </div>
 </div>
