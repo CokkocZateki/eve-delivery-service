@@ -6,13 +6,14 @@ import {Order} from "../../../common/order";
 import {OrderProcessingService} from "../../../services/orderProcessing.service";
 import {PilotSelfService} from "../../../services/pilot-self.service";
 import {ManagerService} from "../../../services/manager.service";
+import {ClientComponent} from "./client/client.component";
 
 @Component({
   selector: 'order-detail',
   templateUrl: 'app/pilot/self-service/order-detail/order-detail.component.html',
   providers: [OrderProcessingService, PilotSelfService, ManagerService],
   pipes: [NumberGrouping],
-  directives: [ClipboardDirective]
+  directives: [ClipboardDirective, ClientComponent]
 })
 export class OrderDetailComponent implements OnInit {
 

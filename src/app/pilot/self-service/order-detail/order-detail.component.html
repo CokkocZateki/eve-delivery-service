@@ -10,21 +10,14 @@
 
       <div class="row">
         <div class="col-md-4">
-          <div class="input-group">
-            <span class="form-control">Client: {{order.client}}</span>
-            <span class="input-group-btn">
-            <button class="btn btn-default" type="button" ngIIclipboard [cbContent]="order.client">
-              <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
-            </button>
-          </span>
-          </div>
+          <app-client [order]="order"></app-client>
         </div>
         <div class="col-md-4">
             <span class="form-control">Destination: {{order.destination}}</span>
         </div>
         <div class="col-md-4">
           <div class="input-group">
-            <span class="form-control">Items: <a href="{{order.link}}" target="_blank">Items</a></span>
+            <span class="form-control">Items: <a href="{{order.link}}" target="_blank">Evepraisal</a></span>
             <span class="input-group-btn">
             <button class="btn btn-default" type="button" ngIIclipboard [cbContent]="listItems(order)">
               <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
@@ -38,8 +31,8 @@
 
       <h3>Pricing</h3>
       Buy Price: {{ buyPrice | numberGroups }} ISK<br/>
-      Client Price: {{ order.expectedPrice | numberGroups }} ISK<br/>
       Reward: {{ reward | numberGroups }} ISK<br/>
+      Client Price: {{ order.expectedPrice | numberGroups }} ISK<br/>
 
       <!--<div *ngIf="order.status === 'requested'">-->
         <!--<h3>Contract Request</h3>-->

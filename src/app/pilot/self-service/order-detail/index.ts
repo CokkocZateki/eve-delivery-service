@@ -1,1 +1,1 @@
-export * from './manager-detail.component';
+export * from './order-detail.component';

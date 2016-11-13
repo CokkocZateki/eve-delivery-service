@@ -69,6 +69,7 @@ const barrels:string[] = [
   'app/client/queue',
   'app/updates',
   'app/pilot/self-service',
+  'app/pilot/self-service/order-detail/client',
   /** @cli-barrel */
 ];
 
