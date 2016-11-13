@@ -71,6 +71,7 @@ const barrels:string[] = [
   'app/pilot/self-service',
   'app/pilot/self-service/order-detail/client',
   'app/pilot/self-service/order-detail/items',
+  'app/pilot/self-service/order-detail/process-bought',
   /** @cli-barrel */
 ];
 

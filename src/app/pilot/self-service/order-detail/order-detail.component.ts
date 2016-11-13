@@ -8,13 +8,14 @@ import {PilotSelfService} from "../../../services/pilot-self.service";
 import {ManagerService} from "../../../services/manager.service";
 import {ClientComponent} from "./client/client.component";
 import {ItemsComponent} from "./items/items.component";
+import {ProcessBoughtComponent} from "./process-bought/process-bought.component";
 
 @Component({
   selector: 'order-detail',
   templateUrl: 'app/pilot/self-service/order-detail/order-detail.component.html',
   providers: [OrderProcessingService, PilotSelfService, ManagerService],
   pipes: [NumberGrouping],
-  directives: [ClipboardDirective, ClientComponent, ItemsComponent]
+  directives: [ClipboardDirective, ClientComponent, ItemsComponent, ProcessBoughtComponent]
 })
 export class OrderDetailComponent implements OnInit {
 
@@ -78,10 +79,6 @@ export class OrderDetailComponent implements OnInit {
 
   getVolume(order:Order) {
     return 10000;
-  }
-
-  acceptOrder() {
-
   }
 
   skipOrder() {
