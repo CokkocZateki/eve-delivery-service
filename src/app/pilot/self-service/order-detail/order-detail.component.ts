@@ -10,13 +10,15 @@ import {ClientComponent} from "./client/client.component";
 import {ItemsComponent} from "./items/items.component";
 import {ProcessBoughtComponent} from "./process-bought/process-bought.component";
 import {ProcessSkipComponent} from "./process-skip/process-skip.component";
+import {ProcessFlagComponent} from "./process-flag/process-flag.component";
 
 @Component({
   selector: 'order-detail',
   templateUrl: 'app/pilot/self-service/order-detail/order-detail.component.html',
   providers: [OrderProcessingService, PilotSelfService, ManagerService],
   pipes: [NumberGrouping],
-  directives: [ClipboardDirective, ClientComponent, ItemsComponent, ProcessBoughtComponent, ProcessSkipComponent]
+  directives: [ClipboardDirective, ClientComponent, ItemsComponent, ProcessBoughtComponent, ProcessSkipComponent,
+  ProcessFlagComponent]
 })
 export class OrderDetailComponent implements OnInit {
 

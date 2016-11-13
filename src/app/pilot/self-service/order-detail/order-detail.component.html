@@ -25,10 +25,6 @@
         </div>
       </div>
 
-
-
-
-
       <h3>Pricing</h3>
       Buy Price: {{ buyPrice | numberGroups }} ISK<br/>
       Reward: {{ reward | numberGroups }} ISK<br/>
@@ -44,7 +40,7 @@
           <app-process-skip></app-process-skip>
         </div>
         <div class="col-md-4">
-          <button type="button" class="btn btn-warning" (click)="flagOrder()">I want to flag this order</button>
+          <app-process-flag></app-process-flag>
         </div>
       </div>
 

@@ -1,0 +1,24 @@
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-warning" (click)="flagOrder()">Flag order</button>
+  <button class="btn btn-warning" type="button" (click)="myModal.open()">
+    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+  </button>
+</div>
+
+<modal #myModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Help - Flag Order</h4>
+  </modal-header>
+  <modal-body>
+    Click this button if something is wrong with this order. This includes drastically changed prices, not available
+    items or other problems that you can't handle.
+    The order will be assigned to Rihan Shazih for further investigation. Please drop me a note on what was wrong.
+    <br/><br/>
+    If you don't understand this (that's totally fine) please contact Rihan Shazih.
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-success"
+            (click)="myModal.close()">Ok
+    </button>
+  </modal-footer>
+</modal>
