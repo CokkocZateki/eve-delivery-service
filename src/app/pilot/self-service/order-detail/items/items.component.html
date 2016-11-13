@@ -1,3 +1,28 @@
-<p>
-  items works!
-</p>
+
+<div class="input-group">
+  <span class="form-control">Items: <a href="{{order.link}}" target="_blank">Evepraisal</a></span>
+  <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ngIIclipboard [cbContent]="listItems(order)">
+              <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
+            </button>
+            <button class="btn btn-default" type="button" (click)="myModal.open()">
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+          </span>
+</div>
+
+<modal #myModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Help - Items</h4>
+  </modal-header>
+  <modal-body>
+    This box displays the evepraisal link. Click on the clipboard symbol to copy the eve-multibuy-prepared items into your clipboard.
+    <br/><br/>
+    If you don't understand this (that's totally fine) please contact Rihan Shazih.
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-success"
+            (click)="myModal.close()">Ok
+    </button>
+  </modal-footer>
+</modal>

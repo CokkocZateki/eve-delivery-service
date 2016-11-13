@@ -7,13 +7,14 @@ import {OrderProcessingService} from "../../../services/orderProcessing.service"
 import {PilotSelfService} from "../../../services/pilot-self.service";
 import {ManagerService} from "../../../services/manager.service";
 import {ClientComponent} from "./client/client.component";
+import {ItemsComponent} from "./items/items.component";
 
 @Component({
   selector: 'order-detail',
   templateUrl: 'app/pilot/self-service/order-detail/order-detail.component.html',
   providers: [OrderProcessingService, PilotSelfService, ManagerService],
   pipes: [NumberGrouping],
-  directives: [ClipboardDirective, ClientComponent]
+  directives: [ClipboardDirective, ClientComponent, ItemsComponent]
 })
 export class OrderDetailComponent implements OnInit {
 
@@ -69,17 +70,6 @@ export class OrderDetailComponent implements OnInit {
       stackPrice += item.price * item.quantity;
     }
     return stackPrice;
-  }
-
-  listItems(order: Order): string {
-    let result = "";
-    let items = order.items;
-
-    for (let i = 0; i < items.length; i++) {
-      result += items[i].name + " x" + items[i].quantity + "<br>";
-    }
-
-    return result;
   }
 
   goBack() {

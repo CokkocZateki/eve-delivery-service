@@ -16,14 +16,7 @@
             <span class="form-control">Destination: {{order.destination}}</span>
         </div>
         <div class="col-md-4">
-          <div class="input-group">
-            <span class="form-control">Items: <a href="{{order.link}}" target="_blank">Evepraisal</a></span>
-            <span class="input-group-btn">
-            <button class="btn btn-default" type="button" ngIIclipboard [cbContent]="listItems(order)">
-              <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
-            </button>
-          </span>
-          </div>
+          <app-items [order]="order"></app-items>
         </div>
       </div>
 
