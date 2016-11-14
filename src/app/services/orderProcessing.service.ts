@@ -39,8 +39,6 @@ export class OrderProcessingService {
   public getTitle(status:string) {
     if (status === 'confirmed') {
       return "Delivery Service - Confirmed";
-    } else if (status === 'rejected') {
-      return "!! Delivery Service - Rejected !!";
     } else if (status === 'contracted') {
       return "Delivery Service - Contracted"
     }
@@ -53,9 +51,6 @@ export class OrderProcessingService {
       result += "Thank you for your order (" + order.link + "). With a " + this.margin + " delivery fee " +
         "to the " + order.destination + " it will cost " + new NumberGrouping().transform(order.expectedPrice) + ".00 ISK. " +
         "Shipping will start soon!";
-    } else if (status === 'rejected') {
-      result += "We are sad to inform you that your order cannot be accepted. This is due to overly high shipping " +
-        "costs. Maybe you want to focus on importing modules and building ships locally?";
     } else if (status === 'contracted') {
       result += "Your order (" + order.link + ") has been contracted to you and costs "
         + new NumberGrouping().transform(order.expectedPrice) + ".00 ISK. Let us know when you need more!<br/><br/>" +
@@ -65,7 +60,7 @@ export class OrderProcessingService {
     }
 
     result += "<br><br>Your Horde Delivery Service";
-    result += "<br><br>Order ID: " + order.id;
+    result += "<br><br>Check the status of your order by logging in at http://hordedelivery.com";
 
     return result;
   }
