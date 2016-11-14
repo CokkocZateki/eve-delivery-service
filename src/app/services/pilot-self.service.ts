@@ -56,8 +56,17 @@ export class PilotSelfService {
   }
 
   pick(orderId:string): Promise<Order> {
-    console.log(orderId);
-    return Promise.resolve(this.ORDERS[0]);
+    return this.http.post(this.baseUrl + "pick?orderId=" + orderId, "", this.auth())
+      .toPromise()
+      .then(response => response.json() as Order)
+      .catch(this.handleError);
+  }
+
+  skip(orderId:string): Promise<void> {
+    return this.http.post(this.baseUrl + "skip?orderId=" + orderId, "", this.auth())
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

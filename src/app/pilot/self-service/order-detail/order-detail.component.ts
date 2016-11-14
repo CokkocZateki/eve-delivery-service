@@ -35,8 +35,11 @@ export class OrderDetailComponent implements OnInit {
   order: Order;
   reward: number;
 
-  process(text:string) {
-    alert(text);
+  process(action:string) {
+    console.log(action);
+    if (action === 'skipped') {
+      this.skipOrder();
+    }
   }
 
   /** FORWARDER **/
@@ -89,8 +92,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   skipOrder() {
-
-    this.goBack();
+    this.selfService.skip(this.order.id).then(() => this.goBack());
   }
 
   flagOrder() {

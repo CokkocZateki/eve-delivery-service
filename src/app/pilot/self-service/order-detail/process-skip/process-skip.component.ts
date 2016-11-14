@@ -14,12 +14,15 @@ export class ProcessSkipComponent implements OnInit {
 
   @Output() skip: EventEmitter<string> = new EventEmitter<string>();
 
+  buttonTitle = "Skip order";
+
   constructor() { }
 
   ngOnInit() {
   }
 
   skipOrder() {
+    this.buttonTitle += " ...";
     this.skip.emit(null);
   }
 

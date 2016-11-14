@@ -33,7 +33,7 @@ export class SelfServiceComponent implements OnInit {
       let item = order.items[i];
       totalVolume += item.quantity * item.volume;
     }
-    return totalVolume;
+    return parseInt("" + totalVolume);
   }
 
   pick(orderId: string) {
