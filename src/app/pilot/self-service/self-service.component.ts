@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Order} from "../../common/order";
 import {PilotSelfService} from "../../services/pilot-self.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
@@ -14,9 +14,10 @@ import {Router} from "@angular/router";
 })
 export class SelfServiceComponent implements OnInit {
 
-  private orders:Array<Order>;
+  private orders: Array<Order>;
 
-  constructor(private pilotSelfService:PilotSelfService, private router:Router) { }
+  constructor(private pilotSelfService: PilotSelfService, private router: Router) {
+  }
 
   ngOnInit() {
     this.pilotSelfService.getRequestedOrders().then(orders => this.orders = orders);
@@ -24,11 +25,16 @@ export class SelfServiceComponent implements OnInit {
     // this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
 
-  getVolume(order:Order) {
-    return 10000;
+  getVolume(order: Order) {
+    let totalVolume = 0.0;
+    for (var i = 0; i < order.items.length; i++) {
+      let item = order.items[i];
+      totalVolume += item.quantity * item.volume;
+    }
+    return totalVolume;
   }
 
-  pick(orderId:string) {
+  pick(orderId: string) {
     let link = ['/pilot', orderId];
     this.router.navigate(link);
   }

@@ -35,7 +35,7 @@ export class PilotSelfService {
     }
   ];
 
-  private baseUrl = environment.ipV2 + "secured/pilot/";
+  private baseUrl = environment.ipV2 + "secured/pilot/selfservice/";
 
   constructor(private http: Http) {
   }
@@ -49,12 +49,19 @@ export class PilotSelfService {
   }
 
   getRequestedOrders(): Promise<Order[]> {
-    return Promise.resolve(this.ORDERS);
-    // return null;
+    return this.http.get(this.baseUrl + "list/requested", this.auth())
+      .toPromise()
+      .then(response => response.json() as Order[])
+      .catch(this.handleError);
   }
 
   pick(orderId:string): Promise<Order> {
     console.log(orderId);
     return Promise.resolve(this.ORDERS[0]);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 }
