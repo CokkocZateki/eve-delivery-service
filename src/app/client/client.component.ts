@@ -27,7 +27,7 @@ export class ClientComponent implements OnInit {
         this.clientName = this.currentUser.name;
       },
       // TODO: better error message
-      err => alert(err)
+      err => console.log(err)
     );
   }
 
