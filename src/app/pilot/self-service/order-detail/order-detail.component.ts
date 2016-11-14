@@ -41,6 +41,8 @@ export class OrderDetailComponent implements OnInit {
       this.orderSkipped();
     } else if (action === 'bought') {
       this.orderBought();
+    } else if (action === 'flagged') {
+      this.orderFlagged();
     }
   }
 
@@ -101,7 +103,8 @@ export class OrderDetailComponent implements OnInit {
     this.selfService.bought(this.order.id).then(() => this.goBack());
   }
 
-  flagOrder() {
-
+  orderFlagged() {
+    let reason = "n/a";
+    this.selfService.flag(this.order.id, reason).then(() => this.goBack());
   }
 }

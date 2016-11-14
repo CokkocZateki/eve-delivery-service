@@ -14,12 +14,15 @@ export class ProcessFlagComponent implements OnInit {
 
   @Output() flag: EventEmitter<string> = new EventEmitter<string>();
 
+  buttonTitle = "Flag order";
+
   constructor() { }
 
   ngOnInit() {
   }
 
   flagOrder() {
+    this.buttonTitle += " ...";
     this.flag.emit(null);
   }
 }
