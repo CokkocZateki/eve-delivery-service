@@ -38,7 +38,9 @@ export class OrderDetailComponent implements OnInit {
   process(action:string) {
     console.log(action);
     if (action === 'skipped') {
-      this.skipOrder();
+      this.orderSkipped();
+    } else if (action === 'bought') {
+      this.orderBought();
     }
   }
 
@@ -91,8 +93,12 @@ export class OrderDetailComponent implements OnInit {
     return 10000;
   }
 
-  skipOrder() {
+  orderSkipped() {
     this.selfService.skip(this.order.id).then(() => this.goBack());
+  }
+
+  orderBought() {
+    this.selfService.bought(this.order.id).then(() => this.goBack());
   }
 
   flagOrder() {

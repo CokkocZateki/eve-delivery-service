@@ -69,6 +69,13 @@ export class PilotSelfService {
       .catch(this.handleError);
   }
 
+  bought(orderId:string): Promise<void> {
+    return this.http.post(this.baseUrl + "bought?orderId=" + orderId, "", this.auth())
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

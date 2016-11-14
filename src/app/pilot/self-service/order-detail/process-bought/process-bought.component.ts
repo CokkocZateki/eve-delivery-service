@@ -14,12 +14,15 @@ export class ProcessBoughtComponent implements OnInit {
 
   @Output() bought: EventEmitter<string> = new EventEmitter<string>();
 
+  buttonTitle = "Items bought";
+
   constructor() { }
 
   ngOnInit() {
   }
 
   acceptOrder() {
+    this.buttonTitle += " ...";
     this.bought.emit(null);
   }
 
