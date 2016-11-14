@@ -3,6 +3,7 @@ import {Order} from "../../common/order";
 import {PilotSelfService} from "../../services/pilot-self.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {Router} from "@angular/router";
+import {PickComponent} from "./pick/pick.component";
 
 @Component({
   moduleId: module.id,
@@ -10,6 +11,7 @@ import {Router} from "@angular/router";
   templateUrl: 'self-service.component.html',
   styleUrls: ['self-service.component.css'],
   providers: [PilotSelfService],
+  directives: [PickComponent],
   pipes: [NumberGrouping]
 })
 export class SelfServiceComponent implements OnInit {

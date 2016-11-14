@@ -37,7 +37,7 @@
         {{ getVolume(order) | numberGroups }} m3
       </td>
       <td>
-        <button type="button" class="btn btn-primary" (click)="pick(order.id)">Pick</button>
+        <app-pick (pick)="pick(order.id)"></app-pick>
       </td>
     </tr>
 
