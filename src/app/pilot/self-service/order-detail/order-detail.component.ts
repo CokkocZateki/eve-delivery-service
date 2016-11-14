@@ -35,6 +35,10 @@ export class OrderDetailComponent implements OnInit {
   order: Order;
   reward: number;
 
+  process(text:string) {
+    alert(text);
+  }
+
   /** FORWARDER **/
 
   getRecipient(order: Order) {
