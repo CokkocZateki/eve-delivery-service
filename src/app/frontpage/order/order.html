@@ -1,28 +1,22 @@
 <div class="content-box roundedCorners">
 
-  <h1>Horde Delivery Service</h1>
-  <h3>Submit Order</h3>
+  <h1>Horde Delivery <br/><small>The most convenient way to get everything you need</small></h1>
+
+  <h3>Welcome</h3>
 
   <p>
-    <b>We rapidly buy and ship safely for you</b>. No Jita alt needed!
-    <br/>Payment is due upon accepting the contract at the destination, don't pay in advance!
-  </p>
-
-  <p>
+    Check out this <a href="http://imgur.com/a/yqzdy" target="_blank">infographic</a> on how to use this service.
     If you have any <b>questions or feedback</b>, feel free to contact Rihan Shazih ingame or on the
     <a href="https://www.pandemic-legion.pl/forums/index.php?/topic/3184-horde-delivery-service/">forums</a>.
   </p>
 
-  <div>
-    <b>Anti Market Fuckery</b>
-    <br/>
+    <h3>Anti Market Fuckery</h3>
     If items are overpriced or not seeded, report them at <b><a href="http://hordedelivery.com/market">http://hordedelivery.com/market</a></b>.
     <br/>
     This will let seeders know which items you need.
     <i>The market page is open to use for everyone, consumers and seeders.</i>
-  </div>
 
-  <br/>
+  <h3>Submit Order</h3>
 
   <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
     <fieldset class="form-group">
@@ -42,7 +36,8 @@
     <fieldset class="form-group">
       <label for="multiplierInput">Multiplier</label>
       <input id="multiplierInput" type="number" class="form-control" placeholder="Multiplier" [(ngModel)]="multiplier"
-             name="multiplierInput" #multiplierInput="ngModel" min="1" step="1" required (ngModelChange)="multiplierChanged($event)">
+             name="multiplierInput" #multiplierInput="ngModel" min="1" step="1" required
+             (ngModelChange)="multiplierChanged($event)">
       <small>This will multiply the item count by the value you define. The evepraisal link will not be updated.</small>
     </fieldset>
 
@@ -101,7 +96,7 @@
     <!--<br/>-->
     <!--<br/>-->
     <!--<div class="alert alert-info">-->
-      <!--Win sweet ships with Horde Delivery Raffles: <a href="http://hordedelivery.com/raffle"><b>Check it out!</b></a>-->
+    <!--Win sweet ships with Horde Delivery Raffles: <a href="http://hordedelivery.com/raffle"><b>Check it out!</b></a>-->
     <!--</div>-->
   </div>
 </div>
