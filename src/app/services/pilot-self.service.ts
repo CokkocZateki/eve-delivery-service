@@ -77,7 +77,7 @@ export class PilotSelfService {
   }
 
   flag(orderId:string, reason:string): Promise<void> {
-    return this.http.post(this.baseUrl + "bought?orderId=" + orderId + "&reason=" + reason, "", this.auth())
+    return this.http.post(this.baseUrl + "flag?orderId=" + orderId + "&reason=" + reason, "", this.auth())
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
