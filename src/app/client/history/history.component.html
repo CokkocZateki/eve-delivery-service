@@ -1,0 +1,19 @@
+<div class="content-box roundedCorners">
+  <h1>Your recent Orders</h1>
+
+  <table class="table">
+    <tr>
+      <th>Date</th>
+      <th>Price</th>
+      <th>Items</th>
+      <th>Reorder</th>
+    </tr>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.createdDate }}</td>
+      <td>{{ order.expectedPrice }}</td>
+      <td>{{ order.link }}</td>
+      <td>REORDER</td>
+    </tr>
+  </table>
+
+</div>
