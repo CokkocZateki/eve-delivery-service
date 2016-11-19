@@ -8,6 +8,7 @@ export class Order {
     public status?: string,
     public items?: any,
     public assignee?: string,
-    public created?: any
+    public created?: any,
+    public age?: number
   ) {  }
 }
