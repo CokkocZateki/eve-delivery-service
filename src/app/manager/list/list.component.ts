@@ -53,7 +53,6 @@ export class ListComponent implements OnInit {
     this.service.list().subscribe(
       data => {
         this.orders = data.json();
-        console.log(JSON.stringify(data.json()));
       },
       err => {
         console.log(err);
