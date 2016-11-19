@@ -18,6 +18,7 @@
       <th>Client price</th>
       <th>Items</th>
       <th>Volume</th>
+      <th>Age</th>
       <th>Pick</th>
     </tr>
     <tr *ngFor="let order of orders">
@@ -35,6 +36,9 @@
       </td>
       <td>
         {{ getVolume(order) | numberGroups }} m3
+      </td>
+      <td>
+        {{ order.age }} h
       </td>
       <td>
         <app-pick (pick)="pick(order.id)"></app-pick>
