@@ -1,5 +1,5 @@
-import {Component, OnInit} from "@angular/core";
-import {Params, ActivatedRoute} from "@angular/router";
+import {Component, OnInit, HostListener} from "@angular/core";
+import {Params, ActivatedRoute, Router} from "@angular/router";
 import {ClipboardDirective} from "angular2-clipboard";
 import {NumberGrouping} from "../../../common/numberGrouping.pipe";
 import {Order} from "../../../common/order";
@@ -29,7 +29,7 @@ export class OrderDetailComponent implements OnInit {
   private MARGIN = 0.13;
 
   constructor(private route: ActivatedRoute, private orderProcessing: OrderProcessingService,
-              private selfService: PilotSelfService) {
+              private selfService: PilotSelfService, private router: Router) {
   }
 
   order: Order;
@@ -88,23 +88,30 @@ export class OrderDetailComponent implements OnInit {
   }
 
   goBack() {
-    window.history.back();
-  }
-
-  getVolume(order:Order) {
-    return 10000;
+    this.router.navigate(['/pilot']);
   }
 
   orderSkipped() {
+    this.isUntouched = false;
     this.selfService.skip(this.order.id).then(() => this.goBack());
   }
 
   orderBought() {
+    this.isUntouched = false;
     this.selfService.bought(this.order.id).then(() => this.goBack());
   }
 
   orderFlagged() {
+    this.isUntouched = false;
     let reason = "n/a";
     this.selfService.flag(this.order.id, reason).then(() => this.goBack());
+  }
+
+  isUntouched:boolean = true;
+
+  ngOnDestroy() {
+    if (this.isUntouched) {
+      this.orderSkipped();
+    }
   }
 }
