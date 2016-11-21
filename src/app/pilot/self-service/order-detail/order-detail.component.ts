@@ -114,4 +114,13 @@ export class OrderDetailComponent implements OnInit {
       this.orderSkipped();
     }
   }
+
+  getVolume(order: Order) {
+    let totalVolume = 0.0;
+    for (var i = 0; i < order.items.length; i++) {
+      let item = order.items[i];
+      totalVolume += item.quantity * item.volume;
+    }
+    return parseInt("" + totalVolume);
+  }
 }
