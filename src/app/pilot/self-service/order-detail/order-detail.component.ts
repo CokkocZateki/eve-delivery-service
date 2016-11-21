@@ -11,6 +11,7 @@ import {ItemsComponent} from "./items/items.component";
 import {ProcessBoughtComponent} from "./process-bought/process-bought.component";
 import {ProcessSkipComponent} from "./process-skip/process-skip.component";
 import {ProcessFlagComponent} from "./process-flag/process-flag.component";
+import {ProcessReservedComponent} from "./process-reserved/process-reserved.component";
 
 @Component({
   selector: 'order-detail',
@@ -18,7 +19,7 @@ import {ProcessFlagComponent} from "./process-flag/process-flag.component";
   providers: [OrderProcessingService, PilotSelfService, ManagerService],
   pipes: [NumberGrouping],
   directives: [ClipboardDirective, ClientComponent, ItemsComponent, ProcessBoughtComponent, ProcessSkipComponent,
-  ProcessFlagComponent]
+  ProcessFlagComponent, ProcessReservedComponent]
 })
 export class OrderDetailComponent implements OnInit {
 
@@ -43,6 +44,8 @@ export class OrderDetailComponent implements OnInit {
       this.orderBought();
     } else if (action === 'flagged') {
       this.orderFlagged();
+    } else if (action === 'reserved') {
+      this.orderReserved();
     }
   }
 
@@ -89,6 +92,11 @@ export class OrderDetailComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/pilot']);
+  }
+
+  orderReserved() {
+    this.isUntouched = false;
+    this.goBack();
   }
 
   orderSkipped() {

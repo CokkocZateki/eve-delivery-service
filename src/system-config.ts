@@ -76,6 +76,7 @@ const barrels:string[] = [
   'app/pilot/self-service/order-detail/process-flag',
   'app/pilot/self-service/pick',
   'app/client/history',
+  'app/pilot/self-service/order-detail/process-reserved',
   /** @cli-barrel */
 ];
 

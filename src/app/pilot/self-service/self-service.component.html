@@ -41,7 +41,7 @@
         {{ order.age }} h
       </td>
       <td>
-        <app-pick (pick)="pick(order.id)"></app-pick>
+        <app-pick (pick)="pick(order.id)" [isReserved]="order.assignee != null"></app-pick>
       </td>
     </tr>
 
