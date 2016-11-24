@@ -84,12 +84,20 @@ export class ShipmentComponent implements OnInit {
     return this.orderProcessing.generateMail(status, order);
   }
 
-  onStatusChange(orderId:string, status:string) {
-    this.orders = this.onStatusChangeB(orderId, status, this.orders);
+  contracted(orderId:string) {
     for (var i = 0; i < this.orders.length; i++) {
       if (orderId === this.orders[i].id) {
         this.orders[i].status = 'contracted';
       }
+    }
+    this.orders = this.onStatusChangeB(orderId, 'contracted', this.orders);
+  }
+
+  confirmed(event:any) {
+    if (event === 'all') {
+      this.contractedAll();
+    } else {
+      this.contracted(event);
     }
   }
 

@@ -16,7 +16,8 @@
         </button>
       </div>
       <div class="col-md-2">
-        <confirm-dialog *ngIf="!isContractedAll && !isContractingAll" (contractedAll)="contractedAll()"></confirm-dialog>
+        <confirm-dialog *ngIf="!isContractedAll && !isContractingAll" (contracted)="confirmed($event)"
+                        [orderId]="'all'" [buttonTitle]="'Contracted All'"></confirm-dialog>
         <span *ngIf="isContractingAll && !isContractedAll">Submitting ...</span>
         <span *ngIf="isContractedAll">Complete.</span>
       </div>
@@ -30,6 +31,7 @@
         <th>Destination</th>
         <th>Items</th>
         <th>Price</th>
+        <th></th>
       </tr>
       <tr *ngFor="let order of orders">
         <td>
@@ -53,6 +55,11 @@
             </button>
           </span>
           </div>
+        </td>
+        <td>
+          <confirm-dialog *ngIf="order.status !== 'contracted'" (contracted)="confirmed($event)"
+                          [orderId]="order.id" [buttonTitle]="'Contracted'"></confirm-dialog>
+          <span *ngIf="order.status === 'contracted'">Complete</span>
         </td>
       </tr>
     </table>

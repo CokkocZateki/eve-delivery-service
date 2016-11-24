@@ -1,4 +1,4 @@
-import {Component, Output, OnInit} from "@angular/core";
+import {Component, Output, OnInit, Input} from "@angular/core";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
 import {ClipboardDirective} from "angular2-clipboard";
 import {EventEmitter} from "@angular/platform-browser-dynamic/src/facade/async";
@@ -12,7 +12,10 @@ import {Router} from "@angular/router";
 })
 export class ConfirmDialogComponent implements OnInit {
 
-  @Output() contractedAll = new EventEmitter();
+  @Output() contracted: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input() orderId:string;
+  @Input() buttonTitle:string;
 
   constructor(private auth:SsoAuth, private router:Router) {
   }
@@ -22,12 +25,13 @@ export class ConfirmDialogComponent implements OnInit {
       data => { },
       err => this.router.navigate(['/unauthorized'])
     );
+
   }
 
   onConfirm(myModal:any) {
     // confirm all
-    this.contractedAll.emit(null);
     myModal.close();
+    this.contracted.emit(this.orderId);
   }
 
 }
