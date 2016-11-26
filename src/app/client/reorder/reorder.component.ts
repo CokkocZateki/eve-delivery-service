@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {Router} from "@angular/router";
 import {ReorderService} from "../../services/reorder.service";
 
@@ -17,6 +17,8 @@ export class ReorderComponent implements OnInit {
   private doctrines: any;
   private own: any;
 
+  @Input() client:string;
+
   ngOnInit() {
     this.service.doctrine().subscribe(
       data => {
@@ -32,7 +34,7 @@ export class ReorderComponent implements OnInit {
     );
   }
 
-  order(id: string) {
-    this.router.navigate(['/frontpage', "Test", "7RM Beanstar", "4878458"]);
+  order(reorder:any) {
+    this.router.navigate(['/frontpage', this.client, reorder.destination, reorder.link]);
   }
 }

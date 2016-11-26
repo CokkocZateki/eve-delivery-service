@@ -1,17 +1,20 @@
 <div class="content-box roundedCorners">
-  <h1>Reorder</h1>
-  <p>In this section you find doctrine ships that you can order. Clicking the order button will prefill the order
+  <h1>Order Templates</h1>
+  <p>In this section you find prepared ships for you to order. Clicking the order button will prefill the order
     form you are used to.</p>
 
-  <table>
+  <h3>Doctrine</h3>
+
+  <table class="table">
     <tr>
       <th>Name</th>
       <th></th>
     </tr>
-    <tr>
-      <td>Svipul T1 Arty</td>
+    <tr *ngFor="let doctrine of doctrines">
+      <td>{{ doctrine.title }}</td>
+      <td><a href="http://evepraisal.com/e/{{ doctrine.link }}" target="_blank">Open Evepraisal</a></td>
       <td>
-        <button class="btn btn-default" (click)="order('1')">Order</button>
+        <button class="btn btn-default" (click)="order(doctrine)">Order</button>
       </td>
     </tr>
   </table>
