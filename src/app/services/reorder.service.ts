@@ -5,7 +5,7 @@ import {environment} from "../environment";
 @Injectable()
 export class ReorderService {
 
-  private baseUrl = environment.ipV2 + "secured/client/reorder";
+  private baseUrl = environment.ipV2 + "secured/client/reorder/";
 
   constructor(private http:Http) { }
 

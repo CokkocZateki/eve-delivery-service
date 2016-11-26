@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ReorderService} from "../../services/reorder.service";
 
@@ -6,18 +6,23 @@ import {ReorderService} from "../../services/reorder.service";
   moduleId: module.id,
   selector: 'app-reorder',
   templateUrl: 'reorder.component.html',
-  styleUrls: ['reorder.component.css']
+  styleUrls: ['reorder.component.css'],
+  providers: [ReorderService]
 })
 export class ReorderComponent implements OnInit {
 
-  constructor(private router:Router, private service:ReorderService) { }
+  constructor(private router: Router, private service: ReorderService) {
+  }
 
-  private doctrines:any;
-  private own:any;
+  private doctrines: any;
+  private own: any;
 
   ngOnInit() {
     this.service.doctrine().subscribe(
-      data => this.doctrines = data.json(),
+      data => {
+        this.doctrines = data.json();
+        console.log(this.doctrines);
+      },
       err => console.log(err)
     );
 
@@ -27,7 +32,7 @@ export class ReorderComponent implements OnInit {
     );
   }
 
-  order(id:string) {
+  order(id: string) {
     this.router.navigate(['/frontpage', "Test", "7RM Beanstar", "4878458"]);
   }
 }
