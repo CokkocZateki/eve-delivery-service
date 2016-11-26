@@ -26,9 +26,11 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.model.client = this.prefillName;
-    this.model.destination = this.prefillDestination;
-    this.model.link = "http://www.evepraisal.com/e/" + this.prefillLink;
+    if (this.prefillName && this.prefillDestination && this.prefillLink) {
+      this.model.client = this.prefillName;
+      this.model.destination = this.prefillDestination;
+      this.model.link = "http://www.evepraisal.com/e/" + this.prefillLink;
+    }
   }
 
   // public model = new Order("Test", "http://evepraisal.com/e/11856686", null, "7RM Beanstar", null);
