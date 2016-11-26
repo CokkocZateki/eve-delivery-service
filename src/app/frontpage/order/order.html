@@ -1,3 +1,59 @@
+<style>
+  .glyphicon.normal-right-spinner {
+    -webkit-animation: glyphicon-spin-r 2s infinite linear;
+    animation: glyphicon-spin-r 2s infinite linear;
+  }
+
+  @-webkit-keyframes glyphicon-spin-r {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+  }
+
+  @keyframes glyphicon-spin-r {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+  }
+
+  @-webkit-keyframes glyphicon-spin-l {
+    0% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes glyphicon-spin-l {
+    0% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+
+    100% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+  }
+
+</style>
+
 <div class="content-box roundedCorners">
 
   <h1>Horde Delivery <br/><small>The most convenient way to get everything you need</small></h1>
@@ -38,7 +94,7 @@
       <input id="multiplierInput" type="number" class="form-control" placeholder="Multiplier" [(ngModel)]="multiplier"
              name="multiplierInput" #multiplierInput="ngModel" min="1" step="1" required
              (ngModelChange)="multiplierChanged($event)">
-      <small>This will multiply the item count by the value you define. The evepraisal link will not be updated.</small>
+      <small>This will multiply the item count by the value you define.</small>
     </fieldset>
 
     <fieldset class="form-group">
@@ -50,11 +106,14 @@
                required pattern="http[s]?:\/\/(www\.)?evepraisal\.com\/e\/[0-9]+">
         <span class="input-group-btn">
         <button id="submitLink" class="btn btn-default" type="button"
-                (click)="askQuote(model.link)" [disabled]="!linkInput.valid || linkInput.pristine">Get Quote!</button>
+                (click)="askQuote(model.link)" [disabled]="!linkInput.valid || linkInput.pristine">
+          <span *ngIf="isPriceCalculationRunning" class="glyphicon glyphicon-cog normal-right-spinner"> </span>
+          Get Quote!</button>
         </span>
       </div>
       <small>Paste your items at <a href="http://evepraisal.com" target="_blank">evepraisal.com</a>,
-        submit and copy the url into this field.
+        submit and copy the url into this field. See <a href="http://imgur.com/a/yqzdy" target="_blank">this infographic </a>
+        on how to use evepraisal.
       </small>
     </fieldset>
     <div *ngIf="isPriceCalculationRunning">
@@ -80,6 +139,7 @@
 
     <button id="submitOrder" type="submit" class="btn btn-primary"
             [disabled]="(!isPriceCalculated || !client)">
+      <span *ngIf="isSubmitting" class="glyphicon glyphicon-cog normal-right-spinner"> </span>
       Submit
     </button>
   </form>

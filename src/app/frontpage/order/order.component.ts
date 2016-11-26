@@ -27,6 +27,7 @@ export class OrderComponent {
   public isPriceCalculationRunning: boolean = false;
 
   public submitted: boolean = false;
+  public isSubmitting: boolean = false;
   public orderId: string;
   public multiplier: number = 1;
 
@@ -36,6 +37,8 @@ export class OrderComponent {
 
   public onSubmit() {
 
+    this.isSubmitting = true;
+
     this.model.expectedPrice = this.expectedPrice;
 
     this.orderService.create(this.model, this.multiplier).subscribe(
@@ -44,6 +47,7 @@ export class OrderComponent {
         let body = data.json();
         // if everything is ok
         this.submitted = true;
+        this.isSubmitting = false;
         this.orderId = body.id;
       },
       err => {
