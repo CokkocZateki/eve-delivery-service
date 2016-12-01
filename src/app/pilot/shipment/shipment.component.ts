@@ -23,6 +23,8 @@ export class ShipmentComponent implements OnInit {
   isContractedAll:boolean = false;
   isContractingAll:boolean = false;
 
+  activatedOrder:string;
+
   mailTitle:string = "Horde Delivery - Contracted";
   mailBody:string = "Hi!<br/><br/>" +
     "Your order has been contracted to you. Let us know when you need more!<br/><br/>" +
@@ -43,6 +45,18 @@ export class ShipmentComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  setActivated(orderId:string) {
+    this.activatedOrder = orderId;
+  }
+
+  getStyle(orderId:string) {
+    if(this.activatedOrder === orderId){
+      return "#BDB76B";
+    } else {
+      return "";
+    }
   }
 
   setAllClients() {

@@ -33,7 +33,7 @@
         <th>Price</th>
         <th></th>
       </tr>
-      <tr *ngFor="let order of orders">
+      <tr *ngFor="let order of orders" [style.background-color]="getStyle(order.id)" (click)="setActivated(order.id)">
         <td>
           <div class="input-group">
             <span class="form-control">{{ order.client }}</span>
