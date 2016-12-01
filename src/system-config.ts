@@ -78,6 +78,7 @@ const barrels:string[] = [
   'app/client/history',
   'app/pilot/self-service/order-detail/process-reserved',
   'app/navbar',
+  'app/client/reorder',
   /** @cli-barrel */
 ];
 
