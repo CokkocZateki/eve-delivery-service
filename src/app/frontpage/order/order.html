@@ -106,7 +106,7 @@
                required pattern="http[s]?:\/\/(www\.)?evepraisal\.com\/e\/[0-9]+">
         <span class="input-group-btn">
         <button id="submitLink" class="btn btn-default" type="button"
-                (click)="askQuote(model.link)" [disabled]="!linkInput.valid || linkInput.pristine">
+                (click)="askQuote(model.link)" [disabled]="!linkInput.valid">
           <span *ngIf="isPriceCalculationRunning" class="glyphicon glyphicon-cog normal-right-spinner"> </span>
           Get Quote!</button>
         </span>

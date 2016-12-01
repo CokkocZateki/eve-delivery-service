@@ -33,5 +33,6 @@
 
 <div *ngIf="auth.authenticated() && currentUser" class="content">
   <app-queue></app-queue>
+  <app-reorder [client]="clientName"></app-reorder>
   <app-history></app-history>
 </div>

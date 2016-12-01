@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {OrderService} from "../../services/order.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {Order} from "../../common/order";
@@ -13,14 +13,27 @@ import {Router} from "@angular/router";
   directives: [DestinationComponent, ClipboardDirective],
   pipes: [NumberGrouping]
 })
-export class OrderComponent {
+export class OrderComponent implements OnInit {
   private expectedPrice: number;
   private isPriceCalculationFailed = false;
+
+  @Input() prefillName: string;
+  @Input() prefillDestination: string;
+  @Input() prefillLink: string;
 
   public constructor(private orderService: OrderService, private router: Router) {
 
   }
 
+  ngOnInit() {
+    if (this.prefillName && this.prefillDestination && this.prefillLink) {
+      this.model.client = this.prefillName;
+      this.model.destination = this.prefillDestination;
+      this.model.link = "http://www.evepraisal.com/e/" + this.prefillLink;
+    }
+  }
+
+  // public model = new Order("Test", "http://evepraisal.com/e/11856686", null, "7RM Beanstar", null);
   public model = new Order(null, null, null, "7RM Beanstar", null);
 
   public isPriceCalculated: boolean = false;

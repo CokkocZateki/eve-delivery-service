@@ -3,6 +3,7 @@ import {SsoAuth} from "../services/ssoauth.service";
 import {ClientService} from "../services/client.service";
 import {QueueComponent} from "./queue/queue.component";
 import {Router} from "@angular/router";
+import {ReorderComponent} from "./reorder/reorder.component";
 
 @Component({
   moduleId: module.id,
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
   templateUrl: 'client.component.html',
   styleUrls: ['client.component.css'],
   providers: [SsoAuth, ClientService],
-  directives: [QueueComponent]
+  directives: [QueueComponent, ReorderComponent]
 })
 export class ClientComponent implements OnInit {
 
@@ -34,5 +35,7 @@ export class ClientComponent implements OnInit {
   goToFrontpage() {
     this.router.navigate(['/'])
   }
+
+
 
 }
