@@ -58,6 +58,7 @@ export class SsoAuth {
     // Remove token from localStorage
     localStorage.removeItem('horde-delivery-session');
     localStorage.removeItem("horde-delivery-character");
+    this.isAuthenticated = false;
 
     // todo: delete session in backend
 

@@ -3,6 +3,7 @@ import {SsoAuth} from "../services/ssoauth.service";
 import {ClientService} from "../services/client.service";
 import {QueueComponent} from "./queue/queue.component";
 import {Router} from "@angular/router";
+import {NavbarComponent} from "../navbar/navbar.component";
 import {ReorderComponent} from "./reorder/reorder.component";
 
 @Component({
@@ -11,7 +12,7 @@ import {ReorderComponent} from "./reorder/reorder.component";
   templateUrl: 'client.component.html',
   styleUrls: ['client.component.css'],
   providers: [SsoAuth, ClientService],
-  directives: [QueueComponent, ReorderComponent]
+  directives: [QueueComponent, NavbarComponent, ReorderComponent]
 })
 export class ClientComponent implements OnInit {
 
