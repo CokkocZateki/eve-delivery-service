@@ -5,41 +5,47 @@
 
   <div *ngIf="orders && orders.length > 0">
 
-  <table class="table">
-    <tr>
-      <th>Client</th>
-      <th>Destination</th>
-      <th>Client price</th>
-      <th>Items</th>
-      <th>Volume</th>
-      <th>Age</th>
-      <th>Pick</th>
-    </tr>
-    <tr *ngFor="let order of orders">
-      <td>
-        {{ order.client }}
-      </td>
-      <td>
-        {{ order.destination }}
-      </td>
-      <td>
-        {{ order.expectedPrice | numberGroups }} ISK
-      </td>
-      <td>
-        <a href="{{ order.link }}" target="_blank">Evepraisal</a>
-      </td>
-      <td>
-        {{ getVolume(order) | numberGroups }} m3
-      </td>
-      <td>
-        {{ order.age }} h
-      </td>
-      <td>
-        <app-pick (pick)="pick(order.id)" [isReserved]="order.assignee != null"></app-pick>
-      </td>
-    </tr>
+    <p>
+      Orders: {{ orders.length }}<br/>
+      Value: {{ requestedValue | numberGroups }} ISK<br/>
+      Volume: {{ requestedVolume | numberGroups }} m3
+    </p>
 
-  </table>
+    <table class="table">
+      <tr>
+        <th>Client</th>
+        <th>Destination</th>
+        <th>Client price</th>
+        <th>Items</th>
+        <th>Volume</th>
+        <th>Age</th>
+        <th>Pick</th>
+      </tr>
+      <tr *ngFor="let order of orders">
+        <td>
+          {{ order.client }}
+        </td>
+        <td>
+          {{ order.destination }}
+        </td>
+        <td>
+          {{ order.expectedPrice | numberGroups }} ISK
+        </td>
+        <td>
+          <a href="{{ order.link }}" target="_blank">Evepraisal</a>
+        </td>
+        <td>
+          {{ getVolume(order) | numberGroups }} m3
+        </td>
+        <td>
+          {{ order.age }} h
+        </td>
+        <td>
+          <app-pick (pick)="pick(order.id)" [isReserved]="order.assignee != null"></app-pick>
+        </td>
+      </tr>
+
+    </table>
 
   </div>
   <div *ngIf="orders && orders.length == 0" class="alert alert-warning">No orders waiting.</div>

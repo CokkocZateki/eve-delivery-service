@@ -4,27 +4,31 @@ import {PilotSelfService} from "../../services/pilot-self.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {Router} from "@angular/router";
 import {PickComponent} from "./pick/pick.component";
+import {SecuredStatsService} from "../../services/secured-stats.service";
 
 @Component({
   moduleId: module.id,
   selector: 'app-self-service',
   templateUrl: 'self-service.component.html',
   styleUrls: ['self-service.component.css'],
-  providers: [PilotSelfService],
+  providers: [PilotSelfService, SecuredStatsService],
   directives: [PickComponent],
   pipes: [NumberGrouping]
 })
 export class SelfServiceComponent implements OnInit {
 
   private orders: Array<Order>;
+  private requestedValue: number;
+  private requestedVolume: number;
 
-  constructor(private pilotSelfService: PilotSelfService, private router: Router) {
+  constructor(private pilotSelfService: PilotSelfService, private statsService:SecuredStatsService, private router: Router) {
   }
 
   ngOnInit() {
     this.pilotSelfService.getRequestedOrders().then(orders => this.orders = orders);
 
-    // this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    this.statsService.getValueRequested().then(value => this.requestedValue = value);
+    this.statsService.getVolumeRequested().then(volume => this.requestedVolume = volume);
   }
 
   getVolume(order: Order) {
