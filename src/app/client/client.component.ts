@@ -3,6 +3,7 @@ import {SsoAuth} from "../services/ssoauth.service";
 import {ClientService} from "../services/client.service";
 import {QueueComponent} from "./queue/queue.component";
 import {Router} from "@angular/router";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   moduleId: module.id,
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
   templateUrl: 'client.component.html',
   styleUrls: ['client.component.css'],
   providers: [SsoAuth, ClientService],
-  directives: [QueueComponent]
+  directives: [QueueComponent, NavbarComponent]
 })
 export class ClientComponent implements OnInit {
 

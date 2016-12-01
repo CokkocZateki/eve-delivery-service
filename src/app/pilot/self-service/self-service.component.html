@@ -3,6 +3,8 @@
 
   <h1>Order Queue</h1>
 
+  <div *ngIf="orders && orders.length > 0">
+
   <table class="table">
     <tr>
       <th>Client</th>
@@ -38,5 +40,9 @@
     </tr>
 
   </table>
+
+  </div>
+  <div *ngIf="orders && orders.length == 0" class="alert alert-warning">No orders waiting.</div>
+  <div *ngIf="!orders" class="alert alert-info">Loading ...</div>
 
 </div>

@@ -1,0 +1,30 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span *ngIf="auth.authenticated() && !currentPilot" class="navbar-brand">Loading ...</span>
+      <span *ngIf="auth.authenticated() && currentPilot" class="navbar-brand">Hello {{ name }}!</span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+      <ul *ngIf="auth.authenticated() && currentPilot" class="nav navbar-nav">
+        <li><a routerLink="/">Order</a></li>
+        <li><a routerLink="/client">Client</a></li>
+        <li *ngIf="isPilot()"><a routerLink="/pilot">Pilot</a></li>
+        <!-- class="active" -->
+        <!-- <span class="sr-only">(current)</span> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <p *ngIf="auth.authenticated()" class="navbar-btn" style="padding-right: 10px">
+            <button class="btn btn-default" (click)="auth.logout()">Log Out</button>
+          </p>
+          <a *ngIf="!auth.authenticated()" [attr.href]="ssoHref" class="navbar-right" style="margin-right: 10px">
+            <img
+              src="https://images.contentful.com/idjq7aai9ylm/12vrPsIMBQi28QwCGOAqGk/33234da7672c6b0cdca394fc8e0b1c2b/EVE_SSO_Login_Buttons_Small_Black.png?w=195&h=30"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
