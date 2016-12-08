@@ -137,7 +137,7 @@
       <small>If you changed the multiplier, you have to retrieve a new quote as well.</small>
     </div>
 
-    <div class="alert alert-info" *ngIf="prefit">We will fit this doctrine ship for you!</div>
+    <div class="alert alert-info" *ngIf="prefit !== 'nofit'">We will fit this doctrine ship for you!</div>
 
     <button id="submitOrder" type="submit" class="btn btn-primary"
             [disabled]="(!isPriceCalculated || !client)">

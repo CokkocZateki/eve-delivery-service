@@ -20,7 +20,7 @@ export class OrderComponent implements OnInit {
   @Input() prefillName: string;
   @Input() prefillDestination: string;
   @Input() prefillLink: string;
-  @Input() prefit: boolean;
+  @Input() prefit: string;
 
   public constructor(private orderService: OrderService, private router: Router) {
 

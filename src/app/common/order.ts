@@ -10,6 +10,6 @@ export class Order {
     public assignee?: string,
     public created?: any,
     public age?: number,
-    public prefit?: boolean
+    public prefit?: string
   ) {  }
 }

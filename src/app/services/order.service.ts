@@ -13,7 +13,8 @@ export class OrderService {
   }
 
   public create(model:Order, multiplier:number) {
-    return this.http.post(this.baseUrl + "create"  + "?multiplier=" + multiplier, model);
+    var url = this.baseUrl + "create"  + "?multiplier=" + multiplier;
+    return this.http.post(url, model);
   }
 
   public quote(praisalLink:string, multiplier:number) {
