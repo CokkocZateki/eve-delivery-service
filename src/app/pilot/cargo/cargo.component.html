@@ -1,3 +1,23 @@
-<p>
-  cargo works!
-</p>
+<div class="content-box roundedCorners">
+  <h1>Cargo</h1>
+  <div class="progress">
+    <div *ngIf="!isOverfilled()">
+      <div class="progress-bar progress-bar-success" [style.width]="percentageFilled">
+        <span style="color: #444">{{ volumeFilled }}</span>
+      </div>
+      <div *ngIf="volumePending && volumePending !== '0'"
+           class="progress-bar progress-bar-warning progress-bar-striped" [style.width]="percentagePending">
+        <span style="color: #444">{{ volumePending }}</span>
+      </div>
+    </div>
+    <div *ngIf="isOverfilled()">
+      <div class="progress-bar progress-bar-danger progress-bar-striped" [style.width]="'100%'">
+        <span style="color: #ffff00">more than 330k m3</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    Pending: {{ volumePending }} m3<br/>
+    Shipping: {{ volumeFilled }} m3
+  </div>
+</div>
