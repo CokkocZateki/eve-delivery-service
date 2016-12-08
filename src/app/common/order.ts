@@ -9,6 +9,7 @@ export class Order {
     public items?: any,
     public assignee?: string,
     public created?: any,
-    public age?: number
+    public age?: number,
+    public prefit?: boolean
   ) {  }
 }

@@ -12,7 +12,7 @@ import {OrderDetailComponent} from "./pilot/self-service/order-detail/order-deta
 
 const routes: RouterConfig = [
   { path: 'client', component: ClientComponent },
-  { path: 'frontpage/:name/:destination/:link', component: FrontPageComponent },
+  { path: 'frontpage/:name/:destination/:link/:prefit', component: FrontPageComponent },
   { path: 'manager', component: ManagerComponent },
   { path: 'manager/:id', component: ManagerDetailComponent },
   { path: 'pilot', component: PilotComponent },

@@ -20,6 +20,7 @@ export class OrderComponent implements OnInit {
   @Input() prefillName: string;
   @Input() prefillDestination: string;
   @Input() prefillLink: string;
+  @Input() prefit: boolean;
 
   public constructor(private orderService: OrderService, private router: Router) {
 
@@ -53,6 +54,7 @@ export class OrderComponent implements OnInit {
     this.isSubmitting = true;
 
     this.model.expectedPrice = this.expectedPrice;
+    this.model.prefit = this.prefit;
 
     this.orderService.create(this.model, this.multiplier).subscribe(
       data => {

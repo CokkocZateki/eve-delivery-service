@@ -9,12 +9,16 @@
     <tr>
       <th>Name</th>
       <th></th>
+      <th></th>
     </tr>
     <tr *ngFor="let doctrine of doctrines">
       <td>{{ doctrine.title }}</td>
       <td><a href="http://evepraisal.com/e/{{ doctrine.link }}" target="_blank">Open Evepraisal</a></td>
       <td>
         <button class="btn btn-default" (click)="order(doctrine)">Order</button>
+      </td>
+      <td>
+        <button class="btn btn-default" (click)="orderFitted(doctrine)">Order fitted</button>
       </td>
     </tr>
   </table>

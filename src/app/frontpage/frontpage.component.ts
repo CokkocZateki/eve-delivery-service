@@ -25,13 +25,14 @@ export class FrontPageComponent implements OnInit {
   public prefillName: string;
   public prefillDestination: string;
   public prefillLink: string;
+  public prefit: boolean;
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
         this.prefillName = params['name'];
         this.prefillDestination = params['destination'];
         this.prefillLink = params['link'];
-        console.log(this.prefillLink)
+        this.prefit = params['prefit'] === 'prefit';
       }
     );
   }

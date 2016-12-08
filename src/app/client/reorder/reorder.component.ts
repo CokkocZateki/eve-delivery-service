@@ -35,6 +35,10 @@ export class ReorderComponent implements OnInit {
   }
 
   order(reorder:any) {
-    this.router.navigate(['/frontpage', this.client, reorder.destination, reorder.link]);
+    this.router.navigate(['/frontpage', this.client, reorder.destination, reorder.link, '']);
+  }
+
+  orderFitted(reorder:any) {
+    this.router.navigate(['/frontpage', this.client, reorder.destination, reorder.link, 'prefit']);
   }
 }
