@@ -2,7 +2,7 @@
   <h1>Your Queue</h1>
 
   <span *ngIf="!ordersLoaded">Loading ...</span>
-  <span *ngIf="ordersLoaded && orders.length == 0">No orders waiting. All your orders were contracted.</span>
+  <span *ngIf="ordersLoaded && orders.length == 0">No orders waiting. If you are waiting for an order, please check your contracts.</span>
 
   <div *ngIf="ordersLoaded && orders.length > 0">
     <table class="table">
@@ -15,8 +15,7 @@
       <tr *ngFor="let order of orders">
         <td>{{ order.destination }}</td>
         <td>
-          <a *ngIf="order.link !== 'http://evepraisal.com'" href="{{ order.link }}" target="_blank">Evepraisal</a>
-          <span *ngIf="order.link === 'http://evepraisal.com'">Consolidated</span>
+          <a href="{{ order.link }}" target="_blank">Evepraisal</a>
         </td>
         <td>{{ order.expectedPrice | numberGroups }} ISK</td>
         <td>
@@ -25,6 +24,6 @@
         </td>
       </tr>
     </table>
-    <small>Multiple orders may be consolidated into one. The evepraisal gets lost due to shitty consolidation.</small>
+    <small>Multiple orders may be consolidated into one which will also update the evepraisal.</small>
   </div>
 </div>
