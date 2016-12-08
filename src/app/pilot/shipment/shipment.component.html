@@ -57,7 +57,7 @@
           </span>
           </div>
         </td>
-        <td><span *ngIf="order.prefit">Fitting: {{ order.prefit }}</span></td>
+        <td><span *ngIf="order.prefit">{{ order.prefit }} <app-info-fitting></app-info-fitting></span></td>
         <td>
           <confirm-dialog *ngIf="order.status !== 'contracted'" (contracted)="confirmed($event)"
                           [orderId]="order.id" [buttonTitle]="'Contracted'"></confirm-dialog>
@@ -69,3 +69,4 @@
   <div *ngIf="orders && orders.length == 0" class="alert alert-warning">No orders to be shipped.</div>
   <div *ngIf="!orders" class="alert alert-info">Loading ...</div>
 </div>
+

@@ -7,12 +7,13 @@ import {ManagerService} from "../../services/manager.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {ClipboardDirective} from "angular2-clipboard";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
+import {InfoFittingComponent} from "./info-fitting/info-fitting.component";
 
 @Component({
   selector: 'shipment',
   templateUrl: './app/pilot/shipment/shipment.component.html',
   providers: [PilotService, OrderProcessingService, ManagerService],
-  directives: [ContractedDialogComponent, ClipboardDirective, ConfirmDialogComponent],
+  directives: [ContractedDialogComponent, ClipboardDirective, ConfirmDialogComponent, InfoFittingComponent],
   pipes: [NumberGrouping],
 })
 export class ShipmentComponent implements OnInit {
@@ -38,6 +39,7 @@ export class ShipmentComponent implements OnInit {
     this.service.listShippingOrders().subscribe(
       data => {
         this.orders = data.json();
+        console.log(this.orders);
         this.setAllClients();
       },
       err => {

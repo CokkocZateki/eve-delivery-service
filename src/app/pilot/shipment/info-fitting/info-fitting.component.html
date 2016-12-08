@@ -1,3 +1,31 @@
-<p>
-  info-fitting works!
-</p>
+<div class="btn-group" role="group">
+  <button class="btn btn-toolbar" type="button" (click)="myModal.open()">
+    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+  </button>
+</div>
+
+<modal #myModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Help - Fitting Ships</h4>
+  </modal-header>
+  <modal-body>
+    <b>Please fit this doctrine fot the client.</b>
+    <ol>
+      <li>The order's items should be in your cargo. Please right click the ship, navigate to "Multifit" and select the
+        correct fitting as shown in the shipment box.
+      </li>
+      <li>If more than one sets of the selected fit are available, please
+        adjust the "Ships to fit" to the maximum value (it should auto update to the maximum value when you click next
+        to
+        the number.
+      </li>
+      <li>Do NOT check "Fit Rigs?" as the rigs shall be placed in the ship'scargo.</li>
+      <li>Now fit and contract it.</li>
+    </ol>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-success"
+            (click)="myModal.close()">Ok
+    </button>
+  </modal-footer>
+</modal>
