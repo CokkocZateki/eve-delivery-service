@@ -26,7 +26,6 @@ export class CargoComponent implements OnInit {
 
   ngOnInit() {
     this.service.getCargoStatus().then(data => {
-      console.log(data);
       this.volumePending = "" + data.cargoPending;
       this.volumeFilled = "" + data.cargoShipping;
       this.calculate();
@@ -34,8 +33,8 @@ export class CargoComponent implements OnInit {
   }
 
   private calculate() {
-    var volumeFilled = parseInt(this.volumeFilled);
-    var volumePending = parseInt(this.volumePending);
+    let volumeFilled = parseInt(this.volumeFilled);
+    let volumePending = parseInt(this.volumePending);
 
     this.volumeFilled = new NumberGrouping().transform(volumeFilled);
     this.volumePending = new NumberGrouping().transform(volumePending);
