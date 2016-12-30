@@ -21,23 +21,44 @@ export class SelfServiceComponent implements OnInit {
   private requestedValue: number;
   private requestedVolume: number;
 
-  constructor(private pilotSelfService: PilotSelfService, private statsService:SecuredStatsService, private router: Router) {
+  constructor(private pilotSelfService: PilotSelfService, private router: Router) {
   }
 
   ngOnInit() {
-    this.pilotSelfService.getRequestedOrders().then(orders => this.orders = orders);
-
-    this.statsService.getValueRequested().then(value => this.requestedValue = value);
-    this.statsService.getVolumeRequested().then(volume => this.requestedVolume = volume);
+    this.pilotSelfService.getRequestedOrders().then(orders => {
+      this.orders = orders;
+      this.requestedVolume = this.getVolumeByStatus(this.orders, 'requested');
+      this.requestedValue = this.getValueByStatus(this.orders, 'requested');
+    });
   }
 
   getVolume(order: Order) {
     let totalVolume = 0.0;
-    for (var i = 0; i < order.items.length; i++) {
+    for (let i = 0; i < order.items.length; i++) {
       let item = order.items[i];
       totalVolume += item.quantity * item.volume;
     }
     return parseInt("" + totalVolume);
+  }
+
+  getVolumeByStatus(orders: Order[], status: string) {
+    let totalVolume = 0.0;
+    for (let i = 0; i < orders.length; i++) {
+      if (orders[i].status === status) {
+        totalVolume += this.getVolume(orders[i]);
+      }
+    }
+    return totalVolume;
+  }
+
+  getValueByStatus(orders: Order[], status: string) {
+    let totalValue = 0.0;
+    for (let i = 0; i < orders.length; i++) {
+      if (orders[i].status === status) {
+        totalValue += orders[i].expectedPrice;
+      }
+    }
+    return totalValue;
   }
 
   pick(orderId: string) {
