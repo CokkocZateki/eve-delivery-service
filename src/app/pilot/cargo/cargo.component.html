@@ -1,5 +1,6 @@
 <div class="content-box roundedCorners">
   <h1>Cargo</h1>
+  <small>Max: {{ cargoMax  }}m3</small>
   <div class="progress">
     <div *ngIf="!isOverfilled()">
       <div class="progress-bar progress-bar-success" [style.width]="percentageFilled">
