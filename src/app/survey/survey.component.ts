@@ -10,7 +10,7 @@ import {SurveyService} from "../services/survey.service";
 })
 export class SurveyComponent implements OnInit {
 
-  question = "Are you happy with the recent delivery times?";
+  question;
   answered = false;
   loading = true;
   nothingToAnswer = false;
@@ -40,6 +40,7 @@ export class SurveyComponent implements OnInit {
     this.service.answer(this.question, answer, uuid);
   }
 
+  // from stackoverflow
   generateUUID() {
     let d = new Date().getTime();
     if (window.performance && typeof window.performance.now === "function") {

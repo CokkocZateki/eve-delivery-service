@@ -1,15 +1,24 @@
-<div class="content-box roundedCorners" *ngIf="!loading && !nothingToAnswer">
+<div class="content-box roundedCorners" *ngIf="!(loading || nothingToAnswer)">
   <h2>Share how you feel!</h2>
   <div *ngIf="!answered">
   <h4>
     {{ question }}
   </h4>
   <div class="btn-group btn-group-justified" data-toggle="buttons" >
-    <label class="btn btn-success" (click)="answerWith('yes')">
-      <input type="radio" name="options" id="option1" autocomplete="off"> Yes
+    <label class="btn btn-default" (click)="answerWith('yes')">
+      <input type="radio" name="options" autocomplete="off"> 1
     </label>
-    <label class="btn btn-danger"(click)="answerWith('no')">
-      <input type="radio" name="options" id="option2" autocomplete="off"> No
+    <label class="btn btn-default"(click)="answerWith('no')">
+      <input type="radio" name="options" autocomplete="off"> 2
+    </label>
+    <label class="btn btn-default"(click)="answerWith('no')">
+      <input type="radio" name="options" autocomplete="off"> 3
+    </label>
+    <label class="btn btn-default"(click)="answerWith('no')">
+      <input type="radio" name="options" autocomplete="off"> 4
+    </label>
+    <label class="btn btn-default"(click)="answerWith('no')">
+      <input type="radio" name="options" autocomplete="off"> 5
     </label>
   </div>
   </div>
