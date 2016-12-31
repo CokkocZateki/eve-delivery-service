@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SurveyService} from "../services/survey.service";
 
 @Component({
@@ -12,15 +12,32 @@ export class SurveyComponent implements OnInit {
 
   question = "Are you happy with the recent delivery times?";
   answered = false;
+  loading = true;
+  nothingToAnswer = false;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private service: SurveyService) {
   }
 
-  answerWith(answer:string): void {
-    console.log(answer);
+  ngOnInit() {
+    let uuid = localStorage.getItem('hd-survey-uuid');
+    if (!uuid) {
+      uuid = this.generateUUID();
+      localStorage.setItem('hd-survey-uuid', uuid);
+    }
+    this.service.getRandomQuestion(uuid).then(question => {
+      if (question !== '') {
+        this.question = question;
+      } else {
+        this.nothingToAnswer = true;
+      }
+      this.loading = false;
+    });
+  }
+
+  answerWith(answer: string): void {
     this.answered = true;
+    let uuid = localStorage.getItem('hd-survey-uuid');
+    this.service.answer(this.question, answer, uuid);
   }
 
   generateUUID() {
