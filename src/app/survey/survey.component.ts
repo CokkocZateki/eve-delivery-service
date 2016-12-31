@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SurveyComponent implements OnInit {
 
+  question = "Are you happy with the recent delivery times?";
+
   constructor() { }
 
   ngOnInit() {

@@ -1,3 +1,19 @@
-<p>
-  survey works!
-</p>
+<div class="content-box roundedCorners">
+  <h2>Survey<br/>
+    <small>Share how you feel about Horde Delivery</small>
+  </h2>
+  <h4>
+    {{ question }}
+  </h4>
+  <div class="btn-group btn-group-justified" data-toggle="buttons" *ngIf="!answered">
+    <label class="btn btn-success active">
+      <input type="radio" name="options" id="option1" autocomplete="off"> Yes
+    </label>
+    <label class="btn btn-danger">
+      <input type="radio" name="options" id="option2" autocomplete="off"> No
+    </label>
+  </div>
+  <p *ngIf="answered">
+    Thank you!
+  </p>
+</div>
