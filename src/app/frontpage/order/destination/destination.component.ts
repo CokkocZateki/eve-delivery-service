@@ -18,7 +18,12 @@ export class DestinationComponent implements OnInit {
     {
       name: 'GME Fortizar',
       imgUrl: 'app/frontpage/order/destination/fortizar.png'
-    }];
+    },
+    {
+      name: 'Capital Staging',
+      imgUrl: 'app/frontpage/order/destination/staging.jpg'
+    }
+    ];
 
   model:any;
 
