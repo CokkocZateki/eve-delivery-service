@@ -17,12 +17,13 @@ export class SurveyService {
       .catch(this.handleError);
   }
 
-  answer(question: string, answer: string): void {
+  answer(question: string, answer: string, uuid: string): void {
     let headers = new Headers();
     headers.append("Content-Type", 'application/json');
     let payload = {
       question: question,
-      answer: answer
+      answer: answer,
+      uuid: uuid
     };
     this.http.post(this.baseUrl, JSON.stringify(payload), {headers: headers}).subscribe(
       data => {
