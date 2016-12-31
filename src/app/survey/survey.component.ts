@@ -19,23 +19,19 @@ export class SurveyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initUuid();
-    this.service.getQuestion().then(data => {
-      if (data != {}) {
+    let uuid = localStorage.getItem('hd-survey-uuid');
+    if (!uuid) {
+      uuid = this.generateUUID();
+      localStorage.setItem('hd-survey-uuid', uuid);
+    }
+    this.service.getQuestion(uuid).then(data => {
+      if (data) {
         this.question = data.question;
       } else {
         this.nothingToAnswer = true;
       }
       this.loading = false;
     });
-  }
-
-  private initUuid() {
-    let uuid = localStorage.getItem('hd-survey-uuid');
-    if (!uuid) {
-      uuid = this.generateUUID();
-      localStorage.setItem('hd-survey-uuid', uuid);
-    }
   }
 
   answerWith(answer: string): void {

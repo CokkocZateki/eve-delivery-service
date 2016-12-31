@@ -10,10 +10,16 @@ export class SurveyService {
   constructor(private http: Http) {
   }
 
-  getQuestion(): Promise<any> {
-    return this.http.get(this.baseUrl)
+  getQuestion(uuid:string): Promise<any> {
+    return this.http.get(this.baseUrl + "?uuid=" + uuid)
       .toPromise()
-      .then(response => response.json())
+      .then(response => {
+        if (response.status == 200) {
+          return response.json()
+        } else {
+          return null;
+        }
+      })
       .catch(this.handleError);
   }
 
