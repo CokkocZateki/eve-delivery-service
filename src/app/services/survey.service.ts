@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {environment} from "../environment";
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 
 @Injectable()
 export class SurveyService {
@@ -10,7 +10,7 @@ export class SurveyService {
   constructor(private http: Http) {
   }
 
-  getRandomQuestion(uuid:string): Promise<string> {
+  getRandomQuestion(uuid: string): Promise<string> {
     return this.http.get(this.baseUrl + "?uuid=" + uuid)
       .toPromise()
       .then(response => response.text())
@@ -18,8 +18,15 @@ export class SurveyService {
   }
 
   answer(question: string, answer: string): void {
-    this.http.post(this.baseUrl, "").subscribe(
-      data => {},
+    let headers = new Headers();
+    headers.append("Content-Type", 'application/json');
+    let payload = {
+      question: question,
+      answer: answer
+    };
+    this.http.post(this.baseUrl, JSON.stringify(payload), {headers: headers}).subscribe(
+      data => {
+      },
       err => console.log(err)
     )
   }
