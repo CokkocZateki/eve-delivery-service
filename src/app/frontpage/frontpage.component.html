@@ -1,5 +1,26 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
+
+
+    <ul class="nav navbar-nav">
+      <li>
+        <p class="navbar-text">
+          Queue: {{ queueSize }}
+        </p>
+      </li>
+      <li>
+        <p class="navbar-text sm-down-hide">
+          Completed: {{ completedCount }}
+        </p>
+      </li>
+      <li>
+        <p class="navbar-text sm-down-hide">
+          Average time: {{ averageHours }}h
+        </p>
+      </li>
+    </ul>
+
+
     <div *ngIf="!auth.authenticated()" style="padding: 10px">
       <a class="navbar-right" [attr.href]="ssoHref">
         <img
@@ -9,12 +30,15 @@
 
     <div *ngIf="auth.authenticated()">
       <div class="navbar-header">
-
-        <p class="navbar-btn">
-          <button class="btn btn-success btn-margin" (click)="goToClientPage()">Open Dashboard</button>
-        </p>
       </div>
+    </div>
+    <div *ngIf="auth.authenticated()">
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <p class="navbar-btn" style="padding-right: 10px">
+            <button class="btn btn-success btn-margin" (click)="goToClientPage()">Open Dashboard</button>
+          </p>
+        </li>
         <li>
           <p class="navbar-btn" style="padding-right: 10px">
             <button class="btn btn-default btn-margin" (click)="auth.logout()">Log Out</button>
@@ -29,7 +53,5 @@
 
 <div class="content">
   <order [prefillName]="prefillName" [prefillLink]="prefillLink" [prefillDestination]="prefillDestination"></order>
-  <status></status>
   <testimonials></testimonials>
-  <stats></stats>
 </div>
