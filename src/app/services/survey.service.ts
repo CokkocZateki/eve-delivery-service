@@ -10,14 +10,14 @@ export class SurveyService {
   constructor(private http: Http) {
   }
 
-  getRandomQuestion(uuid: string): Promise<string> {
-    return this.http.get(this.baseUrl + "?uuid=" + uuid)
+  getQuestion(): Promise<any> {
+    return this.http.get(this.baseUrl)
       .toPromise()
-      .then(response => response.text())
+      .then(response => response.json())
       .catch(this.handleError);
   }
 
-  answer(question: string, answer: string, uuid: string): void {
+  submitAnswer(question: string, answer: string, uuid: string): void {
     let headers = new Headers();
     headers.append("Content-Type", 'application/json');
     let payload = {

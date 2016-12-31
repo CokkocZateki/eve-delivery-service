@@ -19,14 +19,10 @@ export class SurveyComponent implements OnInit {
   }
 
   ngOnInit() {
-    let uuid = localStorage.getItem('hd-survey-uuid');
-    if (!uuid) {
-      uuid = this.generateUUID();
-      localStorage.setItem('hd-survey-uuid', uuid);
-    }
-    this.service.getRandomQuestion(uuid).then(question => {
-      if (question !== '') {
-        this.question = question;
+    this.initUuid();
+    this.service.getQuestion().then(data => {
+      if (data != {}) {
+        this.question = data.question;
       } else {
         this.nothingToAnswer = true;
       }
@@ -34,14 +30,22 @@ export class SurveyComponent implements OnInit {
     });
   }
 
+  private initUuid() {
+    let uuid = localStorage.getItem('hd-survey-uuid');
+    if (!uuid) {
+      uuid = this.generateUUID();
+      localStorage.setItem('hd-survey-uuid', uuid);
+    }
+  }
+
   answerWith(answer: string): void {
     this.answered = true;
     let uuid = localStorage.getItem('hd-survey-uuid');
-    this.service.answer(this.question, answer, uuid);
+    this.service.submitAnswer(this.question, answer, uuid);
   }
 
   // from stackoverflow
-  generateUUID() {
+  private generateUUID() {
     let d = new Date().getTime();
     if (window.performance && typeof window.performance.now === "function") {
       d += performance.now(); //use high-precision timer if available
