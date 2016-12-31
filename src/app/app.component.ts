@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ErrorComponent} from "./errors/error.component";
 import {OrderComponent} from "./frontpage/order/order.component";
-import {StatusComponent} from "./frontpage/status/status.component";
 import {Http} from "@angular/http";
 import {environment} from "./environment";
 import { ROUTER_DIRECTIVES } from '@angular/router';
@@ -9,7 +8,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   moduleId: module.id,
   selector: 'app-root',
-  directives: [ErrorComponent, OrderComponent, StatusComponent, ROUTER_DIRECTIVES],
+  directives: [ErrorComponent, OrderComponent, ROUTER_DIRECTIVES],
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css']
 })
