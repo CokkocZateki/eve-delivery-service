@@ -6,12 +6,13 @@ import {TestimonialsComponent} from "./testimonials/testimonials.component";
 import {SsoAuth} from "../services/ssoauth.service";
 import {environment} from "../environment";
 import {Router, Params, ActivatedRoute} from "@angular/router";
+import {SurveyComponent} from "../survey/survey.component";
 
 @Component({
   moduleId: module.id,
   selector: 'frontpage',
   templateUrl: 'frontpage.component.html',
-  directives: [OrderComponent, StatusComponent, StatsComponent, TestimonialsComponent],
+  directives: [OrderComponent, StatusComponent, StatsComponent, TestimonialsComponent, SurveyComponent],
   styleUrls: ['frontpage.component.css'],
   providers: [SsoAuth]
 })

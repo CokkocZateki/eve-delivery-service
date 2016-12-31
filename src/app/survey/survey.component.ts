@@ -9,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class SurveyComponent implements OnInit {
 
   question = "Are you happy with the recent delivery times?";
+  answered = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  answerWith(answer:string): void {
+    console.log(answer);
+    this.answered = true;
+  }
 }

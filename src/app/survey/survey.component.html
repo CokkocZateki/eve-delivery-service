@@ -1,17 +1,17 @@
 <div class="content-box roundedCorners">
-  <h2>Survey<br/>
-    <small>Share how you feel about Horde Delivery</small>
-  </h2>
+  <h2>Share how you feel!</h2>
+  <div *ngIf="!answered">
   <h4>
     {{ question }}
   </h4>
-  <div class="btn-group btn-group-justified" data-toggle="buttons" *ngIf="!answered">
-    <label class="btn btn-success active">
+  <div class="btn-group btn-group-justified" data-toggle="buttons" >
+    <label class="btn btn-success" (click)="answerWith('yes')">
       <input type="radio" name="options" id="option1" autocomplete="off"> Yes
     </label>
-    <label class="btn btn-danger">
+    <label class="btn btn-danger"(click)="answerWith('no')">
       <input type="radio" name="options" id="option2" autocomplete="off"> No
     </label>
+  </div>
   </div>
   <p *ngIf="answered">
     Thank you!
