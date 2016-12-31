@@ -1,0 +1,28 @@
+<div class="content-box roundedCorners" *ngIf="!(loading || nothingToAnswer)">
+  <h2>Share how you feel!</h2>
+  <div *ngIf="!answered">
+  <h4>
+    {{ question }}
+  </h4>
+  <div class="btn-group btn-group-justified" data-toggle="buttons" >
+    <label class="btn btn-default" (click)="answerWith('1')">
+      <input type="radio" name="options" autocomplete="off"> 1
+    </label>
+    <label class="btn btn-default"(click)="answerWith('2')">
+      <input type="radio" name="options" autocomplete="off"> 2
+    </label>
+    <label class="btn btn-default"(click)="answerWith('3')">
+      <input type="radio" name="options" autocomplete="off"> 3
+    </label>
+    <label class="btn btn-default"(click)="answerWith('4')">
+      <input type="radio" name="options" autocomplete="off"> 4
+    </label>
+    <label class="btn btn-default"(click)="answerWith('5')">
+      <input type="radio" name="options" autocomplete="off"> 5
+    </label>
+  </div>
+  </div>
+  <p *ngIf="answered">
+    Thank you!
+  </p>
+</div>
