@@ -1,3 +1,81 @@
-<p>
-  jf-service works!
-</p>
+<button type="button" class="btn btn-primary pull-right" (click)="myModal.open()">Horde > Jita Courier
+</button>
+
+<modal #myModal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">Cheap and Chill JF Service</h4>
+  </modal-header>
+  <modal-body>
+    <p>
+      Horde Delivery helps you to get your items to Jita with the <b>lowest prices possible</b>!
+    </p>
+    <table class="table">
+      <tr>
+        <th>From</th>
+        <th>Volume Fee</th>
+        <th>Collateral Fee</th>
+      </tr>
+      <tr>
+        <td>7RM - Beanstar</td>
+        <td>200 ISK/m3</td>
+        <td>1%</td>
+      </tr>
+      <tr>
+        <td>GME - Fortizar</td>
+        <td>300 ISK/m3</td>
+        <td>1%</td>
+      </tr>
+    </table>
+    <h4>Select the Pickup-Location</h4>
+    <div class="row">
+      <div class="btn-group btn-group-justified" data-toggle="buttons">
+        <label class="btn btn-default" (click)="setDesto('7RM')">
+          <input type="radio" name="options" autocomplete="off"> 7RM - Beanstar
+        </label>
+        <label class="btn btn-default" (click)="setDesto('GME')">
+          <input type="radio" name="options" autocomplete="off"> GME - Fortizar
+        </label>
+      </div>
+    </div>
+    <h4>
+      Calculate the reward
+    </h4>
+    <div class="row">
+      <div class="col-md-4">
+        <fieldset class="form-group">
+          <label for="volumeInput">Volume in m3</label>
+          <input type="number" class="form-control" id="volumeInput" [disabled]="desto == null"
+                 [(ngModel)]="volume" (ngModelChange)="updateReward($event, 'volume')">
+        </fieldset>
+
+      </div>
+      <div class="col-md-4">
+        <label for="collateralInput">Collateral in ISK</label>
+        <input type="number" class="form-control" id="collateralInput" [disabled]="desto == null"
+               [(ngModel)]="collateral" (ngModelChange)="updateReward($event, 'collateral')">
+
+      </div>
+      <div class="col-md-4">
+        <label for="rewardOutput">Collateral in ISK</label>
+        <div class="input-group" id="rewardOutput">
+          {{ reward }} ISK
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="showError">
+      <p>
+        The volume must not exceed 150.000 m3 and the collateral must not exceed 5 billion ISK.
+      </p>
+    </div>
+
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-danger"
+            (click)="myModal.close()">Cancel
+    </button>
+    <button type="button" class="btn btn-success"
+            (click)="onConfirm(myModal)">Confirm
+    </button>
+  </modal-footer>
+</modal>

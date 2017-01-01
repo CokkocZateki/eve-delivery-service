@@ -1,7 +1,13 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
 
-
+    <ul class="nav navbar-nav">
+      <li>
+        <p class="navbar-btn">
+          <app-jf-service></app-jf-service>
+        </p>
+      </li>
+    </ul>
     <ul class="nav navbar-nav" *ngIf="queueSize && completedCount && averageHours">
       <li>
         <p class="navbar-text">
