@@ -5,12 +5,13 @@ import {Order} from "../../common/order";
 import {DestinationComponent} from "./destination/destination.component";
 import {ClipboardDirective} from "angular2-clipboard";
 import {Router} from "@angular/router";
+import {SurveyComponent} from "../../survey/survey.component";
 
 @Component({
   selector: 'order',
   providers: [OrderService],
   templateUrl: './app/frontpage/order/order.html',
-  directives: [DestinationComponent, ClipboardDirective],
+  directives: [DestinationComponent, ClipboardDirective, SurveyComponent],
   pipes: [NumberGrouping]
 })
 export class OrderComponent implements OnInit {

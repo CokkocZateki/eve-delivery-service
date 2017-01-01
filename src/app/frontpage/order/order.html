@@ -58,15 +58,15 @@
 
   <h1>Horde Delivery <br/><small>Bringing Jita to your doorstep</small></h1>
 
-  <h3>Welcome</h3>
+  <h3 *ngIf="!submitted">Welcome</h3>
 
-  <p>
+  <p *ngIf="!submitted">
     Check out this <a href="http://imgur.com/a/yqzdy" target="_blank">infographic</a> on how to use this service.
     If you have any <b>questions or feedback</b>, feel free to contact Rihan Shazih ingame or on the
     <a href="https://www.pandemic-legion.pl/forums/index.php?/topic/3184-horde-delivery-service/">forums</a>.
   </p>
 
-  <h3>Submit Order</h3>
+  <h3 *ngIf="!submitted">Submit Order</h3>
 
   <form (ngSubmit)="onSubmit()" *ngIf="!submitted">
     <fieldset class="form-group">
@@ -140,6 +140,7 @@
 
   <div *ngIf="submitted" id="orderSubmittedMessage">
     <h3>Thank you for your order!</h3>
+
     <p>Log in to see the status of your orders.<br/>
       After we accept the order, your goods will be shipped over and contracted to you. Upon accepting the contract you
       have to pay. Don't pay in advance!</p>
@@ -147,6 +148,8 @@
     <button type="button" class="btn btn-primary"
             (click)="showOrderPage()">Buy more
     </button>
+
+    <app-survey></app-survey>
 
     <h3>Anti Market Fuckery</h3>
     If items are overpriced or not seeded, report them at <b><a href="http://hordedelivery.com/market">http://hordedelivery.com/market</a></b>.

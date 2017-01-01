@@ -5,7 +5,6 @@ import {SsoAuth} from "../services/ssoauth.service";
 import {environment} from "../environment";
 import {Router, Params, ActivatedRoute} from "@angular/router";
 
-import {SurveyComponent} from "../survey/survey.component";
 import {StatsService} from "../services/stats.service";
 
 
@@ -13,7 +12,7 @@ import {StatsService} from "../services/stats.service";
   moduleId: module.id,
   selector: 'frontpage',
   templateUrl: 'frontpage.component.html',
-  directives: [OrderComponent, TestimonialsComponent, SurveyComponent],
+  directives: [OrderComponent, TestimonialsComponent],
   styleUrls: ['frontpage.component.css'],
   providers: [SsoAuth, StatsService]
 })
