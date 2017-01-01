@@ -47,8 +47,13 @@ export class OrderProcessingService {
   public generateMail(status:string, order:Order):string {
     let result = "Hi " + order.client + "!<br><br>";
 
+    let margin = this.margin;
+    if (order.destination === 'Capital Staging') {
+      margin = "10%";
+    }
+
     if (status === 'confirmed') {
-      result += "Thank you for your order (" + order.link + "). With a " + this.margin + " delivery fee " +
+      result += "Thank you for your order (" + order.link + "). With a " + margin + " delivery fee " +
         "to the " + order.destination + " it will cost " + new NumberGrouping().transform(order.expectedPrice) + ".00 ISK. " +
         "Shipping will start soon!";
     } else if (status === 'contracted') {
