@@ -11,8 +11,21 @@
       Volume: {{ requestedVolume | numberGroups }} m3
     </p>
 
-    <table class="table">
+    <table class="table table-striped" [mfData]="orders" #mf="mfDataTable" [mfRowsOnPage]="5">
+      <thead>
       <tr>
+        <!--<th style="width: 20%">-->
+          <!--<mfDefaultSorter by="name">Name</mfDefaultSorter>-->
+        <!--</th>-->
+        <!--<th style="width: 50%">-->
+          <!--<mfDefaultSorter by="email">Email</mfDefaultSorter>-->
+        <!--</th>-->
+        <!--<th style="width: 10%">-->
+          <!--<mfDefaultSorter by="age">Age</mfDefaultSorter>-->
+        <!--</th>-->
+        <!--<th style="width: 20%">-->
+          <!--<mfDefaultSorter by="city">City</mfDefaultSorter>-->
+        <!--</th>-->
         <th>Client</th>
         <th>Destination</th>
         <th>Client price</th>
@@ -21,7 +34,9 @@
         <th>Age</th>
         <th>Pick</th>
       </tr>
-      <tr *ngFor="let order of orders">
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of mf.data">
         <td>
           {{ order.client }}
         </td>
@@ -44,8 +59,51 @@
           <app-pick (pick)="pick(order.id)" [isReserved]="order.assignee != null"></app-pick>
         </td>
       </tr>
-
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="4">
+          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </td>
+      </tr>
+      </tfoot>
     </table>
+
+    <!--<table class="table">-->
+      <!--<tr>-->
+        <!--<th>Client</th>-->
+        <!--<th>Destination</th>-->
+        <!--<th>Client price</th>-->
+        <!--<th>Items</th>-->
+        <!--<th>Volume</th>-->
+        <!--<th>Age</th>-->
+        <!--<th>Pick</th>-->
+      <!--</tr>-->
+      <!--<tr *ngFor="let order of orders">-->
+        <!--<td>-->
+          <!--{{ order.client }}-->
+        <!--</td>-->
+        <!--<td>-->
+          <!--{{ order.destination }}-->
+        <!--</td>-->
+        <!--<td>-->
+          <!--{{ order.expectedPrice | numberGroups }} ISK-->
+        <!--</td>-->
+        <!--<td>-->
+          <!--<a href="{{ order.link }}" target="_blank">Evepraisal</a>-->
+        <!--</td>-->
+        <!--<td>-->
+          <!--{{ getVolume(order) | numberGroups }} m3-->
+        <!--</td>-->
+        <!--<td>-->
+          <!--{{ order.age }} h-->
+        <!--</td>-->
+        <!--<td>-->
+          <!--<app-pick (pick)="pick(order.id)" [isReserved]="order.assignee != null"></app-pick>-->
+        <!--</td>-->
+      <!--</tr>-->
+
+    <!--</table>-->
 
   </div>
   <div *ngIf="orders && orders.length == 0" class="alert alert-warning">No orders waiting.</div>
