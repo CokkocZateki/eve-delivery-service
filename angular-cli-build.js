@@ -18,6 +18,7 @@ module.exports = function(defaults) {
       '@angular/**/*.+(js|js.map)',
       'ng2-bs3-modal/**/*.js',
       'angular2-datatable/**/*.js',
+        'lodash/**/*.js'
     ]
   });
 };

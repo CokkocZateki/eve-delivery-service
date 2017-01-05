@@ -15,6 +15,7 @@ const map:any = {
   'angular2-clipboard': 'https://unpkg.com/angular2-clipboard@0.2.12/src/ngii-clipboard.directive.js',
   'angular2-datatable': 'vendor/angular2-datatable',
   'ng2-bs3-modal': 'vendor/ng2-bs3-modal',
+  'lodash':                     'vendor/lodash/lodash.js',
 };
 
 /** User packages configuration. */
@@ -24,6 +25,7 @@ const packages:any = {
   'clipboard': {defaultExtension: 'js'},
   'angular2-datatable': {defaultExtension: 'js', main: 'datatable.js'},
   'ng2-bs3-modal': {defaultExtension: 'js', main: 'ng2-bs3-modal.js'},
+  'lodash':                     { defaultExtension: 'js' },
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

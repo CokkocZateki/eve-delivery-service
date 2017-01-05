@@ -7,6 +7,8 @@ import {PickComponent} from "./pick/pick.component";
 import {SecuredStatsService} from "../../services/secured-stats.service";
 import {DataTableDirectives} from "angular2-datatable/datatable"
 
+declare var _:any;
+
 @Component({
   moduleId: module.id,
   selector: 'app-self-service',
