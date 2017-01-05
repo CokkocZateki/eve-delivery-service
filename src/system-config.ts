@@ -11,18 +11,19 @@
 const map:any = {
   'angular2-jwt': 'https://unpkg.com/angular2-jwt@0.1.16',
   'ng2-bootstrap': 'https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/1.0.24/ng2-bootstrap.min.js',
-  'ng2-bs3-modal': 'vendor/ng2-bs3-modal',
   'clipboard': 'https://unpkg.com/clipboard@1.5.10/dist/clipboard.js',
   'angular2-clipboard': 'https://unpkg.com/angular2-clipboard@0.2.12/src/ngii-clipboard.directive.js',
-
+  'angular2-datatable': 'vendor/angular2-datatable',
+  'ng2-bs3-modal': 'vendor/ng2-bs3-modal',
 };
 
 /** User packages configuration. */
 const packages:any = {
   'angular2-jwt': {defaultExtension: 'js'},
-  'ng2-bs3-modal': {defaultExtension: 'js', main: 'ng2-bs3-modal.js'},
   'angular2-clipboard': {defaultExtension: 'js'},
   'clipboard': {defaultExtension: 'js'},
+  'angular2-datatable': {defaultExtension: 'js', main: 'datatable.js'},
+  'ng2-bs3-modal': {defaultExtension: 'js', main: 'ng2-bs3-modal.js'},
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

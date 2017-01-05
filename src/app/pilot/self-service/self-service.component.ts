@@ -5,6 +5,7 @@ import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {Router} from "@angular/router";
 import {PickComponent} from "./pick/pick.component";
 import {SecuredStatsService} from "../../services/secured-stats.service";
+import {DataTableDirectives} from "angular2-datatable/datatable"
 
 @Component({
   moduleId: module.id,
@@ -12,7 +13,7 @@ import {SecuredStatsService} from "../../services/secured-stats.service";
   templateUrl: 'self-service.component.html',
   styleUrls: ['self-service.component.css'],
   providers: [PilotSelfService, SecuredStatsService],
-  directives: [PickComponent],
+  directives: [PickComponent, DataTableDirectives],
   pipes: [NumberGrouping]
 })
 export class SelfServiceComponent implements OnInit {

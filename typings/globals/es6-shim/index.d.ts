@@ -221,12 +221,12 @@ interface Array<T> {
     entries(): IterableIteratorShim<[number, T]>;
 
     /**
-      * Returns an old_list of keys in the array
+      * Returns an list of keys in the array
       */
     keys(): IterableIteratorShim<number>;
 
     /**
-      * Returns an old_list of values in the array
+      * Returns an list of values in the array
       */
     values(): IterableIteratorShim<T>;
 

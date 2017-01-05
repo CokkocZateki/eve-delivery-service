@@ -751,13 +751,13 @@ declare namespace protractor {
         *
         * @example
         * // The following protractor expressions are equivalent.
-        * var old_list = element.all(by.css('.count span'));
-        * expect(old_list.count()).toBe(2);
+        * var list = element.all(by.css('.count span'));
+        * expect(list.count()).toBe(2);
         *
-        * old_list = $$('.count span');
-        * expect(old_list.count()).toBe(2);
-        * expect(old_list.get(0).getText()).toBe('First');
-        * expect(old_list.get(1).getText()).toBe('Second');
+        * list = $$('.count span');
+        * expect(list.count()).toBe(2);
+        * expect(list.get(0).getText()).toBe('First');
+        * expect(list.get(1).getText()).toBe('Second');
         *
         * @param {string} selector a css selector
         * @return {ElementArrayFinder} which identifies the
@@ -1059,7 +1059,7 @@ declare namespace protractor {
         /**
         * Represents the ElementArrayFinder as an array of ElementFinders.
         *
-        * @return {Array.<ElementFinder>} Return a promise, which resolves to a old_list
+        * @return {Array.<ElementFinder>} Return a promise, which resolves to a list
         *     of ElementFinders specified by the locator.
         */
         asElementFinders_(): webdriver.promise.Promise<ElementFinder[]>;
@@ -1700,7 +1700,7 @@ declare namespace protractor {
         addMockModule(name: string, script: Function, ...varArgs: any[]): void;
 
         /**
-         * Clear the old_list of registered mock modules.
+         * Clear the list of registered mock modules.
          */
         clearMockModules(): void;
 
