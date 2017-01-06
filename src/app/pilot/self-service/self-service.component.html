@@ -15,9 +15,18 @@
       <thead>
       <tr>
         <th>
-          <input type="text" [(ngModel)]="clientNameQuery" placeholder="Client" >
+          <input type="text" [(ngModel)]="clientNameQuery" placeholder="All clients" >
         </th>
-        <th>Destination</th>
+        <th>
+          <select class="mdl-select__input"
+                    id="option"
+                    name="dest"
+                    [(ngModel)]="selectedDestination"
+                    #select >
+            <option *ngFor="let dest of destinations"
+                    [value]="dest">{{dest}}</option>
+          </select>
+        </th>
         <th>
           <mfDefaultSorter by="expectedPrice">Client price</mfDefaultSorter>
         </th>
@@ -30,7 +39,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let order of mf.data | clientFilter: clientNameQuery">
+      <tr *ngFor="let order of mf.data | clientFilter: clientNameQuery | destinationFilter: selectedDestination">
         <td>
           {{ order.client }}
         </td>

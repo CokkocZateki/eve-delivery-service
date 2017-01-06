@@ -3,6 +3,7 @@ import {Order} from "../../common/order";
 import {PilotSelfService} from "../../services/pilot-self.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {ClientFilter} from "../self-service/clientFilter.pipe";
+import {DestinationFilter} from "../self-service/destinationFilter.pipe";
 import {Router} from "@angular/router";
 import {PickComponent} from "./pick/pick.component";
 import {SecuredStatsService} from "../../services/secured-stats.service";
@@ -17,11 +18,13 @@ declare var _:any;
   styleUrls: ['self-service.component.css'],
   providers: [PilotSelfService, SecuredStatsService],
   directives: [PickComponent, DataTableDirectives],
-  pipes: [NumberGrouping, ClientFilter]
+  pipes: [NumberGrouping, ClientFilter, DestinationFilter]
 })
 export class SelfServiceComponent implements OnInit {
 
   private orders: Array<Order>;
+  private destinations: Array<string>;
+  private selectedDestination: string;
   private requestedValue: number;
   private requestedVolume: number;
 
@@ -31,9 +34,17 @@ export class SelfServiceComponent implements OnInit {
   ngOnInit() {
     this.pilotSelfService.getRequestedOrders().then(orders => {
       this.orders = orders;
+      this.destinations = ["All destinations"].concat(this.getUniqueDestinationsFromOrders());
+      this.selectedDestination = "All destinations";
       this.requestedVolume = this.getVolumeByStatus(this.orders, 'requested');
       this.requestedValue = this.getValueByStatus(this.orders, 'requested');
     });
+  }
+
+  private getUniqueDestinationsFromOrders(): Array<string> {
+    return Array.from(new Set(this.orders.map(order => {
+      return order.destination
+    })));
   }
 
   getVolume(order: Order) {
