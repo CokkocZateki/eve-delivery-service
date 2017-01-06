@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Order} from "../../common/order";
 import {PilotSelfService} from "../../services/pilot-self.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
+import {ClientFilter} from "../self-service/clientFilter.pipe";
 import {Router} from "@angular/router";
 import {PickComponent} from "./pick/pick.component";
 import {SecuredStatsService} from "../../services/secured-stats.service";
@@ -16,7 +17,7 @@ declare var _:any;
   styleUrls: ['self-service.component.css'],
   providers: [PilotSelfService, SecuredStatsService],
   directives: [PickComponent, DataTableDirectives],
-  pipes: [NumberGrouping]
+  pipes: [NumberGrouping, ClientFilter]
 })
 export class SelfServiceComponent implements OnInit {
 
