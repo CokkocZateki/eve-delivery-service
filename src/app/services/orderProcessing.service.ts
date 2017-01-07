@@ -48,8 +48,7 @@ export class OrderProcessingService {
     let result = "Hi " + order.client + "!<br><br>";
 
     if (status === 'confirmed') {
-      result += "Thank you for your order (" + order.link + "). With a " + this.margin + " delivery fee " +
-        "to the " + order.destination + " it will cost " + new NumberGrouping().transform(order.expectedPrice) + ".00 ISK. " +
+      result += "Thank you for your order (" + order.link + "). It will cost " + new NumberGrouping().transform(order.expectedPrice) + ".00 ISK. " +
         "Shipping will start soon!";
     } else if (status === 'contracted') {
       result += "Your order (" + order.link + ") has been contracted to you and costs "
