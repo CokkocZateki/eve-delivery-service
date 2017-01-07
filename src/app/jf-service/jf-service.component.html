@@ -9,6 +9,9 @@
     <p>
       Horde Delivery helps you to get your items to Jita with the <b>lowest prices possible</b>!
     </p>
+    <p>
+      This jump freighter service may take a little longer than others.
+    </p>
     <table class="table">
       <tr>
         <th>From</th>
@@ -56,10 +59,11 @@
 
       </div>
       <div class="col-md-4">
-        <label for="rewardOutput">Collateral in ISK</label>
-        <div class="input-group" id="rewardOutput">
-          {{ reward }} ISK
-        </div>
+        <label for="rewardOutput">Reward in ISK</label>
+        <button id="rewardOutput" class="btn btn-default" type="button" (click)="copyToClipboard()" [disabled]="desto == null">
+          {{ reward | numberGroups }} ISK
+          <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
 

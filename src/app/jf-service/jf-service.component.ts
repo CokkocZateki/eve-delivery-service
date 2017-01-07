@@ -1,6 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
-import {ClipboardDirective} from "angular2-clipboard";
 import {NumberGrouping} from "../common/numberGrouping.pipe";
 
 @Component({
@@ -8,7 +7,7 @@ import {NumberGrouping} from "../common/numberGrouping.pipe";
   selector: 'app-jf-service',
   templateUrl: 'jf-service.component.html',
   styleUrls: ['jf-service.component.css'],
-  directives: [MODAL_DIRECTIVES, ClipboardDirective],
+  directives: [MODAL_DIRECTIVES],
   pipes: [NumberGrouping],
 })
 export class JfServiceComponent implements OnInit {
@@ -21,19 +20,20 @@ export class JfServiceComponent implements OnInit {
 
   showError: boolean;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  setDesto(desto:string):void {
+  setDesto(desto: string): void {
     this.desto = desto;
     this.collateral = null;
     this.volume = null;
     this.reward = 0;
   }
 
-  private calcReward():number {
+  private calcReward(): number {
     let vol = 0;
     if (this.volume) {
       vol = +this.volume;
@@ -55,7 +55,7 @@ export class JfServiceComponent implements OnInit {
     }
   }
 
-  updateReward(event:number, element:string):void {
+  updateReward(event: number, element: string): void {
     let exceedsVolume = element == 'volume' && event > 150000 || parseInt(this.volume) > 150000;
     let exceedsCollateral = element == 'collateral' && event > 5000000000 || parseInt(this.volume) > 5000000000;
     if (exceedsVolume || exceedsCollateral) {
@@ -64,6 +64,10 @@ export class JfServiceComponent implements OnInit {
       this.showError = false;
     }
     this.reward = this.calcReward();
+  }
+
+  copyToClipboard() {
+    window.prompt("Copy to clipboard: Ctrl+C, Enter", "" + this.reward);
   }
 
 
