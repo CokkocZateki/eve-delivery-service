@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SurveyService} from "../services/survey.service";
 
+declare let ga:any;
+
 @Component({
   moduleId: module.id,
   selector: 'app-survey',
@@ -38,6 +40,8 @@ export class SurveyComponent implements OnInit {
     this.answered = true;
     let uuid = localStorage.getItem('hd-survey-uuid');
     this.service.submitAnswer(this.question, answer, uuid);
+
+    ga('send', 'event', 'Survey', 'submit');
   }
 
   // from stackoverflow

@@ -7,6 +7,8 @@ import {ClipboardDirective} from "angular2-clipboard";
 import {Router} from "@angular/router";
 import {SurveyComponent} from "../../survey/survey.component";
 
+declare let ga:any;
+
 @Component({
   selector: 'order',
   providers: [OrderService],
@@ -63,6 +65,8 @@ export class OrderComponent implements OnInit {
         this.submitted = true;
         this.isSubmitting = false;
         this.orderId = body.id;
+
+        ga('send', 'event', 'Order', 'submit');
       },
       err => {
         console.log(err);
@@ -96,6 +100,8 @@ export class OrderComponent implements OnInit {
         this.expectedPrice = body.price;
         this.isPriceCalculationRunning = false;
         this.isPriceCalculated = true;
+
+        ga('send', 'event', 'Order', 'quote');
       },
       err => {
         this.isPriceCalculationRunning = false;
