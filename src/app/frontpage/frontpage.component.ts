@@ -6,13 +6,14 @@ import {environment} from "../environment";
 import {Router, Params, ActivatedRoute} from "@angular/router";
 
 import {StatsService} from "../services/stats.service";
+import {JfServiceComponent} from "../jf-service/jf-service.component";
 
 
 @Component({
   moduleId: module.id,
   selector: 'frontpage',
   templateUrl: 'frontpage.component.html',
-  directives: [OrderComponent, TestimonialsComponent],
+  directives: [OrderComponent, TestimonialsComponent, JfServiceComponent],
   styleUrls: ['frontpage.component.css'],
   providers: [SsoAuth, StatsService]
 })

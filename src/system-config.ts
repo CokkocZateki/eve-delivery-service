@@ -81,6 +81,7 @@ const barrels:string[] = [
   'app/client/reorder',
   'app/pilot/cargo',
   'app/survey',
+  'app/jf-service',
   /** @cli-barrel */
 ];
 
