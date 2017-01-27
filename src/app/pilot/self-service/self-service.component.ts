@@ -1,10 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, SimpleChange} from '@angular/core';
 import {Order} from "../../common/order";
 import {PilotSelfService} from "../../services/pilot-self.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
+import {OrderClientFilter} from "../../common/orderClientFilter.pipe";
+import {OrderDestinationFilter} from "../../common/orderDestinationFilter.pipe";
 import {Router} from "@angular/router";
 import {PickComponent} from "./pick/pick.component";
 import {SecuredStatsService} from "../../services/secured-stats.service";
+import {DataTableDirectives} from "angular2-datatable/datatable";
+
+declare var _:any;
 
 @Component({
   moduleId: module.id,
@@ -12,12 +17,14 @@ import {SecuredStatsService} from "../../services/secured-stats.service";
   templateUrl: 'self-service.component.html',
   styleUrls: ['self-service.component.css'],
   providers: [PilotSelfService, SecuredStatsService],
-  directives: [PickComponent],
-  pipes: [NumberGrouping]
+  directives: [PickComponent, DataTableDirectives],
+  pipes: [NumberGrouping, OrderClientFilter, OrderDestinationFilter]
 })
 export class SelfServiceComponent implements OnInit {
 
   private orders: Array<Order>;
+  private destinations: Array<string>;
+  private selectedDestination: string;
   private requestedValue: number;
   private requestedVolume: number;
 
@@ -27,9 +34,17 @@ export class SelfServiceComponent implements OnInit {
   ngOnInit() {
     this.pilotSelfService.getRequestedOrders().then(orders => {
       this.orders = orders;
+      this.destinations = ["All destinations"].concat(this.getUniqueDestinationsFromOrders());
+      this.selectedDestination = "All destinations";
       this.requestedVolume = this.getVolumeByStatus(this.orders, 'requested');
       this.requestedValue = this.getValueByStatus(this.orders, 'requested');
     });
+  }
+
+  private getUniqueDestinationsFromOrders(): Array<string> {
+    return Array.from(new Set(this.orders.map(order => {
+      return order.destination
+    })));
   }
 
   getVolume(order: Order) {

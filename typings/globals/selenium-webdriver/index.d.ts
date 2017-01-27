@@ -499,7 +499,7 @@ declare namespace firefox {
 
     /**
      * Models a Firefox proifle directory for use with the FirefoxDriver. The
-     * {@code Proifle} directory uses an in-memory pilotModel until {@link #writeToDisk}
+     * {@code Proifle} directory uses an in-memory model until {@link #writeToDisk}
      * is called.
      */
     class Profile {
@@ -3278,7 +3278,7 @@ declare namespace webdriver {
         emit(type: string, ...var_args: any[]): void;
 
         /**
-         * Returns a mutable old_list of listeners for a specific type of event.
+         * Returns a mutable list of listeners for a specific type of event.
          * @param {string} type The type of event to retrieve the listeners for.
          * @return {!Array.<{fn: !Function, oneshot: boolean,
          *                   scope: (Object|undefined)}>} The registered listeners for
@@ -3634,7 +3634,7 @@ declare namespace webdriver {
          *
          * @param {!webdriver.logging.Type} type The desired log type.
          * @return {!webdriver.promise.Promise.<!Array.<!webdriver.logging.Entry>>} A
-         *   promise that will resolve to a old_list of log entries for the specified
+         *   promise that will resolve to a list of log entries for the specified
          *   type.
          */
         get(type: string): webdriver.promise.Promise<webdriver.logging.Entry[]>;
@@ -3642,7 +3642,7 @@ declare namespace webdriver {
         /**
          * Retrieves the log types available to this driver.
          * @return {!webdriver.promise.Promise.<!Array.<!webdriver.logging.Type>>} A
-         *     promise that will resolve to a old_list of available log types.
+         *     promise that will resolve to a list of available log types.
          */
         getAvailableLogTypes(): webdriver.promise.Promise<string[]>;
 
@@ -4115,7 +4115,7 @@ declare namespace webdriver {
         getWindowHandle(): webdriver.promise.Promise<string>;
 
         /**
-         * Schedules a command to retrieve the current old_list of available window handles.
+         * Schedules a command to retrieve the current list of available window handles.
          * @return {!webdriver.promise.Promise.<!Array.<string>>} A promise that will
          *     be resolved with an array of window handles.
          */
@@ -5118,7 +5118,7 @@ declare namespace webdriver {
         /**
          * Locates an elements by evaluating a
          * {@linkplain webdriver.WebDriver#executeScript JavaScript expression}.
-         * The result of this expression must be an element or old_list of elements.
+         * The result of this expression must be an element or list of elements.
          *
          * @param {!(string|Function)} script The script to execute.
          * @param {...*} var_args The arguments to pass to the script.
