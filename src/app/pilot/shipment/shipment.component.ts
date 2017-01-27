@@ -7,13 +7,16 @@ import {ManagerService} from "../../services/manager.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
 import {ClipboardDirective} from "angular2-clipboard";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
+import {OrderClientFilter} from "../../common/orderClientFilter.pipe";
+import {OrderDestinationFilter} from "../../common/orderDestinationFilter.pipe";
+import {DataTableDirectives} from "angular2-datatable/datatable";
 
 @Component({
   selector: 'shipment',
   templateUrl: './app/pilot/shipment/shipment.component.html',
   providers: [PilotService, OrderProcessingService, ManagerService],
-  directives: [ContractedDialogComponent, ClipboardDirective, ConfirmDialogComponent],
-  pipes: [NumberGrouping],
+  directives: [ContractedDialogComponent, ClipboardDirective, ConfirmDialogComponent, DataTableDirectives],
+  pipes: [NumberGrouping, OrderClientFilter, OrderDestinationFilter],
 })
 export class ShipmentComponent implements OnInit {
 
@@ -31,6 +34,9 @@ export class ShipmentComponent implements OnInit {
     "We appreciate it if you recommend us to your friends and leave us a message at the forums: https://www.pandemic-legion.pl/forums/index.php?/topic/3184-new-delivery-service/<br/><br/>" +
     "Your Horde Delivery Service";
 
+  private destinations: Array<string>;
+  private selectedDestination: string;
+
   constructor(private service:PilotService, private orderProcessing:OrderProcessingService) {
   }
 
@@ -38,6 +44,8 @@ export class ShipmentComponent implements OnInit {
     this.service.listShippingOrders().subscribe(
       data => {
         this.orders = data.json();
+        this.destinations = ["All destinations"].concat(this.getUniqueDestinationsFromOrders());
+        this.selectedDestination = "All destinations";
         this.setAllClients();
       },
       err => {
@@ -45,6 +53,12 @@ export class ShipmentComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  private getUniqueDestinationsFromOrders(): Array<string> {
+    return Array.from(new Set(this.orders.map(order => {
+      return order.destination
+    })));
   }
 
   setActivated(orderId:string) {

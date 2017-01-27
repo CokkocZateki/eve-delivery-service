@@ -25,15 +25,30 @@
 
     <hr/>
 
-    <table class="table">
+    <table class="table" [mfData]="orders | orderClientFilter: clientNameQuery | orderDestinationFilter: selectedDestination"
+           #mf="mfDataTable" [mfRowsOnPage]="5">
       <tr>
-        <th>Client Name</th>
-        <th>Destination</th>
+        <th>
+          <input type="text" [(ngModel)]="clientNameQuery" placeholder="All clients" >
+        </th>
+        <th>
+          <select class="mdl-select__input"
+                  id="option"
+                  name="dest"
+                  [(ngModel)]="selectedDestination"
+                  #select >
+            <option *ngFor="let dest of destinations"
+                    [value]="dest">{{dest}}</option>
+          </select>
+        </th>
         <th>Items</th>
-        <th>Price</th>
+        <th>
+          <mfDefaultSorter by="expectedPrice">Price</mfDefaultSorter>
+        </th>
         <th></th>
       </tr>
-      <tr *ngFor="let order of orders" [style.background-color]="getStyle(order.id)" (click)="setActivated(order.id)">
+      <tbody>
+      <tr *ngFor="let order of mf.data" [style.background-color]="getStyle(order.id)" (click)="setActivated(order.id)">
         <td>
           <div class="input-group">
             <span class="form-control">{{ order.client }}</span>
@@ -62,6 +77,14 @@
           <span *ngIf="order.status === 'contracted'">Complete</span>
         </td>
       </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="4">
+          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </td>
+      </tr>
+      </tfoot>
     </table>
   </div>
   <div *ngIf="orders && orders.length == 0" class="alert alert-warning">No orders to be shipped.</div>

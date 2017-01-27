@@ -12,7 +12,7 @@
     </p>
 
     <table class="table table-striped"
-           [mfData]="orders | clientFilter: clientNameQuery | destinationFilter: selectedDestination"
+           [mfData]="orders | orderClientFilter: clientNameQuery | orderDestinationFilter: selectedDestination"
            #mf="mfDataTable" [mfRowsOnPage]="5">
       <thead>
       <tr>
@@ -28,7 +28,6 @@
             <option *ngFor="let dest of destinations"
                     [value]="dest">{{dest}}</option>
           </select>
-          <!--<selectFilter data="filteredOrders" selectedDestination="selectedDestination"></selectFilter>-->
         </th>
         <th>
           <mfDefaultSorter by="expectedPrice">Client price</mfDefaultSorter>

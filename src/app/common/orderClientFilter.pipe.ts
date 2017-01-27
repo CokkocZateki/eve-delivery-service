@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Order} from "../../common/order";
+import {Order} from "./order";
 
-@Pipe({ name: 'clientFilter', pure: false })
-export class ClientFilter implements PipeTransform {
+@Pipe({ name: 'orderClientFilter', pure: false })
+export class OrderClientFilter implements PipeTransform {
   transform(orders: Array<Order>, filter: string): Array<Order> {
     if (!filter) {
       return orders;

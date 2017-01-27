@@ -2,13 +2,12 @@ import {Component, OnInit, SimpleChange} from '@angular/core';
 import {Order} from "../../common/order";
 import {PilotSelfService} from "../../services/pilot-self.service";
 import {NumberGrouping} from "../../common/numberGrouping.pipe";
-import {ClientFilter} from "./clientFilter.pipe";
-import {DestinationFilter} from "./destinationFilter.pipe";
+import {OrderClientFilter} from "../../common/orderClientFilter.pipe";
+import {OrderDestinationFilter} from "../../common/orderDestinationFilter.pipe";
 import {Router} from "@angular/router";
 import {PickComponent} from "./pick/pick.component";
 import {SecuredStatsService} from "../../services/secured-stats.service";
-import {DataTableDirectives} from "angular2-datatable/datatable"
-import {SelectFilter} from "./select-filter.component";
+import {DataTableDirectives} from "angular2-datatable/datatable";
 
 declare var _:any;
 
@@ -18,8 +17,8 @@ declare var _:any;
   templateUrl: 'self-service.component.html',
   styleUrls: ['self-service.component.css'],
   providers: [PilotSelfService, SecuredStatsService],
-  directives: [PickComponent, DataTableDirectives, SelectFilter],
-  pipes: [NumberGrouping, ClientFilter, DestinationFilter]
+  directives: [PickComponent, DataTableDirectives],
+  pipes: [NumberGrouping, OrderClientFilter, OrderDestinationFilter]
 })
 export class SelfServiceComponent implements OnInit {
 
