@@ -3,7 +3,7 @@
 
   <div *ngIf="orders && orders.length > 0">
 
-    <div class="row">
+    <div class="row" *ngIf="selectedDestination === 'All destinations'">
       <div class="col-md-10">
         <button type="button" class="btn btn-primary"
                 ngIIclipboard [cbContent]="allClients">Copy All Recipients
@@ -16,7 +16,8 @@
         </button>
       </div>
       <div class="col-md-2">
-        <confirm-dialog *ngIf="!isContractedAll && !isContractingAll" (contracted)="confirmed($event)"
+        <confirm-dialog *ngIf="!isContractedAll && !isContractingAll"
+                        (contracted)="confirmed($event)"
                         [orderId]="'all'" [buttonTitle]="'Contracted All'"></confirm-dialog>
         <span *ngIf="isContractingAll && !isContractedAll">Submitting ...</span>
         <span *ngIf="isContractedAll">Complete.</span>
